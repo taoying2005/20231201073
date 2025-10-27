@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百度贴吧 - 社交互动功能思维导图</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E91E63',
+                        secondary: '#F7F7F7',
+                        accent: '#FF6B6B',
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .shadow-custom {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4">
+    <div class="container mx-auto max-w-5xl">
+        <div class="bg-white rounded-lg shadow-custom p-6 mb-6">
+            <h1 class="text-2xl font-bold text-center text-primary mb-4">百度贴吧 - 社交互动功能思维导图</h1>
+            <p class="text-center text-gray-500 mb-8">基于项目分析生成的社交互动功能模块图</p>
+            
+            <!-- SVG 思维导图 -->
+            <svg width="100%" height="750" viewBox="0 0 1000 750" class="mx-auto">
+                <!-- 主节点 -->
+                <rect x="400" y="50" width="200" height="80" rx="10" fill="#E91E63" stroke="#ad1457" stroke-width="2"/>
+                <text x="500" y="95" text-anchor="middle" fill="white" font-size="20" font-weight="bold">社交互动</text>
+                
+                <!-- 连接线 -->
+                <line x1="500" y1="130" x2="250" y2="200" stroke="#666" stroke-width="2"/>
+                <line x1="500" y1="130" x2="500" y2="200" stroke="#666" stroke-width="2"/>
+                <line x1="500" y1="130" x2="750" y2="200" stroke="#666" stroke-width="2"/>
+                
+                <!-- 一级子节点 -->
+                <!-- 评论系统 -->
+                <rect x="150" y="200" width="200" height="60" rx="8" fill="#EC407A" stroke="#ad1457" stroke-width="1.5"/>
+                <text x="250" y="235" text-anchor="middle" fill="white" font-size="16" font-weight="bold">评论系统</text>
+                
+                <!-- 点赞收藏 -->
+                <rect x="400" y="200" width="200" height="60" rx="8" fill="#EC407A" stroke="#ad1457" stroke-width="1.5"/>
+                <text x="500" y="235" text-anchor="middle" fill="white" font-size="16" font-weight="bold">点赞收藏</text>
+                
+                <!-- 关注系统 -->
+                <rect x="650" y="200" width="200" height="60" rx="8" fill="#EC407A" stroke="#ad1457" stroke-width="1.5"/>
+                <text x="750" y="235" text-anchor="middle" fill="white" font-size="16" font-weight="bold">关注系统</text>
+                
+                <!-- 评论系统的子节点 -->
+                <line x1="250" y1="260" x2="150" y2="330" stroke="#666" stroke-width="1.5"/>
+                <line x1="250" y1="260" x2="250" y2="330" stroke="#666" stroke-width="1.5"/>
+                <line x1="250" y1="260" x2="350" y2="330" stroke="#666" stroke-width="1.5"/>
+                
+                <rect x="100" y="330" width="100" height="50" rx="6" fill="#F06292" stroke="#EC407A" stroke-width="1"/>
+                <text x="150" y="360" text-anchor="middle" fill="white" font-size="12" font-weight="bold">发表评论</text>
+                
+                <rect x="200" y="330" width="100" height="50" rx="6" fill="#F06292" stroke="#EC407A" stroke-width="1"/>
+                <text x="250" y="360" text-anchor="middle" fill="white" font-size="12" font-weight="bold">评论列表</text>
+                
+                <rect x="300" y="330" width="100" height="50" rx="6" fill="#F06292" stroke="#EC407A" stroke-width="1"/>
+                <text x="350" y="360" text-anchor="middle" fill="white" font-size="12" font-weight="bold">评论点赞</text>
+                
+                <!-- 评论回复 -->
+                <line x1="250" y1="380" x2="250" y2="430" stroke="#666" stroke-width="1.5"/>
+                <rect x="175" y="430" width="150" height="50" rx="6" fill="#F06292" stroke="#EC407A" stroke-width="1"/>
+                <text x="250" y="460" text-anchor="middle" fill="white" font-size="12" font-weight="bold">评论回复</text>
+                
+                <line x1="250" y1="480" x2="150" y2="530" stroke="#666" stroke-width="1.5"/>
+                <line x1="250" y1="480" x2="250" y2="530" stroke="#666" stroke-width="1.5"/>
+                <line x1="250" y1="480" x2="350" y2="530" stroke="#666" stroke-width="1.5"/>
+                
+                <rect x="100" y="530" width="100" height="40" rx="6" fill="#F48FB1" stroke="#F06292" stroke-width="1"/>
+                <text x="150" y="555" text-anchor="middle" fill="white" font-size="10" font-weight="bold">回复评论</text>
+                
+                <rect x="200" y="530" width="100" height="40" rx="6" fill="#F48FB1" stroke="#F06292" stroke-width="1"/>
+                <text x="250" y="555" text-anchor="middle" fill="white" font-size="10" font-weight="bold">回复列表</text>
+                
+                <rect x="300" y="530" width="100" height="40" rx="6" fill="#F48FB1" stroke="#F06292" stroke-width="1"/>
+                <text x="350" y="555" text-anchor="middle" fill="white" font-size="10" font-weight="bold">嵌套回复</text>
+                
+                <!-- 点赞收藏的子节点 -->
+                <line x1="500" y1="260" x2="400" y2="330" stroke="#666" stroke-width="1.5"/>
+                <line x1="500" y1="260" x2="500" y2="330" stroke="#666" stroke-width="1.5"/>
+                <line x1="500" y1="260" x2="600" y2="330" stroke="#666" stroke-width="1.5"/>
+                
+                <rect x="350" y="330" width="100" height="50" rx="6" fill="#F06292" stroke="#EC407A" stroke-width="1"/>
+                <text x="400" y="360" text-anchor="middle" fill="white" font-size="12" font-weight="bold">帖子点赞</text>
+                
+                <rect x="450" y="330" width="100" height="50" rx="6" fill="#F06292" stroke="#EC407A" stroke-width="1"/>
+                <text x="500" y="360" text-anchor="middle" fill="white" font-size="12" font-weight="bold">帖子收藏</text>
+                
+                <rect x="550" y="330" width="100" height="50" rx="6" fill="#F06292" stroke="#EC407A" stroke-width="1"/>
+                <text x="600" y="360" text-anchor="middle" fill="white" font-size="12" font-weight="bold">分享功能</text>
+                
+                <!-- 分享方式 -->
+                <line x1="600" y1="380" x2="600" y2="430" stroke="#666" stroke-width="1.5"/>
+                <rect x="525" y="430" width="150" height="40" rx="6" fill="#F48FB1" stroke="#F06292" stroke-width="1"/>
+                <text x="600" y="455" text-anchor="middle" fill="white" font-size="10" font-weight="bold">分享方式</text>
+                
+                <line x1="600" y1="480" x2="500" y2="530" stroke="#666" stroke-width="1.5"/>
+                <line x1="600" y1="480" x2="600" y2="530" stroke="#666" stroke-width="1.5"/>
+                <line x1="600" y1="480" x2="700" y2="530" stroke="#666" stroke-width="1.5"/>
+                
+                <rect x="450" y="530" width="100" height="40" rx="6" fill="#F8BBD0" stroke="#F48FB1" stroke-width="1"/>
+                <text x="500" y="555" text-anchor="middle" fill="white" font-size="10" font-weight="bold">社交媒体</text>
+                
+                <rect x="550" y="530" width="100" height="40" rx="6" fill="#F8BBD0" stroke="#F48FB1" stroke-width="1"/>
+                <text x="600" y="555" text-anchor="middle" fill="white" font-size="10" font-weight="bold">复制链接</text>
+                
+                <rect x="650" y="530" width="100" height="40" rx="6" fill="#F8BBD0" stroke="#F48FB1" stroke-width="1"/>
+                <text x="700" y="555" text-anchor="middle" fill="white" font-size="10" font-weight="bold">发送私信</text>
+                
+                <!-- 关注系统的子节点 -->
+                <line x1="750" y1="260" x2="650" y2="330" stroke="#666" stroke-width="1.5"/>
+                <line x1="750" y1="260" x2="750" y2="330" stroke="#666" stroke-width="1.5"/>
+                <line x1="750" y1="260" x2="850" y2="330" stroke="#666" stroke-width="1.5"/>
+                
+                <rect x="600" y="330" width="100" height="50" rx="6" fill="#F06292" stroke="#EC407A" stroke-width="1"/>
+                <text x="650" y="360" text-anchor="middle" fill="white" font-size="12" font-weight="bold">关注用户</text>
+                
+                <rect x="700" y="330" width="100" height="50" rx="6" fill="#F06292" stroke="#EC407A" stroke-width="1"/>
+                <text x="750" y="360" text-anchor="middle" fill="white" font-size="12" font-weight="bold">关注贴吧</text>
+                
+                <rect x="800" y="330" width="100" height="50" rx="6" fill="#F06292" stroke="#EC407A" stroke-width="1"/>
+                <text x="850" y="360" text-anchor="middle" fill="white" font-size="12" font-weight="bold">消息通知</text>
+                
+                <!-- 消息类型 -->
+                <line x1="850" y1="380" x2="850" y2="430" stroke="#666" stroke-width="1.5"/>
+                <rect x="775" y="430" width="150" height="40" rx="6" fill="#F48FB1" stroke="#F06292" stroke-width="1"/>
+                <text x="850" y="455" text-anchor="middle" fill="white" font-size="10" font-weight="bold">消息类型</text>
+                
+                <line x1="850" y1="480" x2="750" y2="530" stroke="#666" stroke-width="1.5"/>
+                <line x1="850" y1="480" x2="850" y2="530" stroke="#666" stroke-width="1.5"/>
+                <line x1="850" y1="480" x2="950" y2="530" stroke="#666" stroke-width="1.5"/>
+                
+                <rect x="700" y="530" width="100" height="40" rx="6" fill="#F8BBD0" stroke="#F48FB1" stroke-width="1"/>
+                <text x="750" y="555" text-anchor="middle" fill="white" font-size="10" font-weight="bold">评论消息</text>
+                
+                <rect x="800" y="530" width="100" height="40" rx="6" fill="#F8BBD0" stroke="#F48FB1" stroke-width="1"/>
+                <text x="850" y="555" text-anchor="middle" fill="white" font-size="10" font-weight="bold">点赞消息</text>
+                
+                <rect x="900" y="530" width="100" height="40" rx="6" fill="#F8BBD0" stroke="#F48FB1" stroke-width="1"/>
+                <text x="950" y="555" text-anchor="middle" fill="white" font-size="10" font-weight="bold">关注消息</text>
+                
+                <!-- 图例说明 -->
+                <rect x="50" y="650" width="15" height="15" rx="3" fill="#E91E63" stroke="#ad1457" stroke-width="2"/>
+                <text x="75" y="662" text-anchor="start" fill="#333" font-size="12">: 核心模块</text>
+                
+                <rect x="200" y="650" width="15" height="15" rx="3" fill="#EC407A" stroke="#ad1457" stroke-width="1.5"/>
+                <text x="225" y="662" text-anchor="start" fill="#333" font-size="12">: 功能模块</text>
+                
+                <rect x="350" y="650" width="15" height="15" rx="3" fill="#F06292" stroke="#EC407A" stroke-width="1"/>
+                <text x="375" y="662" text-anchor="start" fill="#333" font-size="12">: 子功能</text>
+                
+                <rect x="500" y="650" width="15" height="15" rx="3" fill="#F48FB1" stroke="#F06292" stroke-width="1"/>
+                <text x="525" y="662" text-anchor="start" fill="#333" font-size="12">: 具体项</text>
+            </svg>
+            
+            <div class="mt-8 bg-pink-50 p-4 rounded-lg border border-pink-100">
+                <h3 class="font-bold text-primary mb-2">社交互动功能说明</h3>
+                <ul class="space-y-2 text-sm text-gray-700">
+                    <li><i class="fa fa-check-circle text-primary mr-2"></i>支持多级评论回复系统，实现嵌套回复功能</li>
+                    <li><i class="fa fa-check-circle text-primary mr-2"></i>提供帖子点赞和评论点赞功能</li>
+                    <li><i class="fa fa-check-circle text-primary mr-2"></i>支持帖子收藏功能，方便用户收藏感兴趣的内容</li>
+                    <li><i class="fa fa-check-circle text-primary mr-2"></i>实现多种分享方式，包括社交媒体分享、复制链接和发送私信</li>
+                    <li><i class="fa fa-check-circle text-primary mr-2"></i>支持关注用户和关注贴吧功能</li>
+                    <li><i class="fa fa-check-circle text-primary mr-2"></i>完善的消息通知系统，包括评论消息、点赞消息和关注消息</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
