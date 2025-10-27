@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帖子详情 - 百度贴吧</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3178C6',
+                        secondary: '#F7F7F7',
+                        accent: '#FF6B6B',
+                        dark: '#333333',
+                        light: '#F5F5F5',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .shadow-custom {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+            .transition-all-300 {
+                transition: all 0.3s ease;
+            }
+            .hover-scale {
+                transition: transform 0.3s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.01);
+            }
+            .text-shadow {
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            }
+            .comment-line {
+                position: relative;
+            }
+            .comment-line::before {
+                content: '';
+                position: absolute;
+                left: 28px;
+                top: 40px;
+                bottom: 0;
+                width: 2px;
+                background-color: #e5e7eb;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans text-dark">
+    <!-- 导航栏 -->
+    <nav id="navbar" class="fixed w-full bg-white shadow-custom z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-2 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" class="text-primary font-bold text-2xl">
+                    <i class="fa fa-comments-o mr-2"></i>百度贴吧
+                </a>
+            </div>
+            
+            <!-- 搜索框 -->
+            <div class="hidden md:flex items-center bg-gray-100 rounded-full px-4 py-2 flex-1 max-w-xl mx-6">
+                <i class="fa fa-search text-gray-400 mr-2"></i>
+                <input type="text" placeholder="搜索帖子、用户、贴吧" class="bg-transparent border-none outline-none w-full">
+                <button class="bg-primary text-white px-4 py-1 rounded-full hover:bg-primary/90 transition-all-300">
+                    搜索
+                </button>
+            </div>
+            
+            <!-- 用户操作区 -->
+            <div class="flex items-center space-x-4">
+                <a href="messages.html" class="relative text-gray-600 hover:text-primary transition-all-300">
+                    <i class="fa fa-bell-o text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-danger text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </a>
+                <a href="profile.html" class="flex items-center space-x-2">
+                    <img src="https://picsum.photos/id/1005/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover">
+                    <span class="hidden md:inline text-sm font-medium">用户名</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="container mx-auto pt-20 px-4 pb-16">
+        <div class="flex flex-col lg:flex-row gap-6">
+            <!-- 左侧边栏 -->
+            <aside class="lg:w-1/4 hidden lg:block">
+                <div class="bg-white rounded-lg shadow-custom p-4 mb-6">
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2">帖子信息</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">所属贴吧</p>
+                            <a href="bar.html?id=1" class="flex items-center space-x-2 text-primary">
+                                <img src="https://picsum.photos/id/237/40/40" alt="吧头像" class="w-6 h-6 rounded-full object-cover">
+                                <span>技术交流吧</span>
+                            </a>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">发布时间</p>
+                            <p>2024-05-20 14:30</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">浏览次数</p>
+                            <p>5,342 次浏览</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">分享</p>
+                            <div class="flex space-x-3">
+                                <button class="text-gray-500 hover:text-red-500 transition-all-300"><i class="fa fa-weibo"></i></button>
+                                <button class="text-gray-500 hover:text-green-500 transition-all-300"><i class="fa fa-wechat"></i></button>
+                                <button class="text-gray-500 hover:text-primary transition-all-300"><i class="fa fa-share-alt"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 中间内容区 -->
+            <div class="lg:w-2/4">
+                <!-- 帖子详情 -->
+                <article class="bg-white rounded-lg shadow-custom overflow-hidden mb-6 hover-scale">
+                    <div class="p-6">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <img src="https://picsum.photos/id/1012/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover">
+                            <div>
+                                <p class="font-medium">用户A</p>
+                                <p class="text-xs text-gray-500">2小时前</p>
+                            </div>
+                            <button class="ml-auto bg-primary/10 text-primary text-xs px-3 py-1 rounded-full hover:bg-primary/20 transition-all-300">
+                                <i class="fa fa-plus mr-1"></i>关注
+                            </button>
+                        </div>
+                        
+                        <h1 class="font-bold text-xl md:text-2xl mb-4">【讨论】2024年最值得学习的编程语言有哪些？</h1>
+                        
+                        <div class="prose max-w-none mb-6">
+                            <p class="mb-4">随着技术的不断发展，编程语言也在不断更新迭代。想问问大家，2024年有哪些编程语言是最值得学习的？哪些语言在就业市场上更受欢迎？欢迎分享你的见解和经验。</p>
+                            
+                            <p class="mb-4">我个人目前主要使用Python和JavaScript，但感觉技术发展很快，需要不断学习新的技能。大家觉得Go、Rust这样的新兴语言值得投入时间学习吗？</p>
+                            
+                            <h3 class="text-lg font-bold mb-2 mt-6">附：我目前的编程语言学习路线图</h3>
+                            
+                            <ol class="list-decimal pl-6 mb-4 space-y-2">
+                                <li>掌握基础编程概念</li>
+                                <li>深入学习1-2门主流语言</li>
+                                <li>学习相关框架和工具</li>
+                                <li>参与实际项目开发</li>
+                                <li>持续学习新技术</li>
+                            </ol>
+                        </div>
+                        
+                        <!-- 帖子图片 -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            <img src="https://picsum.photos/id/0/600/400" alt="帖子图片" class="w-full h-auto rounded-lg object-cover">
+                            <img src="https://picsum.photos/id/1/600/400" alt="帖子图片" class="w-full h-auto rounded-lg object-cover">
+                        </div>
+                        
+                        <!-- 操作按钮 -->
+                        <div class="flex items-center justify-between border-t border-b py-3">
+                            <button id="like-btn" class="flex items-center space-x-1 text-gray-500 hover:text-red-500 transition-all-300">
+                                <i class="fa fa-thumbs-o-up text-lg"></i>
+                                <span>点赞 (45)</span>
+                            </button>
+                            <button class="flex items-center space-x-1 text-gray-500 hover:text-primary transition-all-300">
+                                <i class="fa fa-comment-o text-lg"></i>
+                                <span>评论 (15)</span>
+                            </button>
+                            <button id="collect-btn" class="flex items-center space-x-1 text-gray-500 hover:text-yellow-500 transition-all-300">
+                                <i class="fa fa-star-o text-lg"></i>
+                                <span>收藏</span>
+                            </button>
+                            <button class="flex items-center space-x-1 text-gray-500 hover:text-primary transition-all-300">
+                                <i class="fa fa-share-alt text-lg"></i>
+                                <span>分享</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 评论区 -->
+                <div class="bg-white rounded-lg shadow-custom overflow-hidden mb-6">
+                    <div class="p-4 border-b">
+                        <h3 class="font-bold text-lg">评论 (15)</h3>
+                    </div>
+                    
+                    <!-- 发表评论 -->
+                    <div class="p-4">
+                        <div class="flex space-x-3">
+                            <img src="https://picsum.photos/id/1005/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover">
+                            <div class="flex-1">
+                                <textarea placeholder="发表你的评论..." class="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" rows="3"></textarea>
+                                <div class="flex justify-end mt-2">
+                                    <button class="bg-primary text-white px-6 py-1.5 rounded-full hover:bg-primary/90 transition-all-300">
+                                        发布评论
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 评论列表 -->
+                    <div class="divide-y">
+                        <!-- 评论1 -->
+                        <div class="p-4">
+                            <div class="flex space-x-3">
+                                <img src="https://picsum.photos/id/1025/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover">
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <p class="font-medium">用户B</p>
+                                        <p class="text-xs text-gray-500">1小时前</p>
+                                    </div>
+                                    <p class="mb-2">我觉得Go语言在后端开发领域非常有前景，特别是在高并发场景下表现优异。另外，Python在数据分析和人工智能领域依然是不可替代的。</p>
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <button class="reply-btn hover:text-primary transition-all-300">回复</button>
+                                        <span class="mx-2">·</span>
+                                        <button class="comment-like-btn hover:text-red-500 transition-all-300">
+                                            <i class="fa fa-thumbs-o-up mr-1"></i>12
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- 回复表单 (默认隐藏) -->
+                                    <div class="reply-form hidden mt-3">
+                                        <div class="flex space-x-2">
+                                            <textarea placeholder="回复 @用户B..." class="w-full border border-gray-200 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" rows="2"></textarea>
+                                        </div>
+                                        <div class="flex justify-end mt-2 space-x-2">
+                                            <button class="cancel-reply-btn text-gray-500 hover:text-gray-700 text-sm">取消</button>
+                                            <button class="bg-primary text-white px-4 py-1 rounded hover:bg-primary/90 transition-all-300 text-sm">回复</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 回复列表 -->
+                                    <div class="mt-3 space-y-3 comment-line">
+                                        <!-- 回复1 -->
+                                        <div class="flex space-x-2">
+                                            <img src="https://picsum.photos/id/1027/30/30" alt="回复用户头像" class="w-7 h-7 rounded-full object-cover">
+                                            <div class="flex-1">
+                                                <p class="text-sm">
+                                                    <span class="font-medium">用户C</span>
+                                                    <span class="text-gray-600">回复</span>
+                                                    <span class="text-primary">@用户B</span>
+                                                    <span class="ml-1">同意，Go的性能确实很好，而且语法简洁，学习曲线相对平缓。</span>
+                                                </p>
+                                                <div class="flex items-center text-xs text-gray-500 mt-1">
+                                                    <p>45分钟前</p>
+                                                    <span class="mx-2">·</span>
+                                                    <button class="hover:text-primary transition-all-300">回复</button>
+                                                    <span class="mx-2">·</span>
+                                                    <button class="hover:text-red-500 transition-all-300">
+                                                        <i class="fa fa-thumbs-o-up mr-1"></i>5
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 评论2 -->
+                        <div class="p-4">
+                            <div class="flex space-x-3">
+                                <img src="https://picsum.photos/id/1062/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover">
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <p class="font-medium">用户D</p>
+                                        <p class="text-xs text-gray-500">2小时前</p>
+                                    </div>
+                                    <p class="mb-2">Rust语言虽然学习曲线陡峭，但是在系统编程、WebAssembly等领域有着独特的优势。如果有时间和精力，值得深入学习。</p>
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <button class="reply-btn hover:text-primary transition-all-300">回复</button>
+                                        <span class="mx-2">·</span>
+                                        <button class="comment-like-btn hover:text-red-500 transition-all-300">
+                                            <i class="fa fa-thumbs-o-up mr-1"></i>8
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 评论3 -->
+                        <div class="p-4">
+                            <div class="flex space-x-3">
+                                <img src="https://picsum.photos/id/1074/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover">
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <p class="font-medium">用户E</p>
+                                        <p class="text-xs text-gray-500">3小时前</p>
+                                    </div>
+                                    <p class="mb-2">其实语言只是工具，重要的是编程思想和解决问题的能力。建议先精通1-2门语言，然后根据项目需求学习其他语言。</p>
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <button class="reply-btn hover:text-primary transition-all-300">回复</button>
+                                        <span class="mx-2">·</span>
+                                        <button class="comment-like-btn hover:text-red-500 transition-all-300">
+                                            <i class="fa fa-thumbs-o-up mr-1"></i>15
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 查看更多评论 -->
+                    <div class="p-4 text-center">
+                        <button id="load-more-comments" class="text-primary hover:underline transition-all-300">
+                            查看更多评论 (12)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧边栏 -->
+            <aside class="lg:w-1/4 hidden lg:block">
+                <div class="bg-white rounded-lg shadow-custom p-4 mb-6">
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2">相关推荐</h3>
+                    <ul class="space-y-3">
+                        <li class="hover:bg-gray-50 p-2 rounded transition-all-300">
+                            <a href="post.html?id=101" class="block">
+                                <p class="font-medium line-clamp-2">零基础如何学习编程？分享我的学习经验</p>
+                                <div class="flex items-center mt-1 text-xs text-gray-500">
+                                    <span>技术交流吧</span>
+                                    <span class="mx-1">·</span>
+                                    <span>回复 128</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="hover:bg-gray-50 p-2 rounded transition-all-300">
+                            <a href="post.html?id=102" class="block">
+                                <p class="font-medium line-clamp-2">Python和JavaScript，哪个更适合初学者？</p>
+                                <div class="flex items-center mt-1 text-xs text-gray-500">
+                                    <span>技术交流吧</span>
+                                    <span class="mx-1">·</span>
+                                    <span>回复 95</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="hover:bg-gray-50 p-2 rounded transition-all-300">
+                            <a href="post.html?id=103" class="block">
+                                <p class="font-medium line-clamp-2">2024年前端开发技术栈推荐</p>
+                                <div class="flex items-center mt-1 text-xs text-gray-500">
+                                    <span>技术交流吧</span>
+                                    <span class="mx-1">·</span>
+                                    <span>回复 76</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-custom p-4">
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2">热门贴吧</h3>
+                    <div class="space-y-3">
+                        <a href="bar.html?id=1" class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded transition-all-300">
+                            <img src="https://picsum.photos/id/237/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover">
+                            <div>
+                                <p class="font-medium">技术交流吧</p>
+                                <p class="text-xs text-gray-500">12.5万成员</p>
+                            </div>
+                            <button class="ml-auto bg-primary/10 text-primary text-xs px-3 py-1 rounded-full hover:bg-primary/20 transition-all-300">
+                                <i class="fa fa-plus mr-1"></i>关注
+                            </button>
+                        </a>
+                        <a href="bar.html?id=2" class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded transition-all-300">
+                            <img src="https://picsum.photos/id/96/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover">
+                            <div>
+                                <p class="font-medium">生活分享吧</p>
+                                <p class="text-xs text-gray-500">8.2万成员</p>
+                            </div>
+                            <button class="ml-auto bg-primary/10 text-primary text-xs px-3 py-1 rounded-full hover:bg-primary/20 transition-all-300">
+                                <i class="fa fa-plus mr-1"></i>关注
+                            </button>
+                        </a>
+                        <a href="bar.html?id=3" class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded transition-all-300">
+                            <img src="https://picsum.photos/id/65/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover">
+                            <div>
+                                <p class="font-medium">学习讨论吧</p>
+                                <p class="text-xs text-gray-500">5.3万成员</p>
+                            </div>
+                            <button class="ml-auto bg-primary/10 text-primary text-xs px-3 py-1 rounded-full hover:bg-primary/20 transition-all-300">
+                                <i class="fa fa-plus mr-1"></i>关注
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-white border-t mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-500 text-sm">© 2024 百度贴吧 版权所有</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-weibo text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-wechat text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-4 text-center md:text-left">
+                <ul class="flex flex-wrap justify-center md:justify-start space-x-4 text-sm text-gray-500">
+                    <li><a href="#" class="hover:text-primary transition-all-300">关于我们</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">使用帮助</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">用户协议</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">隐私政策</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-1');
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('py-1');
+                navbar.classList.remove('shadow-md');
+            }
+        });
+        
+        // 点赞功能
+        document.getElementById('like-btn').addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            const count = this.querySelector('span');
+            
+            if (icon.classList.contains('fa-thumbs-o-up')) {
+                icon.classList.remove('fa-thumbs-o-up');
+                icon.classList.add('fa-thumbs-up');
+                this.classList.remove('text-gray-500');
+                this.classList.add('text-red-500');
+                count.textContent = '点赞 (46)';
+            } else {
+                icon.classList.remove('fa-thumbs-up');
+                icon.classList.add('fa-thumbs-o-up');
+                this.classList.remove('text-red-500');
+                this.classList.add('text-gray-500');
+                count.textContent = '点赞 (45)';
+            }
+        });
+        
+        // 收藏功能
+        document.getElementById('collect-btn').addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            
+            if (icon.classList.contains('fa-star-o')) {
+                icon.classList.remove('fa-star-o');
+                icon.classList.add('fa-star');
+                this.classList.remove('text-gray-500');
+                this.classList.add('text-yellow-500');
+                alert('收藏成功');
+            } else {
+                icon.classList.remove('fa-star');
+                icon.classList.add('fa-star-o');
+                this.classList.remove('text-yellow-500');
+                this.classList.add('text-gray-500');
+                alert('已取消收藏');
+            }
+        });
+        
+        // 评论点赞功能
+        document.querySelectorAll('.comment-like-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                const count = this.querySelector('span');
+                let currentCount = parseInt(count.textContent);
+                
+                if (icon.classList.contains('fa-thumbs-o-up')) {
+                    icon.classList.remove('fa-thumbs-o-up');
+                    icon.classList.add('fa-thumbs-up');
+                    this.classList.remove('text-gray-500');
+                    this.classList.add('text-red-500');
+                    count.textContent = currentCount + 1;
+                } else {
+                    icon.classList.remove('fa-thumbs-up');
+                    icon.classList.add('fa-thumbs-o-up');
+                    this.classList.remove('text-red-500');
+                    this.classList.add('text-gray-500');
+                    count.textContent = currentCount - 1;
+                }
+            });
+        });
+        
+        // 回复功能
+        document.querySelectorAll('.reply-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const replyForm = this.closest('div').nextElementSibling;
+                if (replyForm && replyForm.classList.contains('reply-form')) {
+                    replyForm.classList.toggle('hidden');
+                }
+            });
+        });
+        
+        // 取消回复
+        document.querySelectorAll('.cancel-reply-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const replyForm = this.closest('.reply-form');
+                replyForm.classList.add('hidden');
+            });
+        });
+        
+        // 加载更多评论
+        document.getElementById('load-more-comments').addEventListener('click', function() {
+            // 显示加载中状态
+            this.innerHTML = '<i class="fa fa-circle-o-notch fa-spin mr-2"></i>加载中...';
+            this.disabled = true;
+            
+            // 模拟加载延迟
+            setTimeout(() => {
+                // 恢复按钮状态
+                this.innerHTML = '查看更多评论';
+                this.disabled = false;
+                
+                // 这里可以添加实际的加载更多逻辑
+                alert('已加载全部评论');
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

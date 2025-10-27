@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>私信 - 百度贴吧</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3178C6',
+                        secondary: '#F7F7F7',
+                        accent: '#FF6B6B',
+                        dark: '#333333',
+                        light: '#F5F5F5',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .shadow-custom {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+            .transition-all-300 {
+                transition: all 0.3s ease;
+            }
+            .hover-scale {
+                transition: transform 0.3s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.02);
+            }
+            .text-shadow {
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans text-dark">
+    <!-- 导航栏 -->
+    <nav id="navbar" class="fixed w-full bg-white shadow-custom z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-2 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" class="text-primary font-bold text-2xl">
+                    <i class="fa fa-comments-o mr-2"></i>百度贴吧
+                </a>
+            </div>
+            
+            <!-- 搜索框 -->
+            <div class="hidden md:flex items-center bg-gray-100 rounded-full px-4 py-2 flex-1 max-w-xl mx-6">
+                <i class="fa fa-search text-gray-400 mr-2"></i>
+                <input type="text" placeholder="搜索帖子、用户、贴吧" class="bg-transparent border-none outline-none w-full">
+                <button class="bg-primary text-white px-4 py-1 rounded-full hover:bg-primary/90 transition-all-300">
+                    搜索
+                </button>
+            </div>
+            
+            <!-- 用户操作区 -->
+            <div class="flex items-center space-x-4">
+                <a href="messages.html" class="relative text-gray-600 hover:text-primary transition-all-300">
+                    <i class="fa fa-bell-o text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-danger text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </a>
+                <a href="profile.html" class="flex items-center space-x-2">
+                    <img src="https://picsum.photos/id/1005/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover">
+                    <span class="hidden md:inline text-sm font-medium">用户名</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="container mx-auto pt-20 px-4 pb-16">
+        <div class="bg-white rounded-lg shadow-custom p-6 mb-6">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold">私信</h1>
+                <button id="new-chat" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-all-300">
+                    <i class="fa fa-plus mr-2"></i>发起私信
+                </button>
+            </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-6">
+            <!-- 左侧私信列表 -->
+            <aside class="lg:w-1/3 bg-white rounded-lg shadow-custom">
+                <!-- 搜索私信 -->
+                <div class="p-4 border-b">
+                    <div class="relative">
+                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" placeholder="搜索私信" class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                    </div>
+                </div>
+
+                <!-- 私信分类标签 -->
+                <div class="flex border-b">
+                    <button class="flex-1 py-3 font-medium text-primary border-b-2 border-primary text-center">
+                        全部私信
+                    </button>
+                    <button class="flex-1 py-3 font-medium text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary/30 text-center transition-all-300">
+                        未读私信
+                    </button>
+                </div>
+
+                <!-- 私信列表 -->
+                <div class="overflow-y-auto max-h-[calc(100vh-250px)]">
+                    <!-- 私信项1 - 当前选中 -->
+                    <div class="chat-item p-4 border-b bg-primary/5 border-primary cursor-pointer">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="relative">
+                                    <img src="https://picsum.photos/id/1016/40/40" alt="用户头像" class="w-12 h-12 rounded-full object-cover">
+                                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="font-bold text-sm truncate">前端专家</h4>
+                                        <span class="text-xs text-gray-500">10分钟前</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600 truncate">非常好的分享！我最近也在学习React，这篇文章对我帮助很大，请问你是如何处理组件通信的？</p>
+                                </div>
+                            </div>
+                            <span class="bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">1</span>
+                        </div>
+                    </div>
+
+                    <!-- 私信项2 - 未读 -->
+                    <div class="chat-item p-4 border-b hover:bg-gray-50 cursor-pointer transition-all-300">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="relative">
+                                    <img src="https://picsum.photos/id/1017/40/40" alt="用户头像" class="w-12 h-12 rounded-full object-cover">
+                                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-gray-300 rounded-full border-2 border-white"></span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="font-bold text-sm truncate">JS学习者</h4>
+                                        <span class="text-xs text-gray-500">昨天</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600 truncate">请问你有React的学习资料推荐吗？我刚开始学习，想找一些入门级的教程。</p>
+                                </div>
+                            </div>
+                            <span class="bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">1</span>
+                        </div>
+                    </div>
+
+                    <!-- 私信项3 -->
+                    <div class="chat-item p-4 border-b hover:bg-gray-50 cursor-pointer transition-all-300">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="relative">
+                                    <img src="https://picsum.photos/id/1018/40/40" alt="用户头像" class="w-12 h-12 rounded-full object-cover">
+                                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="font-bold text-sm truncate">全栈开发者</h4>
+                                        <span class="text-xs text-gray-500">2天前</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600 truncate">感谢你的回复，我已经按照你的建议实现了，效果很不错！</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 私信项4 -->
+                    <div class="chat-item p-4 border-b hover:bg-gray-50 cursor-pointer transition-all-300">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="relative">
+                                    <img src="https://picsum.photos/id/1020/40/40" alt="用户头像" class="w-12 h-12 rounded-full object-cover">
+                                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-gray-300 rounded-full border-2 border-white"></span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="font-bold text-sm truncate">面试达人</h4>
+                                        <span class="text-xs text-gray-500">上周</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600 truncate">你好，看到你分享的前端面试题，非常实用，我下周要面试了，想请教一些问题。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 私信项5 -->
+                    <div class="chat-item p-4 hover:bg-gray-50 cursor-pointer transition-all-300">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="relative">
+                                    <img src="https://picsum.photos/id/237/40/40" alt="用户头像" class="w-12 h-12 rounded-full object-cover">
+                                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="font-bold text-sm truncate">技术交流吧主</h4>
+                                        <span class="text-xs text-gray-500">两周前</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600 truncate">感谢你对技术交流吧的支持，我们将于本周六举办一场技术沙龙，期待你的参与！</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 右侧聊天界面 -->
+            <div class="lg:w-2/3 bg-white rounded-lg shadow-custom flex flex-col h-[calc(100vh-250px)]">
+                <!-- 聊天头部 -->
+                <div class="p-4 border-b flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="relative">
+                            <img src="https://picsum.photos/id/1016/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover">
+                            <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">前端专家</h3>
+                            <p class="text-xs text-green-500">在线</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button class="text-gray-600 hover:text-primary transition-all-300">
+                            <i class="fa fa-user-o"></i>
+                        </button>
+                        <button class="text-gray-600 hover:text-primary transition-all-300">
+                            <i class="fa fa-star-o"></i>
+                        </button>
+                        <button class="text-gray-600 hover:text-primary transition-all-300">
+                            <i class="fa fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 聊天记录 -->
+                <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4">
+                    <!-- 对方消息 -->
+                    <div class="flex items-start space-x-3">
+                        <img src="https://picsum.photos/id/1016/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover">
+                        <div class="max-w-[70%]">
+                            <div class="bg-gray-100 p-3 rounded-lg rounded-tl-none">
+                                <p>你好！我看到你分享的前端开发学习路线，非常实用，感谢分享！</p>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">昨天 14:30</div>
+                        </div>
+                    </div>
+
+                    <!-- 我方消息 -->
+                    <div class="flex items-start justify-end space-x-3">
+                        <div class="max-w-[70%]">
+                            <div class="bg-primary text-white p-3 rounded-lg rounded-tr-none">
+                                <p>不客气！很高兴对你有帮助。如果有任何问题，随时可以问我。</p>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1 text-right">昨天 14:32</div>
+                        </div>
+                        <img src="https://picsum.photos/id/1005/40/40" alt="我的头像" class="w-8 h-8 rounded-full object-cover">
+                    </div>
+
+                    <!-- 对方消息 -->
+                    <div class="flex items-start space-x-3">
+                        <img src="https://picsum.photos/id/1016/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover">
+                        <div class="max-w-[70%]">
+                            <div class="bg-gray-100 p-3 rounded-lg rounded-tl-none">
+                                <p>我最近在学习React，感觉组件通信这块有点复杂，特别是在大型项目中，你有什么建议吗？</p>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">昨天 14:35</div>
+                        </div>
+                    </div>
+
+                    <!-- 我方消息 -->
+                    <div class="flex items-start justify-end space-x-3">
+                        <div class="max-w-[70%]">
+                            <div class="bg-primary text-white p-3 rounded-lg rounded-tr-none">
+                                <p>在React中处理组件通信，我建议根据不同场景选择合适的方案：</p>
+                                <p class="mt-1">1. 父子组件：props向下传递，回调函数向上传递</p>
+                                <p>2. 跨层级组件：Context API或状态管理库（Redux Toolkit、Zustand等）</p>
+                                <p>3. 兄弟组件：通过共同的父组件中转，或使用状态管理</p>
+                                <p class="mt-1">对于大型项目，我推荐使用Redux Toolkit，可以简化很多操作。</p>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1 text-right">昨天 14:40</div>
+                        </div>
+                        <img src="https://picsum.photos/id/1005/40/40" alt="我的头像" class="w-8 h-8 rounded-full object-cover">
+                    </div>
+
+                    <!-- 对方消息 - 未读 -->
+                    <div class="flex items-start space-x-3">
+                        <img src="https://picsum.photos/id/1016/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover">
+                        <div class="max-w-[70%]">
+                            <div class="bg-gray-100 p-3 rounded-lg rounded-tl-none">
+                                <p>非常好的分享！我最近也在学习React，这篇文章对我帮助很大，请问你是如何处理组件通信的？</p>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">10分钟前</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 聊天输入框 -->
+                <div class="p-4 border-t">
+                    <div class="mb-3 flex items-center space-x-3">
+                        <button class="text-gray-600 hover:text-primary transition-all-300">
+                            <i class="fa fa-smile-o text-xl"></i>
+                        </button>
+                        <button class="text-gray-600 hover:text-primary transition-all-300">
+                            <i class="fa fa-picture-o text-xl"></i>
+                        </button>
+                        <button class="text-gray-600 hover:text-primary transition-all-300">
+                            <i class="fa fa-file-text-o text-xl"></i>
+                        </button>
+                        <button class="text-gray-600 hover:text-primary transition-all-300">
+                            <i class="fa fa-at text-xl"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-end space-x-3">
+                        <textarea id="message-input" rows="3" placeholder="输入消息..." class="flex-1 border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary resize-none"></textarea>
+                        <button id="send-message" class="bg-primary text-white px-5 py-3 rounded-lg hover:bg-primary/90 transition-all-300">
+                            发送
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 发起私信模态框 -->
+    <div id="new-chat-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4 overflow-hidden">
+            <div class="p-4 border-b">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-lg">发起私信</h3>
+                    <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">搜索用户</label>
+                    <div class="relative">
+                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="search-user" placeholder="输入用户名搜索" class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">选择用户</label>
+                    <div class="overflow-y-auto max-h-60 border border-gray-200 rounded-lg">
+                        <div class="p-3 flex items-center justify-between hover:bg-gray-50 cursor-pointer">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://picsum.photos/id/1017/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover">
+                                <span>JS学习者</span>
+                            </div>
+                            <input type="radio" name="selected-user" value="1017" class="w-4 h-4 text-primary border-gray-300 focus:ring-primary">
+                        </div>
+                        <div class="p-3 flex items-center justify-between hover:bg-gray-50 cursor-pointer">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://picsum.photos/id/1018/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover">
+                                <span>全栈开发者</span>
+                            </div>
+                            <input type="radio" name="selected-user" value="1018" class="w-4 h-4 text-primary border-gray-300 focus:ring-primary">
+                        </div>
+                        <div class="p-3 flex items-center justify-between hover:bg-gray-50 cursor-pointer">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://picsum.photos/id/1020/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover">
+                                <span>面试达人</span>
+                            </div>
+                            <input type="radio" name="selected-user" value="1020" class="w-4 h-4 text-primary border-gray-300 focus:ring-primary">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">消息内容</label>
+                    <textarea rows="3" id="initial-message" placeholder="输入初始消息内容..." class="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary resize-none"></textarea>
+                </div>
+            </div>
+            <div class="p-4 border-t flex justify-end space-x-3">
+                <button id="cancel-chat" class="px-5 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all-300">
+                    取消
+                </button>
+                <button id="confirm-chat" class="bg-primary text-white px-5 py-2 rounded-lg hover:bg-primary/90 transition-all-300">
+                    发起私信
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="bg-white border-t mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-500 text-sm">© 2024 百度贴吧 版权所有</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-weibo text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-wechat text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-4 text-center md:text-left">
+                <ul class="flex flex-wrap justify-center md:justify-start space-x-4 text-sm text-gray-500">
+                    <li><a href="#" class="hover:text-primary transition-all-300">关于我们</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">使用帮助</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">用户协议</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">隐私政策</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-1');
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('py-1');
+                navbar.classList.remove('shadow-md');
+            }
+        });
+
+        // 消息项点击事件
+        document.querySelectorAll('.chat-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // 移除所有消息项的选中状态
+                document.querySelectorAll('.chat-item').forEach(i => {
+                    i.classList.remove('bg-primary/5', 'border-primary');
+                });
+                
+                // 添加当前消息项的选中状态
+                this.classList.add('bg-primary/5', 'border-primary');
+                
+                // 移除未读消息标记
+                const unreadBadge = this.querySelector('.bg-primary.text-white');
+                if (unreadBadge) {
+                    unreadBadge.remove();
+                }
+                
+                // 滚动到聊天记录底部
+                const chatMessages = document.getElementById('chat-messages');
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // 这里可以添加加载对应聊天记录的逻辑
+            });
+        });
+
+        // 发送消息
+        document.getElementById('send-message').addEventListener('click', function() {
+            const messageInput = document.getElementById('message-input');
+            const message = messageInput.value.trim();
+            
+            if (message) {
+                const chatMessages = document.getElementById('chat-messages');
+                const now = new Date();
+                const timeString = now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+                
+                // 创建新消息元素
+                const newMessage = document.createElement('div');
+                newMessage.className = 'flex items-start justify-end space-x-3';
+                newMessage.innerHTML = `
+                    <div class="max-w-[70%]">
+                        <div class="bg-primary text-white p-3 rounded-lg rounded-tr-none">
+                            <p>${message}</p>
+                        </div>
+                        <div class="text-xs text-gray-500 mt-1 text-right">${timeString}</div>
+                    </div>
+                    <img src="https://picsum.photos/id/1005/40/40" alt="我的头像" class="w-8 h-8 rounded-full object-cover">
+                `;
+                
+                // 添加到聊天记录
+                chatMessages.appendChild(newMessage);
+                
+                // 清空输入框
+                messageInput.value = '';
+                
+                // 滚动到聊天记录底部
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // 模拟回复
+                setTimeout(() => {
+                    const replyMessage = document.createElement('div');
+                    replyMessage.className = 'flex items-start space-x-3';
+                    replyMessage.innerHTML = `
+                        <img src="https://picsum.photos/id/1016/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover">
+                        <div class="max-w-[70%]">
+                            <div class="bg-gray-100 p-3 rounded-lg rounded-tl-none">
+                                <p>收到！我会考虑你的建议的，谢谢分享。</p>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">${timeString}</div>
+                        </div>
+                    `;
+                    
+                    chatMessages.appendChild(replyMessage);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1500);
+            }
+        });
+
+        // 输入框回车发送
+        document.getElementById('message-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                document.getElementById('send-message').click();
+            }
+        });
+
+        // 发起私信模态框
+        const newChatModal = document.getElementById('new-chat-modal');
+        
+        document.getElementById('new-chat').addEventListener('click', function() {
+            newChatModal.classList.remove('hidden');
+            newChatModal.classList.add('flex');
+        });
+        
+        document.getElementById('close-modal').addEventListener('click', closeModal);
+        document.getElementById('cancel-chat').addEventListener('click', closeModal);
+        
+        function closeModal() {
+            newChatModal.classList.add('hidden');
+            newChatModal.classList.remove('flex');
+        }
+        
+        // 点击模态框外部关闭
+        newChatModal.addEventListener('click', function(e) {
+            if (e.target === newChatModal) {
+                closeModal();
+            }
+        });
+        
+        // 确认发起私信
+        document.getElementById('confirm-chat').addEventListener('click', function() {
+            const selectedUser = document.querySelector('input[name="selected-user"]:checked');
+            const initialMessage = document.getElementById('initial-message').value.trim();
+            
+            if (selectedUser) {
+                alert(`已发起与用户的私信会话${initialMessage ? '，初始消息已发送' : ''}`);
+                closeModal();
+            } else {
+                alert('请选择要发送私信的用户');
+            }
+        });
+        
+        // 搜索用户
+        document.getElementById('search-user').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            // 这里可以添加搜索用户的逻辑
+            console.log('搜索用户:', searchTerm);
+        });
+    </script>
+</body>
+</html>

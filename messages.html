@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消息中心 - 百度贴吧</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3178C6',
+                        secondary: '#F7F7F7',
+                        accent: '#FF6B6B',
+                        dark: '#333333',
+                        light: '#F5F5F5',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .shadow-custom {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+            .transition-all-300 {
+                transition: all 0.3s ease;
+            }
+            .hover-scale {
+                transition: transform 0.3s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.02);
+            }
+            .text-shadow {
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans text-dark">
+    <!-- 导航栏 -->
+    <nav id="navbar" class="fixed w-full bg-white shadow-custom z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-2 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" class="text-primary font-bold text-2xl">
+                    <i class="fa fa-comments-o mr-2"></i>百度贴吧
+                </a>
+            </div>
+            
+            <!-- 搜索框 -->
+            <div class="hidden md:flex items-center bg-gray-100 rounded-full px-4 py-2 flex-1 max-w-xl mx-6">
+                <i class="fa fa-search text-gray-400 mr-2"></i>
+                <input type="text" placeholder="搜索帖子、用户、贴吧" class="bg-transparent border-none outline-none w-full">
+                <button class="bg-primary text-white px-4 py-1 rounded-full hover:bg-primary/90 transition-all-300">
+                    搜索
+                </button>
+            </div>
+            
+            <!-- 用户操作区 -->
+            <div class="flex items-center space-x-4">
+                <a href="messages.html" class="relative text-primary transition-all-300">
+                    <i class="fa fa-bell-o text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-danger text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </a>
+                <a href="profile.html" class="flex items-center space-x-2">
+                    <img src="https://picsum.photos/id/1005/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover">
+                    <span class="hidden md:inline text-sm font-medium">用户名</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="container mx-auto pt-20 px-4 pb-16">
+        <div class="bg-white rounded-lg shadow-custom p-6 mb-6">
+            <h1 class="text-2xl font-bold mb-2">消息中心</h1>
+            <p class="text-gray-500">您有 3 条未读消息</p>
+        </div>
+
+        <!-- 消息分类标签 -->
+        <div class="bg-white rounded-lg shadow-custom mb-6">
+            <div class="flex overflow-x-auto scrollbar-hide border-b">
+                <button class="message-tab px-6 py-3 font-medium text-primary border-b-2 border-primary whitespace-nowrap">
+                    <i class="fa fa-bell-o mr-2"></i> 所有消息
+                </button>
+                <button class="message-tab px-6 py-3 font-medium text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary/30 whitespace-nowrap transition-all-300">
+                    <i class="fa fa-comments-o mr-2"></i> 评论回复
+                </button>
+                <button class="message-tab px-6 py-3 font-medium text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary/30 whitespace-nowrap transition-all-300">
+                    <i class="fa fa-heart-o mr-2"></i> 赞与收藏
+                </button>
+                <button class="message-tab px-6 py-3 font-medium text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary/30 whitespace-nowrap transition-all-300">
+                    <i class="fa fa-user-plus mr-2"></i> 关注通知
+                </button>
+                <button class="message-tab px-6 py-3 font-medium text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary/30 whitespace-nowrap transition-all-300">
+                    <i class="fa fa-envelope-o mr-2"></i> 私信
+                </button>
+                <button class="message-tab px-6 py-3 font-medium text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary/30 whitespace-nowrap transition-all-300">
+                    <i class="fa fa-bullhorn mr-2"></i> 系统消息
+                </button>
+            </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-6">
+            <!-- 左侧工具栏 -->
+            <aside class="lg:w-1/4 hidden lg:block">
+                <div class="bg-white rounded-lg shadow-custom p-4 mb-6">
+                    <div class="space-y-2">
+                        <button id="mark-all-read" class="w-full text-left p-3 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-all-300">
+                            <i class="fa fa-check-square-o mr-2"></i>全部标记为已读
+                        </button>
+                        <button id="delete-read" class="w-full text-left p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-all-300">
+                            <i class="fa fa-trash-o mr-2"></i>删除已读消息
+                        </button>
+                        <button id="delete-all" class="w-full text-left p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-all-300">
+                            <i class="fa fa-trash mr-2"></i>清空消息中心
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-custom p-4">
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2">消息设置</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <label class="text-gray-700">接收评论通知</label>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <label class="text-gray-700">接收赞与收藏通知</label>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <label class="text-gray-700">接收关注通知</label>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <label class="text-gray-700">接收系统消息</label>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <label class="text-gray-700">接收私信</label>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 右侧消息列表 -->
+            <div class="lg:w-3/4">
+                <!-- 消息列表 -->
+                <div class="bg-white rounded-lg shadow-custom">
+                    <!-- 未读消息 -->
+                    <div class="border-b">
+                        <h3 class="p-4 font-bold text-gray-700 bg-gray-50">未读消息 (3)</h3>
+                        
+                        <!-- 消息项1 - 未读 -->
+                        <div class="message-item p-4 border-l-4 border-primary bg-primary/5 hover:bg-primary/10 transition-all-300">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center mb-2">
+                                        <img src="https://picsum.photos/id/1016/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover mr-3">
+                                        <div>
+                                            <span class="font-medium">前端专家</span>
+                                            <span class="text-gray-500 text-sm ml-2">评论了你的帖子</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700 mb-2 pl-13">非常好的分享！我最近也在学习React，这篇文章对我帮助很大，请问你是如何处理组件通信的？</p>
+                                    <div class="flex items-center justify-between pl-13">
+                                        <div class="text-sm text-gray-500">10分钟前</div>
+                                        <div class="flex space-x-2">
+                                            <button class="text-primary text-sm hover:underline transition-all-300">
+                                                <i class="fa fa-reply mr-1"></i>回复
+                                            </button>
+                                            <button class="text-gray-500 text-sm hover:text-gray-700 transition-all-300">
+                                                <i class="fa fa-trash-o mr-1"></i>删除
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 pl-13">
+                                        <div class="bg-gray-100 p-3 rounded-lg text-sm">
+                                            <div class="font-medium mb-1">你: 2024年前端开发学习路线分享：从入门到精通</div>
+                                            <p class="text-gray-600">作为一名有5年前端开发经验的工程师，我想分享一下2024年最新的前端开发学习路线。从HTML/CSS基础，到JavaScript深入理解，再到现代框架...</p>
+                                            <a href="post.html?id=106" class="text-primary hover:underline mt-1 inline-block">查看完整帖子</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 消息项2 - 未读 -->
+                        <div class="message-item p-4 border-l-4 border-primary bg-primary/5 hover:bg-primary/10 transition-all-300">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center mb-2">
+                                        <img src="https://picsum.photos/id/1017/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover mr-3">
+                                        <div>
+                                            <span class="font-medium">JS学习者</span>
+                                            <span class="text-gray-500 text-sm ml-2">赞了你的回复</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700 mb-2 pl-13">React中的状态管理确实是一个重要的话题，Redux Toolkit是现在比较推荐的方案，可以简化很多操作。</p>
+                                    <div class="flex items-center justify-between pl-13">
+                                        <div class="text-sm text-gray-500">30分钟前</div>
+                                        <div class="flex space-x-2">
+                                            <button class="text-primary text-sm hover:underline transition-all-300">
+                                                <i class="fa fa-share-alt mr-1"></i>查看
+                                            </button>
+                                            <button class="text-gray-500 text-sm hover:text-gray-700 transition-all-300">
+                                                <i class="fa fa-trash-o mr-1"></i>删除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 消息项3 - 未读 -->
+                        <div class="message-item p-4 border-l-4 border-primary bg-primary/5 hover:bg-primary/10 transition-all-300">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center mb-2">
+                                        <img src="https://picsum.photos/id/1018/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover mr-3">
+                                        <div>
+                                            <span class="font-medium">全栈开发者</span>
+                                            <span class="text-gray-500 text-sm ml-2">关注了你</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700 mb-2 pl-13">全栈开发者 关注了你，去看看他的主页吧</p>
+                                    <div class="flex items-center justify-between pl-13">
+                                        <div class="text-sm text-gray-500">2小时前</div>
+                                        <div class="flex space-x-2">
+                                            <button class="text-primary text-sm hover:underline transition-all-300">
+                                                <i class="fa fa-user-o mr-1"></i>查看主页
+                                            </button>
+                                            <button class="text-primary text-sm hover:underline transition-all-300">
+                                                <i class="fa fa-plus mr-1"></i>回关
+                                            </button>
+                                            <button class="text-gray-500 text-sm hover:text-gray-700 transition-all-300">
+                                                <i class="fa fa-trash-o mr-1"></i>删除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 已读消息 -->
+                    <div>
+                        <h3 class="p-4 font-bold text-gray-700 bg-gray-50">已读消息 (5)</h3>
+                        
+                        <!-- 消息项4 - 已读 -->
+                        <div class="message-item p-4 hover:bg-gray-50 transition-all-300">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center mb-2">
+                                        <img src="https://picsum.photos/id/1020/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover mr-3">
+                                        <div>
+                                            <span class="font-medium">面试达人</span>
+                                            <span class="text-gray-500 text-sm ml-2">评论了你的帖子</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700 mb-2 pl-13">感谢分享这些面试题，我正好在准备前端面试，这些内容非常有帮助！</p>
+                                    <div class="flex items-center justify-between pl-13">
+                                        <div class="text-sm text-gray-500">昨天 14:30</div>
+                                        <div class="flex space-x-2">
+                                            <button class="text-primary text-sm hover:underline transition-all-300">
+                                                <i class="fa fa-reply mr-1"></i>回复
+                                            </button>
+                                            <button class="text-gray-500 text-sm hover:text-gray-700 transition-all-300">
+                                                <i class="fa fa-trash-o mr-1"></i>删除
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 pl-13">
+                                        <div class="bg-gray-100 p-3 rounded-lg text-sm">
+                                            <div class="font-medium mb-1">你: 2024年前端开发面试题整理与解析</div>
+                                            <p class="text-gray-600">最近整理了一些2024年前端开发的面试题，包括HTML/CSS基础、JavaScript进阶、框架相关、性能优化、工程化等方面，附带详细解析...</p>
+                                            <a href="post.html?id=109" class="text-primary hover:underline mt-1 inline-block">查看完整帖子</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 消息项5 - 已读 -->
+                        <div class="message-item p-4 hover:bg-gray-50 transition-all-300">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                            <i class="fa fa-bullhorn text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium">系统消息</span>
+                                            <span class="text-gray-500 text-sm ml-2">新功能上线</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700 mb-2 pl-13">百度贴吧全新发布图片编辑功能！现在你可以在发布帖子时直接对图片进行裁剪、滤镜等操作，让你的帖子更加精美。点击查看详情。</p>
+                                    <div class="flex items-center justify-between pl-13">
+                                        <div class="text-sm text-gray-500">前天 09:15</div>
+                                        <div class="flex space-x-2">
+                                            <button class="text-primary text-sm hover:underline transition-all-300">
+                                                <i class="fa fa-external-link mr-1"></i>详情
+                                            </button>
+                                            <button class="text-gray-500 text-sm hover:text-gray-700 transition-all-300">
+                                                <i class="fa fa-trash-o mr-1"></i>删除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 消息项6 - 已读 -->
+                        <div class="message-item p-4 hover:bg-gray-50 transition-all-300">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center mb-2">
+                                        <img src="https://picsum.photos/id/237/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover mr-3">
+                                        <div>
+                                            <span class="font-medium">技术交流吧</span>
+                                            <span class="text-gray-500 text-sm ml-2">新活动通知</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700 mb-2 pl-13">【技术沙龙】本周六下午2点，我们将举办一场关于前端性能优化的技术沙龙，邀请了业内资深专家分享经验，欢迎大家报名参加！</p>
+                                    <div class="flex items-center justify-between pl-13">
+                                        <div class="text-sm text-gray-500">3天前</div>
+                                        <div class="flex space-x-2">
+                                            <button class="text-primary text-sm hover:underline transition-all-300">
+                                                <i class="fa fa-calendar mr-1"></i>报名
+                                            </button>
+                                            <button class="text-gray-500 text-sm hover:text-gray-700 transition-all-300">
+                                                <i class="fa fa-trash-o mr-1"></i>删除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 加载更多 -->
+                    <div class="p-4 text-center">
+                        <button id="load-more" class="text-primary hover:underline transition-all-300">
+                            加载更多消息
+                            <i class="fa fa-angle-down ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-white border-t mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-500 text-sm">© 2024 百度贴吧 版权所有</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-weibo text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-wechat text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-4 text-center md:text-left">
+                <ul class="flex flex-wrap justify-center md:justify-start space-x-4 text-sm text-gray-500">
+                    <li><a href="#" class="hover:text-primary transition-all-300">关于我们</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">使用帮助</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">用户协议</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">隐私政策</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-1');
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('py-1');
+                navbar.classList.remove('shadow-md');
+            }
+        });
+
+        // 消息分类标签切换
+        document.querySelectorAll('.message-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // 移除所有标签的选中状态
+                document.querySelectorAll('.message-tab').forEach(t => {
+                    t.classList.remove('text-primary', 'border-primary');
+                    t.classList.add('text-gray-600', 'border-transparent');
+                });
+                
+                // 添加当前标签的选中状态
+                this.classList.remove('text-gray-600', 'border-transparent');
+                this.classList.add('text-primary', 'border-primary');
+                
+                // 模拟加载对应分类的消息
+                alert(`切换到${this.textContent.trim()}分类`);
+            });
+        });
+
+        // 全部标记为已读
+        document.getElementById('mark-all-read').addEventListener('click', function() {
+            // 移除所有未读消息的样式
+            document.querySelectorAll('.message-item.bg-primary/5').forEach(item => {
+                item.classList.remove('bg-primary/5', 'border-l-4', 'border-primary');
+                item.classList.add('hover:bg-gray-50');
+            });
+            
+            // 更新未读消息数量
+            alert('已将所有消息标记为已读');
+        });
+
+        // 删除已读消息
+        document.getElementById('delete-read').addEventListener('click', function() {
+            if (confirm('确定要删除所有已读消息吗？')) {
+                // 模拟删除已读消息
+                alert('已删除所有已读消息');
+            }
+        });
+
+        // 清空消息中心
+        document.getElementById('delete-all').addEventListener('click', function() {
+            if (confirm('确定要清空所有消息吗？此操作不可恢复！')) {
+                // 模拟清空所有消息
+                alert('已清空所有消息');
+            }
+        });
+
+        // 删除单个消息
+        document.querySelectorAll('.message-item button:contains("删除")').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (confirm('确定要删除这条消息吗？')) {
+                    const messageItem = this.closest('.message-item');
+                    messageItem.style.height = messageItem.offsetHeight + 'px';
+                    
+                    // 添加动画效果
+                    messageItem.style.transition = 'all 0.3s ease';
+                    messageItem.style.opacity = '0';
+                    messageItem.style.height = '0';
+                    messageItem.style.margin = '0';
+                    messageItem.style.padding = '0';
+                    messageItem.style.overflow = 'hidden';
+                    
+                    // 动画结束后移除元素
+                    setTimeout(() => {
+                        messageItem.remove();
+                    }, 300);
+                    
+                    alert('消息已删除');
+                }
+            });
+        });
+
+        // 加载更多
+        document.getElementById('load-more').addEventListener('click', function() {
+            this.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i>加载中...';
+            
+            // 模拟加载延迟
+            setTimeout(() => {
+                this.innerHTML = '加载更多消息 <i class="fa fa-angle-down ml-1"></i>';
+                alert('已加载更多消息');
+            }, 1500);
+        });
+
+        // 处理回关按钮
+        document.querySelectorAll('button:contains("回关")').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.innerHTML = '<i class="fa fa-check mr-1"></i>已关注';
+                this.classList.remove('text-primary');
+                this.classList.add('text-green-600');
+                alert('关注成功');
+            });
+        });
+    </script>
+</body>
+</html>
