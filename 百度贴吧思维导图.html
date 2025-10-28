@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百度贴吧功能思维导图</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981',
+                        accent: '#f59e0b',
+                        warning: '#ef4444',
+                        info: '#6366f1',
+                        dark: '#1e293b',
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .mindmap-node {
+                @apply p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 ease-in-out;
+            }
+            .mindmap-node:hover {
+                @apply shadow-lg scale-[1.02];
+            }
+            .connector {
+                @apply absolute bg-gray-300 z-0;
+            }
+            .connector-vertical {
+                @apply connector w-0.5 h-12;
+            }
+            .connector-horizontal {
+                @apply connector h-0.5;
+            }
+            .mindmap-container {
+                @apply min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 overflow-x-auto;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <div class="container mx-auto">
+        <header class="py-6 text-center">
+            <h1 class="text-3xl font-bold text-dark">百度贴吧功能思维导图</h1>
+            <p class="text-gray-600">简洁完整的功能结构概览</p>
+        </header>
+
+        <div class="mindmap-container rounded-xl">
+            <div id="mindmap" class="relative min-h-[800px] min-w-[1200px] flex flex-col items-center">
+                <!-- 中心节点 -->
+                <div class="mindmap-node bg-primary text-white text-xl font-bold w-48 text-center mb-8 relative z-10">
+                    百度贴吧
+                </div>
+                
+                <!-- 一级连接垂直线条 -->
+                <div class="connector-vertical mx-auto"></div>
+                
+                <!-- 一级节点组 -->
+                <div class="flex flex-wrap justify-center gap-8 w-full mb-12">
+                    <!-- 用户管理 -->
+                    <div class="mindmap-node bg-info text-white w-36 text-center relative z-10">
+                        用户管理
+                    </div>
+                    
+                    <!-- 内容浏览 -->
+                    <div class="mindmap-node bg-secondary text-white w-36 text-center relative z-10">
+                        内容浏览
+                    </div>
+                    
+                    <!-- 互动交流 -->
+                    <div class="mindmap-node bg-accent text-white w-36 text-center relative z-10">
+                        互动交流
+                    </div>
+                    
+                    <!-- 搜索导航 -->
+                    <div class="mindmap-node bg-warning text-white w-36 text-center relative z-10">
+                        搜索导航
+                    </div>
+                    
+                    <!-- 后台管理 -->
+                    <div class="mindmap-node bg-gray-700 text-white w-36 text-center relative z-10">
+                        后台管理
+                    </div>
+                </div>
+                
+                <!-- 二级节点组 -->
+                <div class="flex flex-wrap justify-center gap-x-16 gap-y-6 w-full mb-12">
+                    <!-- 用户管理子节点 -->
+                    <div class="flex flex-col items-center">
+                        <div class="connector-vertical"></div>
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="mindmap-node bg-blue-400 text-white w-32 text-center">注册登录</div>
+                            <div class="mindmap-node bg-blue-400 text-white w-32 text-center">个人资料</div>
+                            <div class="mindmap-node bg-blue-400 text-white w-32 text-center">安全设置</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 内容浏览子节点 -->
+                    <div class="flex flex-col items-center">
+                        <div class="connector-vertical"></div>
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="mindmap-node bg-green-400 text-white w-32 text-center">贴吧列表</div>
+                            <div class="mindmap-node bg-green-400 text-white w-32 text-center">帖子详情</div>
+                            <div class="mindmap-node bg-green-400 text-white w-32 text-center">图片浏览</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 互动交流子节点 -->
+                    <div class="flex flex-col items-center">
+                        <div class="connector-vertical"></div>
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="mindmap-node bg-yellow-500 text-white w-32 text-center">发布帖子</div>
+                            <div class="mindmap-node bg-yellow-500 text-white w-32 text-center">评论回复</div>
+                            <div class="mindmap-node bg-yellow-500 text-white w-32 text-center">私信聊天</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 搜索导航子节点 -->
+                    <div class="flex flex-col items-center">
+                        <div class="connector-vertical"></div>
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="mindmap-node bg-red-400 text-white w-32 text-center">全文搜索</div>
+                            <div class="mindmap-node bg-red-400 text-white w-32 text-center">分类筛选</div>
+                            <div class="mindmap-node bg-red-400 text-white w-32 text-center">热门推荐</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 后台管理子节点 -->
+                    <div class="flex flex-col items-center">
+                        <div class="connector-vertical"></div>
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="mindmap-node bg-gray-600 text-white w-32 text-center">用户管理</div>
+                            <div class="mindmap-node bg-gray-600 text-white w-32 text-center">内容审核</div>
+                            <div class="mindmap-node bg-gray-600 text-white w-32 text-center">系统设置</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 三级节点组（只显示核心流程） -->
+                <div class="flex flex-wrap justify-center gap-x-32 gap-y-6 w-full">
+                    <!-- 用户注册登录流程 -->
+                    <div class="flex flex-col items-center">
+                        <div class="connector-vertical h-8"></div>
+                        <div class="flex gap-3">
+                            <div class="mindmap-node bg-blue-300 text-gray-800 w-24 text-center text-sm">账号密码</div>
+                            <div class="mindmap-node bg-blue-300 text-gray-800 w-24 text-center text-sm">手机验证</div>
+                            <div class="mindmap-node bg-blue-300 text-gray-800 w-24 text-center text-sm">邮箱验证</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 帖子发布流程 -->
+                    <div class="flex flex-col items-center">
+                        <div class="connector-vertical h-8"></div>
+                        <div class="flex gap-3">
+                            <div class="mindmap-node bg-green-300 text-gray-800 w-24 text-center text-sm">文字输入</div>
+                            <div class="mindmap-node bg-green-300 text-gray-800 w-24 text-center text-sm">图片上传</div>
+                            <div class="mindmap-node bg-green-300 text-gray-800 w-24 text-center text-sm">标签选择</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 内容审核流程 -->
+                    <div class="flex flex-col items-center">
+                        <div class="connector-vertical h-8"></div>
+                        <div class="flex gap-3">
+                            <div class="mindmap-node bg-gray-500 text-white w-24 text-center text-sm">违规检测</div>
+                            <div class="mindmap-node bg-gray-500 text-white w-24 text-center text-sm">人工审核</div>
+                            <div class="mindmap-node bg-gray-500 text-white w-24 text-center text-sm">处理结果</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="py-6 text-center text-gray-600">
+            <p>© 2024 百度贴吧功能思维导图</p>
+        </footer>
+    </div>
+
+    <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加节点点击效果
+            const nodes = document.querySelectorAll('.mindmap-node');
+            nodes.forEach(node => {
+                node.addEventListener('click', function() {
+                    this.classList.toggle('ring-4');
+                    this.classList.toggle('ring-offset-2');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
