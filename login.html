@@ -74,74 +74,74 @@
             <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">登录百度贴吧</h2>
             
             <form id="login-form" class="space-y-4">
-                <!-- 用户名/邮箱输入框 -->
-                <div>
-                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1 cursor-pointer">用户名/邮箱</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fa fa-user text-gray-400"></i>
-                        </div>
-                        <input type="text" id="username" name="username" 
-                               class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md input-focus transition-all-300 hover:border-gray-400"
-                               placeholder="请输入用户名或邮箱" required>
-                    </div>
-                    <p id="username-error" class="hidden text-red-500 text-xs mt-1"></p>
+              <!-- 用户名/邮箱输入框 -->
+              <div>
+                <label for="username" class="block text-sm font-medium text-gray-700 mb-1 cursor-pointer">用户名/邮箱</label>
+                <div class="relative">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fa fa-user text-gray-400"></i>
+                  </div>
+                  <input type="text" id="username" name="username" 
+                         class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md input-focus transition-all-300 hover:border-gray-400"
+                         placeholder="请输入用户名或邮箱" required>
                 </div>
-                
-                <!-- 密码输入框 -->
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1 cursor-pointer">密码</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fa fa-lock text-gray-400"></i>
-                        </div>
-                        <input type="password" id="password" name="password" 
-                               class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md input-focus transition-all-300 hover:border-gray-400"
-                               placeholder="请输入密码" required>
-                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                            <button type="button" id="toggle-password" class="text-gray-400 hover:text-gray-600 transition-all-300">
-                                <i class="fa fa-eye-slash"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <p id="password-error" class="hidden text-red-500 text-xs mt-1"></p>
-                </div>
-                
-                <!-- 记住我和忘记密码 -->
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <input type="checkbox" id="remember-me" name="remember-me" 
-                               class="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer">
-                <label for="remember-me" class="ml-2 block text-sm text-gray-700 cursor-pointer">
-                    记住我
-                </label>
-                    </div>
-                    <a href="#" class="text-sm text-primary hover:text-primary/80 transition-all-300 hover:underline">
-        忘记密码？
-    </a>
-                </div>
-                
-                <!-- 登录按钮 -->
-                <div>
-                    <button type="submit" id="login-button" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-md transition-all-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:scale-[1.01] active:scale-[0.99]">
-        登录
-    </button>
-                </div>
-                
-                <!-- 游客登录 - 主要突出 -->
-                <div class="text-center mt-6">
-                    <button type="button" id="guest-login" class="w-full border-2 border-primary text-primary hover:bg-primary/5 font-medium py-3 px-4 rounded-md transition-all-300 transform hover:scale-[1.01] active:scale-[0.99]">
-                        <i class="fa fa-user-o mr-2"></i>游客登录，立即体验
+                <p id="username-error" class="hidden text-red-500 text-xs mt-1"></p>
+              </div>
+              
+              <!-- 密码输入框 -->
+              <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-1 cursor-pointer">密码</label>
+                <div class="relative">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fa fa-lock text-gray-400"></i>
+                  </div>
+                  <input type="password" id="password" name="password" 
+                         class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md input-focus transition-all-300 hover:border-gray-400"
+                         placeholder="请输入密码" required>
+                  <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                    <button type="button" id="toggle-password" class="text-gray-400 hover:text-gray-600 transition-all-300">
+                      <i class="fa fa-eye-slash"></i>
                     </button>
+                  </div>
                 </div>
-                
-                <!-- 注册链接 -->
-                <div class="text-center mt-4">
-                    <span class="text-sm text-gray-600">还没有账号？</span>
-                    <a href="register.html" class="text-sm text-primary hover:text-primary/80 font-medium transition-all-300 ml-1 hover:underline">
-            立即注册
-        </a>
+                <p id="password-error" class="hidden text-red-500 text-xs mt-1"></p>
+              </div>
+              
+              <!-- 记住我和忘记密码 -->
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <input type="checkbox" id="remember-me" name="remember-me" 
+                         class="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer">
+                  <label for="remember-me" class="ml-2 block text-sm text-gray-700 cursor-pointer">
+                    记住我
+                  </label>
                 </div>
+                <a href="#" class="text-sm text-primary hover:text-primary/80 transition-all-300 hover:underline">
+                  忘记密码？
+                </a>
+              </div>
+              
+              <!-- 登录按钮 -->
+              <div>
+                <button type="submit" id="login-button" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-md transition-all-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:scale-[1.01] active:scale-[0.99]">
+                  登录
+                </button>
+              </div>
+              
+              <!-- 游客登录 - 主要突出 -->
+              <div class="text-center mt-6">
+                <button type="button" id="guest-login" class="w-full border-2 border-primary text-primary hover:bg-primary/5 font-medium py-3 px-4 rounded-md transition-all-300 transform hover:scale-[1.01] active:scale-[0.99]">
+                  <i class="fa fa-user-o mr-2"></i>游客登录，立即体验
+                </button>
+              </div>
+              
+              <!-- 注册链接 -->
+              <div class="text-center mt-4">
+                <span class="text-sm text-gray-600">还没有账号？</span>
+                <a href="register.html" class="text-sm text-primary hover:text-primary/80 font-medium transition-all-300 ml-1 hover:underline">
+                  立即注册
+                </a>
+              </div>
             </form>
             
             <!-- 其他登录方式 -->
