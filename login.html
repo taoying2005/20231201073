@@ -6,12 +6,13 @@
     <title>登录 - 百度贴吧</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="assets/notification.js"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3178C6',
+                        primary: '#E74C3C', // 百度贴吧红色
                         secondary: '#F7F7F7',
                         accent: '#FF6B6B',
                         dark: '#333333',
@@ -38,45 +39,64 @@
             .input-focus {
                 @apply focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none;
             }
+            .gradient-bg {
+                background: linear-gradient(135deg, #FFF5F5 0%, #FFF 100%);
+            }
         }
     </style>
 </head>
-<body class="bg-gray-100 font-sans text-dark min-h-screen flex flex-col">
-    <!-- 顶部Logo -->
-    <header class="py-8 text-center">
-        <a href="index.html" class="text-primary font-bold text-3xl">
-            <i class="fa fa-comments-o mr-2"></i>百度贴吧
-        </a>
+<body class="gradient-bg font-sans text-dark min-h-screen flex flex-col">
+    <!-- 顶部导航栏 -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="#" class="text-primary font-bold text-3xl">
+                <img src="/assets/tieba-logo.svg" alt="百度贴吧" class="h-8">
+            </a>
+            <div class="text-gray-500 text-sm">
+                欢迎来到百度贴吧
+            </div>
+        </div>
     </header>
 
     <!-- 主内容区 - 登录表单 -->
-    <main class="flex-1 flex items-center justify-center px-4 py-8">
+    <main class="flex-1 flex flex-col md:flex-row items-center justify-center px-4 py-12 gap-8">
+        <!-- 左侧图片展示区 -->
+        <div class="hidden md:block w-1/2 max-w-md">
+            <img src="https://picsum.photos/id/180/600/400" alt="百度贴吧" class="rounded-lg shadow-lg w-full h-auto">
+            <div class="mt-6 text-center">
+                <h3 class="text-xl font-bold text-gray-800">发现有趣的内容</h3>
+                <p class="text-gray-600 mt-2">加入贴吧，与志同道合的朋友交流讨论</p>
+            </div>
+        </div>
+        
+        <!-- 右侧登录表单 -->
         <div class="w-full max-w-md bg-white rounded-lg shadow-custom p-8">
-            <h2 class="text-2xl font-bold text-center mb-6">登录</h2>
+            <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">登录百度贴吧</h2>
             
             <form id="login-form" class="space-y-4">
                 <!-- 用户名/邮箱输入框 -->
                 <div>
-                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">用户名/邮箱</label>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1 cursor-pointer">用户名/邮箱</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fa fa-user text-gray-400"></i>
                         </div>
                         <input type="text" id="username" name="username" 
-                               class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md input-focus transition-all-300"
+                               class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md input-focus transition-all-300 hover:border-gray-400"
                                placeholder="请输入用户名或邮箱" required>
                     </div>
+                    <p id="username-error" class="hidden text-red-500 text-xs mt-1"></p>
                 </div>
                 
                 <!-- 密码输入框 -->
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">密码</label>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1 cursor-pointer">密码</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fa fa-lock text-gray-400"></i>
                         </div>
                         <input type="password" id="password" name="password" 
-                               class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md input-focus transition-all-300"
+                               class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md input-focus transition-all-300 hover:border-gray-400"
                                placeholder="请输入密码" required>
                         <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
                             <button type="button" id="toggle-password" class="text-gray-400 hover:text-gray-600 transition-all-300">
@@ -84,35 +104,43 @@
                             </button>
                         </div>
                     </div>
+                    <p id="password-error" class="hidden text-red-500 text-xs mt-1"></p>
                 </div>
                 
                 <!-- 记住我和忘记密码 -->
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
                         <input type="checkbox" id="remember-me" name="remember-me" 
-                               class="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary">
-                        <label for="remember-me" class="ml-2 block text-sm text-gray-700">
-                            记住我
-                        </label>
+                               class="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer">
+                <label for="remember-me" class="ml-2 block text-sm text-gray-700 cursor-pointer">
+                    记住我
+                </label>
                     </div>
-                    <a href="#" class="text-sm text-primary hover:text-primary/80 transition-all-300">
-                        忘记密码？
-                    </a>
+                    <a href="#" class="text-sm text-primary hover:text-primary/80 transition-all-300 hover:underline">
+        忘记密码？
+    </a>
                 </div>
                 
                 <!-- 登录按钮 -->
                 <div>
-                    <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-md transition-all-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                        登录
+                    <button type="submit" id="login-button" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-md transition-all-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:scale-[1.01] active:scale-[0.99]">
+        登录
+    </button>
+                </div>
+                
+                <!-- 游客登录 - 主要突出 -->
+                <div class="text-center mt-6">
+                    <button type="button" id="guest-login" class="w-full border-2 border-primary text-primary hover:bg-primary/5 font-medium py-3 px-4 rounded-md transition-all-300 transform hover:scale-[1.01] active:scale-[0.99]">
+                        <i class="fa fa-user-o mr-2"></i>游客登录，立即体验
                     </button>
                 </div>
                 
                 <!-- 注册链接 -->
-                <div class="text-center">
+                <div class="text-center mt-4">
                     <span class="text-sm text-gray-600">还没有账号？</span>
-                    <a href="register.html" class="text-sm text-primary hover:text-primary/80 font-medium transition-all-300 ml-1">
-                        立即注册
-                    </a>
+                    <a href="register.html" class="text-sm text-primary hover:text-primary/80 font-medium transition-all-300 ml-1 hover:underline">
+            立即注册
+        </a>
                 </div>
             </form>
             
@@ -127,7 +155,7 @@
                     </div>
                 </div>
                 
-                <div class="mt-4 flex justify-center space-x-6">
+                <div class="mt-4 flex justify-center space-x-8">
                     <a href="#" class="text-gray-500 hover:text-blue-500 transition-all-300">
                         <span class="sr-only">QQ登录</span>
                         <i class="fa fa-qq text-2xl"></i>
@@ -146,43 +174,208 @@
     </main>
 
     <!-- 页脚 -->
-    <footer class="py-6 text-center text-sm text-gray-500">
+    <footer class="py-6 text-center text-sm text-gray-500 bg-white mt-auto">
         <p>© 2024 百度贴吧 版权所有</p>
     </footer>
 
     <!-- JavaScript -->
     <script>
-        // 密码显示切换
-        document.getElementById('toggle-password').addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
-            const icon = this.querySelector('i');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            } else {
-                passwordInput.type = 'password';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            }
-        });
+    // DOM加载完成后执行
+    document.addEventListener('DOMContentLoaded', function() {
+        // 防止已登录用户访问登录页
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        const isGuest = localStorage.getItem('isGuest') === 'true';
         
-        // 表单提交处理
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // 这里可以添加表单验证和登录逻辑
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const rememberMe = document.getElementById('remember-me').checked;
-            
-            console.log('登录信息:', { username, password, rememberMe });
-            
-            // 模拟登录成功，跳转到首页
-            alert('登录成功！');
+        if (isLoggedIn || isGuest) {
             window.location.href = 'index.html';
+            return;
+        }
+        
+        // 显示/隐藏密码
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('password');
+        
+        if (togglePassword && passwordInput) {
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                // 切换图标
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+        }
+        
+        // 表单验证函数
+        function validateForm() {
+            let isValid = true;
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            
+            // 用户名验证
+            const usernameError = document.getElementById('username-error');
+            if (!username) {
+                usernameError.textContent = '请输入用户名';
+                usernameError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                usernameError.classList.add('hidden');
+            }
+            
+            // 密码验证
+            const passwordError = document.getElementById('password-error');
+            if (!password) {
+                passwordError.textContent = '请输入密码';
+                passwordError.classList.remove('hidden');
+                isValid = false;
+            } else if (password.length < 6) {
+                passwordError.textContent = '密码长度不能少于6位';
+                passwordError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                passwordError.classList.add('hidden');
+            }
+            
+            return isValid;
+        }
+        
+        // 游客登录功能
+        const guestLoginBtn = document.getElementById('guest-login');
+        if (guestLoginBtn) {
+            guestLoginBtn.addEventListener('click', function() {
+                // 设置游客登录状态
+                localStorage.setItem('isGuest', 'true');
+                localStorage.removeItem('user');
+                localStorage.removeItem('isAdmin');
+                localStorage.removeItem('isLoggedIn');
+                
+                // 显示成功消息
+                if (window.showNotification) {
+                    window.showNotification('游客登录成功');
+                } else {
+                    alert('游客登录成功');
+                }
+                
+                // 延迟跳转，让用户看到成功提示
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            });
+        }
+        
+        // 表单提交
+        const loginForm = document.getElementById('login-form');
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                if (!validateForm()) {
+                    return;
+                }
+                
+                // 模拟登录中状态
+                const loginButton = document.getElementById('login-button');
+                const originalText = loginButton.innerHTML;
+                loginButton.disabled = true;
+                loginButton.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i>登录中...';
+                
+                // 模拟网络请求延迟
+                setTimeout(() => {
+                    // 模拟登录成功
+                    const username = document.getElementById('username').value.trim();
+                    const rememberMe = document.getElementById('remember-me').checked;
+                    
+                    // 设置登录状态
+                    const userData = {
+                        username: username,
+                        isAdmin: false // 默认不是管理员
+                    };
+                    
+                    localStorage.setItem('user', JSON.stringify(userData));
+                    localStorage.setItem('isLoggedIn', 'true');
+                    
+                    // 检查是否是管理员账号
+                    if (username === 'admin' && document.getElementById('password').value === 'admin123') {
+                        localStorage.setItem('isAdmin', 'true');
+                    } else {
+                        localStorage.setItem('isAdmin', 'false');
+                    }
+                    
+                    localStorage.removeItem('isGuest');
+                    
+                    // 如果勾选了记住我
+                    if (rememberMe) {
+                        localStorage.setItem('savedUsername', username);
+                    } else {
+                        localStorage.removeItem('savedUsername');
+                    }
+                    
+                    // 恢复按钮状态
+                    loginButton.innerHTML = originalText;
+                    loginButton.disabled = false;
+                    
+                    // 显示成功消息
+                    if (window.showNotification) {
+                        window.showNotification('登录成功');
+                    } else {
+                        alert('登录成功');
+                    }
+                    
+                    // 延迟跳转
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1000);
+                }, 1000);
+            });
+        }
+        
+        // 表单输入事件监听
+        const usernameInput = document.getElementById('username');
+        if (usernameInput) {
+            usernameInput.addEventListener('input', function() {
+                const errorElem = document.getElementById('username-error');
+                if (this.value.trim()) {
+                    errorElem.classList.add('hidden');
+                }
+            });
+        }
+        
+        const passwordInputElem = document.getElementById('password');
+        if (passwordInputElem) {
+            passwordInputElem.addEventListener('input', function() {
+                const errorElem = document.getElementById('password-error');
+                if (this.value.trim() && this.value.length >= 6) {
+                    errorElem.classList.add('hidden');
+                }
+            });
+        }
+        
+        // 记住我功能 - 加载保存的用户名
+        const rememberMeCheckbox = document.getElementById('remember-me');
+        if (rememberMeCheckbox) {
+            const savedUsername = localStorage.getItem('savedUsername');
+            if (savedUsername) {
+                document.getElementById('username').value = savedUsername;
+                rememberMeCheckbox.checked = true;
+            }
+        }
+        
+        // 处理第三方登录按钮点击
+        document.querySelectorAll('.flex.justify-center.space-x-8 a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const iconClass = this.querySelector('i').className;
+                let platform = '';
+                
+                if (iconClass.includes('fa-qq')) platform = 'QQ';
+                else if (iconClass.includes('fa-weixin')) platform = '微信';
+                else if (iconClass.includes('fa-weibo')) platform = '微博';
+                
+                alert(`正在跳转到${platform}授权登录...`);
+                // 实际项目中这里应该跳转到对应的授权页面
+            });
         });
+    });
     </script>
 </body>
 </html>

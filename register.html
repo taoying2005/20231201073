@@ -148,50 +148,196 @@
     </footer>
 
     <!-- JavaScript -->
+    <script src="assets/global.js"></script>
     <script>
-        // 密码显示切换
-        document.getElementById('toggle-reg-password').addEventListener('click', function() {
+        // 页面特定功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 密码显示切换
+            document.getElementById('toggle-reg-password').addEventListener('click', function() {
+                const passwordInput = document.getElementById('reg-password');
+                const icon = this.querySelector('i');
+                
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                }
+            });
+            
+            // 密码强度检查
             const passwordInput = document.getElementById('reg-password');
-            const icon = this.querySelector('i');
+            const passwordStrength = document.createElement('div');
+            passwordStrength.className = 'mt-2 h-1.5 w-full bg-gray-200 rounded-full overflow-hidden hidden';
+            const strengthBar = document.createElement('div');
+            strengthBar.className = 'h-full bg-gray-300 transition-all duration-300';
+            passwordStrength.appendChild(strengthBar);
+            passwordInput.parentNode.parentNode.appendChild(passwordStrength);
             
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            } else {
-                passwordInput.type = 'password';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            }
-        });
-        
-        // 表单提交处理
-        document.getElementById('register-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                
+                if (password.length > 0) {
+                    passwordStrength.classList.remove('hidden');
+                    
+                    // 密码强度计算
+                    let strength = 0;
+                    if (password.length >= 8) strength++;
+                    if (password.length >= 12) strength++;
+                    if (/[A-Z]/.test(password)) strength++;
+                    if (/[a-z]/.test(password)) strength++;
+                    if (/[0-9]/.test(password)) strength++;
+                    if (/[^A-Za-z0-9]/.test(password)) strength++;
+                    
+                    // 更新强度条
+                    const percentage = Math.min(100, Math.floor((strength / 6) * 100));
+                    strengthBar.style.width = percentage + '%';
+                    
+                    // 设置强度条颜色
+                    if (percentage < 30) {
+                        strengthBar.className = 'h-full bg-red-500 transition-all duration-300';
+                    } else if (percentage < 60) {
+                        strengthBar.className = 'h-full bg-yellow-500 transition-all duration-300';
+                    } else if (percentage < 90) {
+                        strengthBar.className = 'h-full bg-blue-500 transition-all duration-300';
+                    } else {
+                        strengthBar.className = 'h-full bg-green-500 transition-all duration-300';
+                    }
+                } else {
+                    passwordStrength.classList.add('hidden');
+                }
+            });
             
-            // 表单验证
-            const username = document.getElementById('reg-username').value;
-            const email = document.getElementById('reg-email').value;
-            const password = document.getElementById('reg-password').value;
-            const confirmPassword = document.getElementById('reg-confirm-password').value;
-            const agreeTerms = document.getElementById('agree-terms').checked;
+            // 用户名实时验证
+            const usernameInput = document.getElementById('reg-username');
+            const usernameError = document.createElement('p');
+            usernameError.className = 'mt-1 text-xs text-red-500 hidden';
+            usernameInput.parentNode.parentNode.appendChild(usernameError);
             
-            // 简单验证
-            if (password !== confirmPassword) {
-                alert('两次输入的密码不一致！');
-                return;
-            }
+            usernameInput.addEventListener('input', function() {
+                const username = this.value;
+                const usernamePattern = /^[a-zA-Z0-9_]{3,16}$/;
+                
+                if (username.length > 0 && !usernamePattern.test(username)) {
+                    usernameError.textContent = '用户名格式不正确，只支持3-16个字母、数字和下划线';
+                    usernameError.classList.remove('hidden');
+                    this.classList.add('border-red-500');
+                } else {
+                    usernameError.classList.add('hidden');
+                    this.classList.remove('border-red-500');
+                }
+            });
             
-            if (!agreeTerms) {
-                alert('请阅读并同意用户协议和隐私政策！');
-                return;
-            }
+            // 邮箱实时验证
+            const emailInput = document.getElementById('reg-email');
+            const emailError = document.createElement('p');
+            emailError.className = 'mt-1 text-xs text-red-500 hidden';
+            emailInput.parentNode.parentNode.appendChild(emailError);
             
-            console.log('注册信息:', { username, email, password });
+            emailInput.addEventListener('input', function() {
+                const email = this.value;
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                if (email.length > 0 && !emailPattern.test(email)) {
+                    emailError.textContent = '请输入有效的邮箱地址';
+                    emailError.classList.remove('hidden');
+                    this.classList.add('border-red-500');
+                } else {
+                    emailError.classList.add('hidden');
+                    this.classList.remove('border-red-500');
+                }
+            });
             
-            // 模拟注册成功，跳转到登录页
-            alert('注册成功！请登录');
-            window.location.href = 'login.html';
+            // 确认密码验证
+            const confirmPasswordInput = document.getElementById('reg-confirm-password');
+            const confirmPasswordError = document.createElement('p');
+            confirmPasswordError.className = 'mt-1 text-xs text-red-500 hidden';
+            confirmPasswordInput.parentNode.parentNode.appendChild(confirmPasswordError);
+            
+            confirmPasswordInput.addEventListener('input', function() {
+                const password = document.getElementById('reg-password').value;
+                const confirmPassword = this.value;
+                
+                if (confirmPassword.length > 0 && password !== confirmPassword) {
+                    confirmPasswordError.textContent = '两次输入的密码不一致';
+                    confirmPasswordError.classList.remove('hidden');
+                    this.classList.add('border-red-500');
+                } else {
+                    confirmPasswordError.classList.add('hidden');
+                    this.classList.remove('border-red-500');
+                }
+            });
+            
+            // 表单提交处理
+            document.getElementById('register-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // 表单验证
+                const username = document.getElementById('reg-username').value;
+                const email = document.getElementById('reg-email').value;
+                const password = document.getElementById('reg-password').value;
+                const confirmPassword = document.getElementById('reg-confirm-password').value;
+                const agreeTerms = document.getElementById('agree-terms').checked;
+                
+                // 验证用户名
+                const usernamePattern = /^[a-zA-Z0-9_]{3,16}$/;
+                if (!usernamePattern.test(username)) {
+                    alert('用户名格式不正确，请使用3-16个字母、数字和下划线');
+                    return;
+                }
+                
+                // 验证邮箱
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    alert('请输入有效的邮箱地址');
+                    return;
+                }
+                
+                // 验证密码
+                if (password.length < 8) {
+                    alert('密码长度不能少于8个字符');
+                    return;
+                }
+                
+                // 验证确认密码
+                if (password !== confirmPassword) {
+                    alert('两次输入的密码不一致！');
+                    return;
+                }
+                
+                // 验证用户协议
+                if (!agreeTerms) {
+                    alert('请阅读并同意用户协议和隐私政策！');
+                    return;
+                }
+                
+                // 获取注册按钮
+                const registerButton = this.querySelector('button[type="submit"]');
+                const originalButtonText = registerButton.innerHTML;
+                
+                // 显示加载状态
+                registerButton.disabled = true;
+                registerButton.innerHTML = '<i class="fa fa-circle-o-notch fa-spin mr-2"></i>注册中...';
+                
+                // 模拟注册过程
+                setTimeout(() => {
+                    console.log('注册信息:', { username, email, password });
+                    
+                    // 模拟注册成功，保存用户信息到localStorage
+                    localStorage.setItem('lastRegisteredUser', JSON.stringify({ username, email }));
+                    
+                    // 恢复按钮状态
+                    registerButton.innerHTML = originalButtonText;
+                    registerButton.disabled = false;
+                    
+                    // 提示成功并跳转到登录页
+                    alert('注册成功！请登录');
+                    window.location.href = 'login.html';
+                }, 2000);
+            });
         });
     </script>
 </body>

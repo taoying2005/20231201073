@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - 百度贴吧</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1890ff',
+                        secondary: '#6c757d',
+                        success: '#52c41a',
+                        warning: '#faad14',
+                        danger: '#f5222d',
+                        info: '#13c2c2'
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'custom': '0 2px 8px rgba(0, 0, 0, 0.08)',
+                        'hover': '0 4px 16px rgba(0, 0, 0, 0.12)',
+                    }
+                },
+            }
+        }
+    </script>
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .transition-all-300 {
+                transition: all 0.3s ease;
+            }
+            .hover-lift {
+                transform: translateY(0);
+                transition: transform 0.3s ease;
+            }
+            .hover-lift:hover {
+                transform: translateY(-3px);
+            }
+        }
+    </style>
+    <style>
+        body {
+            font-family: 'Noto Sans SC', system-ui, sans-serif;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="sticky top-0 z-40 bg-white border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo 和导航 -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fa fa-comments-o text-2xl text-primary mr-2"></i>
+                        <span class="font-bold text-xl text-primary">百度贴吧</span>
+                    </a>
+                    <nav class="hidden md:ml-10 md:flex space-x-8">
+                        <a href="index.html" class="text-gray-600 hover:text-primary transition-all-300 px-3 py-2 rounded-md text-sm font-medium">首页</a>
+                        <a href="following.html" class="text-gray-600 hover:text-primary transition-all-300 px-3 py-2 rounded-md text-sm font-medium">关注</a>
+                        <a href="hot.html" class="text-gray-600 hover:text-primary transition-all-300 px-3 py-2 rounded-md text-sm font-medium">热门</a>
+                    </nav>
+                </div>
+                <!-- 搜索框 -->
+                <div class="hidden md:flex items-center flex-1 max-w-md mx-8">
+                    <div class="relative w-full">
+                        <input type="text" placeholder="搜索帖子、用户或话题" class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all-300">
+                        <i class="fa fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                </div>
+                <!-- 用户操作区 -->
+                <div class="flex items-center space-x-4">
+                    <button class="md:hidden text-gray-700 hover:text-primary">
+                        <i class="fa fa-search text-xl"></i>
+                    </button>
+                    <a href="message.html" class="relative text-gray-700 hover:text-primary transition-all-300">
+                        <i class="fa fa-bell-o text-xl"></i>
+                        <span class="absolute -top-1 -right-1 w-4 h-4 bg-danger text-white text-xs rounded-full flex items-center justify-center">3</span>
+                    </a>
+                    <a href="create-post.html" class="hidden md:flex items-center bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-full transition-all-300">
+                        <i class="fa fa-plus mr-2"></i>
+                        <span>发帖</span>
+                    </a>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 focus:outline-none">
+                            <img src="https://picsum.photos/id/1005/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover border-2 border-primary">
+                            <i class="fa fa-angle-down text-gray-700 group-hover:text-primary transition-all-300"></i>
+                        </button>
+                        <!-- 下拉菜单 -->
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden group-hover:block">
+                            <a href="user.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary transition-all-300">
+                                <i class="fa fa-user-o mr-2"></i>个人中心
+                            </a>
+                            <a href="collections.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary transition-all-300">
+                                <i class="fa fa-bookmark-o mr-2"></i>我的收藏
+                            </a>
+                            <a href="message.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary transition-all-300">
+                                <i class="fa fa-envelope-o mr-2"></i>消息通知
+                            </a>
+                            <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary transition-all-300">
+                                <i class="fa fa-cog mr-2"></i>账号设置
+                            </a>
+                            <div class="border-t border-gray-200 my-1"></div>
+                            <a href="#" id="logout-btn" class="block px-4 py-2 text-sm text-danger hover:bg-gray-100 transition-all-300">
+                                <i class="fa fa-sign-out mr-2"></i>退出登录
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- 左侧导航 -->
+            <aside class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow-custom overflow-hidden sticky top-20">
+                    <div class="p-4 bg-primary text-white">
+                        <h2 class="font-bold text-lg">关于我们</h2>
+                    </div>
+                    
+                    <nav class="p-2">
+                        <a href="#about-us" class="flex items-center px-4 py-3 text-primary bg-primary/5 rounded-md mb-1 font-medium">
+                            <i class="fa fa-info-circle w-6"></i>
+                            <span>关于我们</span>
+                        </a>
+                        <a href="#mission" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-md mb-1 transition-all-300">
+                            <i class="fa fa-bullseye w-6"></i>
+                            <span>我们的使命</span>
+                        </a>
+                        <a href="#values" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-md mb-1 transition-all-300">
+                            <i class="fa fa-heart w-6"></i>
+                            <span>核心价值观</span>
+                        </a>
+                        <a href="#privacy" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-md mb-1 transition-all-300">
+                            <i class="fa fa-shield w-6"></i>
+                            <span>隐私政策</span>
+                        </a>
+                        <a href="#terms" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-md mb-1 transition-all-300">
+                            <i class="fa fa-file-text-o w-6"></i>
+                            <span>用户协议</span>
+                        </a>
+                        <a href="#contact" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-md mb-1 transition-all-300">
+                            <i class="fa fa-envelope-o w-6"></i>
+                            <span>联系我们</span>
+                        </a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- 右侧内容区 -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- 关于我们 -->
+                <section id="about-us" class="bg-white rounded-lg shadow-custom p-6">
+                    <h2 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fa fa-info-circle text-primary mr-2"></i>关于我们
+                    </h2>
+                    <div class="prose max-w-none">
+                        <p class="text-gray-700 mb-4">
+                            百度贴吧是中国领先的在线社区平台，致力于为用户提供一个自由、开放、健康的交流空间。自成立以来，我们始终坚持"连接人与信息，连接人与服务"的使命，通过创新技术和优质内容，打造全球最大的中文社区生态。
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            贴吧以"兴趣"为核心，用户可以围绕任何感兴趣的话题创建或加入贴吧，分享知识、交流想法、结识志同道合的朋友。目前，贴吧已拥有数千万个主题贴吧，覆盖了游戏、娱乐、科技、生活、教育等各个领域，每天有数亿用户在这里活跃交流。
+                        </p>
+                        <div class="mt-6">
+                            <img src="https://picsum.photos/id/1/800/400" alt="百度贴吧" class="w-full h-auto rounded-lg shadow-sm">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 我们的使命 -->
+                <section id="mission" class="bg-white rounded-lg shadow-custom p-6">
+                    <h2 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fa fa-bullseye text-primary mr-2"></i>我们的使命
+                    </h2>
+                    <div class="prose max-w-none">
+                        <p class="text-gray-700 mb-4">
+                            我们的使命是通过技术创新和内容生态建设，赋能用户分享知识、表达观点、连接世界。我们相信，每一个声音都值得被听见，每一份知识都值得被分享。
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-blue-50 p-4 rounded-lg text-center">
+                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fa fa-comments text-2xl text-blue-500"></i>
+                                </div>
+                                <h3 class="font-medium mb-2">连接社区</h3>
+                                <p class="text-sm text-gray-600">搭建沟通桥梁，促进用户交流</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg text-center">
+                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fa fa-lightbulb-o text-2xl text-green-500"></i>
+                                </div>
+                                <h3 class="font-medium mb-2">激发创意</h3>
+                                <p class="text-sm text-gray-600">鼓励创新思维，分享精彩想法</p>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg text-center">
+                                <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fa fa-book text-2xl text-yellow-500"></i>
+                                </div>
+                                <h3 class="font-medium mb-2">知识共享</h3>
+                                <p class="text-sm text-gray-600">汇聚各方智慧，传播优质内容</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 核心价值观 -->
+                <section id="values" class="bg-white rounded-lg shadow-custom p-6">
+                    <h2 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fa fa-heart text-primary mr-2"></i>核心价值观
+                    </h2>
+                    <div class="prose max-w-none">
+                        <ul class="space-y-4 mt-4">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium">用户导向</h3>
+                                    <p class="text-gray-600">始终将用户需求放在首位，不断提升用户体验</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium">开放包容</h3>
+                                    <p class="text-gray-600">尊重多元文化，包容不同观点，促进健康讨论</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium">创新进取</h3>
+                                    <p class="text-gray-600">持续创新，不断突破，追求卓越</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium">诚信正直</h3>
+                                    <p class="text-gray-600">坚守诚信原则，维护平台纯净，保障用户权益</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium">社会责任</h3>
+                                    <p class="text-gray-600">积极承担社会责任，传播正能量，共建和谐网络环境</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 隐私政策 -->
+                <section id="privacy" class="bg-white rounded-lg shadow-custom p-6">
+                    <h2 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fa fa-shield text-primary mr-2"></i>隐私政策
+                    </h2>
+                    <div class="prose max-w-none">
+                        <p class="text-gray-700 mb-4">
+                            我们非常重视用户隐私保护，并将采取一切合理可行的措施保护用户的个人信息安全。
+                        </p>
+                        <h3 class="font-medium text-lg mt-6 mb-2">信息收集</h3>
+                        <p class="text-gray-600 mb-4">
+                            我们收集的信息主要用于提供、维护、保护和改进我们的服务，开发新服务，并保护百度和百度用户。我们收集的信息包括但不限于：
+                        </p>
+                        <ul class="list-disc list-inside text-gray-600 mb-4 pl-4">
+                            <li>账户信息：您在注册账户时提供的信息，如用户名、密码、邮箱地址等</li>
+                            <li>设备信息：包括设备型号、操作系统版本、唯一设备标识符等</li>
+                            <li>日志信息：包括使用时间、使用时长、访问内容等</li>
+                            <li>位置信息：基于您的授权，我们可能会收集您的位置信息</li>
+                        </ul>
+                        <h3 class="font-medium text-lg mt-6 mb-2">信息使用</h3>
+                        <p class="text-gray-600 mb-4">
+                            我们严格遵守法律法规的规定及与用户的约定，按照本隐私政策中所述的目的和方式使用收集的信息。我们不会将用户的个人信息用于本隐私政策未载明的其他用途，除非获得用户的明确同意。
+                        </p>
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                            <p class="text-sm text-blue-700">
+                                <i class="fa fa-info-circle mr-1"></i> 
+                                查看完整的<a href="#" class="text-primary underline hover:no-underline">《隐私政策》</a>了解更多详情。
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 用户协议 -->
+                <section id="terms" class="bg-white rounded-lg shadow-custom p-6">
+                    <h2 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fa fa-file-text-o text-primary mr-2"></i>用户协议
+                    </h2>
+                    <div class="prose max-w-none">
+                        <p class="text-gray-700 mb-4">
+                            本协议是您与百度贴吧之间关于使用百度贴吧服务的法律协议。请您仔细阅读本协议的全部内容，特别是其中以粗体或下划线标注的条款，这些条款可能会明确您应履行的义务或对您的权利有所限制。
+                        </p>
+                        <h3 class="font-medium text-lg mt-6 mb-2">用户行为规范</h3>
+                        <p class="text-gray-600 mb-4">
+                            用户在使用百度贴吧服务时必须遵守中华人民共和国相关法律法规的规定，用户应同意将不会利用本服务进行任何违法或不正当的活动，包括但不限于：
+                        </p>
+                        <ul class="list-disc list-inside text-gray-600 mb-4 pl-4">
+                            <li>发布、传播或以任何方式传送含有下列内容之一的信息：
+                                <ul class="list-circle list-inside pl-6 mt-2">
+                                    <li>反对宪法所确定的基本原则的；</li>
+                                    <li>危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；</li>
+                                    <li>损害国家荣誉和利益的；</li>
+                                    <li>煽动民族仇恨、民族歧视，破坏民族团结的；</li>
+                                    <li>破坏国家宗教政策，宣扬邪教和封建迷信的；</li>
+                                    <li>散布谣言，扰乱社会秩序，破坏社会稳定的；</li>
+                                    <li>散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；</li>
+                                    <li>侮辱或者诽谤他人，侵害他人合法权益的；</li>
+                                    <li>含有法律、行政法规禁止的其他内容的。</li>
+                                </ul>
+                            </li>
+                            <li>利用本服务进行任何可能对互联网或移动网正常运转造成不利影响的行为；</li>
+                            <li>利用本服务上传、展示或传播任何虚假的、骚扰性的、中伤他人的、辱骂性的、恐吓性的、伤害性的、庸俗的、淫秽的等内容；</li>
+                            <li>对本服务的任何部分或本服务之使用或获得，进行复制、拷贝、出售、转售或用于任何其他商业目的；</li>
+                        </ul>
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                            <p class="text-sm text-blue-700">
+                                <i class="fa fa-info-circle mr-1"></i> 
+                                查看完整的<a href="#" class="text-primary underline hover:no-underline">《用户协议》</a>了解更多详情。
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 联系我们 -->
+                <section id="contact" class="bg-white rounded-lg shadow-custom p-6">
+                    <h2 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fa fa-envelope-o text-primary mr-2"></i>联系我们
+                    </h2>
+                    <div class="prose max-w-none">
+                        <p class="text-gray-700 mb-4">
+                            如果您有任何问题、建议或意见，欢迎随时与我们联系。我们将尽快回复您的来信。
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <div>
+                                <h3 class="font-medium mb-3">联系方式</h3>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center">
+                                        <i class="fa fa-envelope-o text-primary mr-3"></i>
+                                        <span class="text-gray-600">support@tieba.com</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fa fa-phone text-primary mr-3"></i>
+                                        <span class="text-gray-600">400-800-8888</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fa fa-map-marker text-primary mr-3"></i>
+                                        <span class="text-gray-600">北京市海淀区上地科技园区</span>
+                                    </li>
+                                </ul>
+                                
+                                <div class="mt-6">
+                                    <h3 class="font-medium mb-3">关注我们</h3>
+                                    <div class="flex space-x-4">
+                                        <a href="#" class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200 transition-all-300">
+                                            <i class="fa fa-weibo"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 hover:bg-green-200 transition-all-300">
+                                            <i class="fa fa-wechat"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-all-300">
+                                            <i class="fa fa-github"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="font-medium mb-3">留言反馈</h3>
+                                <form id="contact-form">
+                                    <div class="mb-3">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">您的邮箱</label>
+                                        <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder="请输入您的邮箱地址">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">问题类型</label>
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                                            <option value="">请选择问题类型</option>
+                                            <option value="account">账号问题</option>
+                                            <option value="content">内容问题</option>
+                                            <option value="feedback">意见反馈</option>
+                                            <option value="other">其他问题</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">问题描述</label>
+                                        <textarea rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder="请详细描述您的问题或建议"></textarea>
+                                    </div>
+                                    <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-md transition-all-300">
+                                        提交反馈
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-white border-t mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-500 text-sm">© 2024 百度贴吧 版权所有</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-weibo text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-wechat text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-4 text-center md:text-left">
+                <ul class="flex flex-wrap justify-center md:justify-start space-x-4 text-sm text-gray-500">
+                    <li><a href="about.html" class="hover:text-primary transition-all-300">关于我们</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">使用帮助</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">用户协议</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">隐私政策</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/global.js"></script>
+    <script>
+        // 页面特定功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 退出登录功能
+            document.getElementById('logout-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                // 调用全局登出函数
+                logout();
+            });
+            
+            // 标签页切换
+            document.querySelectorAll('aside a').forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 移除所有标签的选中状态
+                    document.querySelectorAll('aside a').forEach(t => {
+                        t.classList.remove('text-primary', 'bg-primary/5', 'font-medium');
+                        t.classList.add('text-gray-700', 'hover:bg-gray-50');
+                    });
+                    
+                    // 添加当前标签的选中状态
+                    this.classList.remove('text-gray-700', 'hover:bg-gray-50');
+                    this.classList.add('text-primary', 'bg-primary/5', 'font-medium');
+                    
+                    // 滚动到对应区域
+                    const targetId = this.getAttribute('href');
+                    if (targetId) {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+            
+            // 联系表单提交
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('感谢您的反馈，我们将尽快处理！');
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>

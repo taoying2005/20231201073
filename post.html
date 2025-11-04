@@ -143,39 +143,56 @@
                             </button>
                         </div>
                         
-                        <h1 class="font-bold text-xl md:text-2xl mb-4">【讨论】2024年最值得学习的编程语言有哪些？</h1>
+                        <h1 class="font-bold text-xl md:text-2xl mb-4">推荐几个好用的前端开发工具</h1>
                         
                         <div class="prose max-w-none mb-6">
-                            <p class="mb-4">随着技术的不断发展，编程语言也在不断更新迭代。想问问大家，2024年有哪些编程语言是最值得学习的？哪些语言在就业市场上更受欢迎？欢迎分享你的见解和经验。</p>
+                            <p class="mb-4">作为一名前端开发，我想分享几个提升工作效率的工具。这些工具帮助我节省了大量时间，提高了代码质量。</p>
                             
-                            <p class="mb-4">我个人目前主要使用Python和JavaScript，但感觉技术发展很快，需要不断学习新的技能。大家觉得Go、Rust这样的新兴语言值得投入时间学习吗？</p>
+                            <h3 class="text-lg font-bold mb-2 mt-6">1. VS Code 必备插件</h3>
+                            <p class="mb-4">VS Code 是目前最流行的前端开发编辑器，以下是我认为必备的插件：</p>
+                            <ul class="list-disc pl-6 mb-4 space-y-1">
+                                <li>ESLint - 代码规范检查</li>
+                                <li>Prettier - 代码格式化</li>
+                                <li>GitLens - Git信息增强</li>
+                                <li>Auto Rename Tag - 自动重命名标签</li>
+                                <li>Live Server - 本地服务器</li>
+                            </ul>
                             
-                            <h3 class="text-lg font-bold mb-2 mt-6">附：我目前的编程语言学习路线图</h3>
+                            <h3 class="text-lg font-bold mb-2 mt-6">2. 调试和性能优化工具</h3>
+                            <p class="mb-4">调试和性能优化是前端开发中非常重要的环节：</p>
+                            <ul class="list-disc pl-6 mb-4 space-y-1">
+                                <li>Chrome DevTools - 浏览器调试工具</li>
+                                <li>Lighthouse - 网站性能分析</li>
+                                <li>WebPageTest - 网页加载测试</li>
+                                <li>Bundle Analyzer - 打包分析工具</li>
+                            </ul>
                             
-                            <ol class="list-decimal pl-6 mb-4 space-y-2">
-                                <li>掌握基础编程概念</li>
-                                <li>深入学习1-2门主流语言</li>
-                                <li>学习相关框架和工具</li>
-                                <li>参与实际项目开发</li>
-                                <li>持续学习新技术</li>
-                            </ol>
+                            <h3 class="text-lg font-bold mb-2 mt-6">3. 设计和协作工具</h3>
+                            <p class="mb-4">与设计师协作和原型设计工具：</p>
+                            <ul class="list-disc pl-6 mb-4 space-y-1">
+                                <li>Figma - UI设计和原型</li>
+                                <li>Zeplin - 设计稿标注工具</li>
+                                <li>Storybook - UI组件库开发</li>
+                            </ul>
+                            
+                            <p class="mb-4">以上就是我推荐的前端开发工具，希望对大家有所帮助！如果有其他好用的工具，欢迎在评论区分享。</p>
                         </div>
                         
                         <!-- 帖子图片 -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                            <img src="https://picsum.photos/id/0/600/400" alt="帖子图片" class="w-full h-auto rounded-lg object-cover">
-                            <img src="https://picsum.photos/id/1/600/400" alt="帖子图片" class="w-full h-auto rounded-lg object-cover">
+                            <img src="https://picsum.photos/id/0/600/400" alt="VS Code编辑器截图" class="w-full h-auto rounded-lg object-cover">
+                            <img src="https://picsum.photos/id/1/600/400" alt="开发工具展示" class="w-full h-auto rounded-lg object-cover">
                         </div>
                         
                         <!-- 操作按钮 -->
                         <div class="flex items-center justify-between border-t border-b py-3">
                             <button id="like-btn" class="flex items-center space-x-1 text-gray-500 hover:text-red-500 transition-all-300">
                                 <i class="fa fa-thumbs-o-up text-lg"></i>
-                                <span>点赞 (45)</span>
+                                <span>点赞 (128)</span>
                             </button>
                             <button class="flex items-center space-x-1 text-gray-500 hover:text-primary transition-all-300">
                                 <i class="fa fa-comment-o text-lg"></i>
-                                <span>评论 (15)</span>
+                                <span>评论 (32)</span>
                             </button>
                             <button id="collect-btn" class="flex items-center space-x-1 text-gray-500 hover:text-yellow-500 transition-all-300">
                                 <i class="fa fa-star-o text-lg"></i>
@@ -192,17 +209,38 @@
                 <!-- 评论区 -->
                 <div class="bg-white rounded-lg shadow-custom overflow-hidden mb-6">
                     <div class="p-4 border-b">
-                        <h3 class="font-bold text-lg">评论 (15)</h3>
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-lg">评论 (32)</h3>
+                            <div class="flex space-x-2">
+                                <button class="text-sm px-3 py-1 bg-primary text-white rounded-full">最新</button>
+                                <button class="text-sm px-3 py-1 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-all-300">最热</button>
+                            </div>
+                        </div>
                     </div>
                     
                     <!-- 发表评论 -->
-                    <div class="p-4">
+                    <div class="p-4 border-b">
                         <div class="flex space-x-3">
                             <img src="https://picsum.photos/id/1005/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover">
                             <div class="flex-1">
-                                <textarea placeholder="发表你的评论..." class="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" rows="3"></textarea>
-                                <div class="flex justify-end mt-2">
-                                    <button class="bg-primary text-white px-6 py-1.5 rounded-full hover:bg-primary/90 transition-all-300">
+                                <textarea 
+                                    placeholder="写下你的评论..." 
+                                    class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-primary transition-all-300 resize-none"
+                                    rows="3"
+                                ></textarea>
+                                <div class="flex justify-between items-center mt-2">
+                                    <div class="flex items-center text-gray-500">
+                                        <button class="mr-4 hover:text-primary transition-all-300">
+                                            <i class="fa fa-smile-o mr-1"></i>表情
+                                        </button>
+                                        <button class="mr-4 hover:text-primary transition-all-300">
+                                            <i class="fa fa-picture-o mr-1"></i>图片
+                                        </button>
+                                        <button class="hover:text-primary transition-all-300">
+                                            <i class="fa fa-code mr-1"></i>代码
+                                        </button>
+                                    </div>
+                                    <button class="bg-primary text-white px-5 py-2 rounded-full hover:bg-primary/90 transition-all-300">
                                         发布评论
                                     </button>
                                 </div>
@@ -211,6 +249,886 @@
                     </div>
                     
                     <!-- 评论列表 -->
+                    <div class="divide-y">
+                        <!-- 评论1 -->
+                        <div class="p-4">
+                            <div class="flex space-x-3">
+                                <img src="https://picsum.photos/id/1025/40/40" alt="评论者头像" class="w-10 h-10 rounded-full object-cover">
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <h4 class="font-medium text-gray-900">李华</h4>
+                                            <span class="ml-2 text-xs text-gray-500">1小时前</span>
+                                        </div>
+                                        <button class="text-gray-500 hover:text-gray-700">
+                                            <i class="fa fa-ellipsis-h"></i>
+                                        </button>
+                                    </div>
+                                    <p class="mt-2 text-gray-700">非常实用的推荐！我特别喜欢Live Server插件，确实提升了很多开发效率。另外，我想推荐一个叫做Bracket Pair Colorizer的插件，对于多层嵌套的括号非常有帮助。</p>
+                                    <div class="flex items-center mt-3 text-sm text-gray-500">
+                                        <button class="flex items-center hover:text-red-500 transition-all-300 mr-4">
+                                            <i class="fa fa-thumbs-o-up mr-1"></i>
+                                            <span>24</span>
+                                        </button>
+                                        <button class="hover:text-primary transition-all-300 reply-btn">回复</button>
+                                    </div>
+                                    
+                                    <!-- 评论回复 -->
+                                    <div class="mt-4 pl-4 space-y-4">
+                                        <div class="flex space-x-3">
+                                            <img src="https://picsum.photos/id/1012/40/40" alt="回复者头像" class="w-8 h-8 rounded-full object-cover">
+                                            <div class="flex-1">
+                                                <div class="flex items-center justify-between">
+                                                    <div class="flex items-center">
+                                                        <h5 class="font-medium text-gray-900">张小明</h5>
+                                                        <span class="ml-2 text-xs bg-blue-100 text-blue-600 px-1.5 py-0.5 rounded">作者</span>
+                                                        <span class="ml-2 text-xs text-gray-500">50分钟前</span>
+                                                    </div>
+                                                </div>
+                                                <p class="mt-1 text-gray-700">@李华 是的，Bracket Pair Colorizer确实很好用，感谢推荐！</p>
+                                                <div class="flex items-center mt-2 text-sm text-gray-500">
+                                                    <button class="flex items-center hover:text-red-500 transition-all-300 mr-4">
+                                                        <i class="fa fa-thumbs-o-up mr-1"></i>
+                                                        <span>12</span>
+                                                    </button>
+                                                    <button class="hover:text-primary transition-all-300 reply-btn">回复</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 评论2 -->
+                        <div class="p-4">
+                            <div class="flex space-x-3">
+                                <img src="https://picsum.photos/id/1027/40/40" alt="评论者头像" class="w-10 h-10 rounded-full object-cover">
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <h4 class="font-medium text-gray-900">王芳</h4>
+                                            <span class="ml-2 text-xs text-gray-500">30分钟前</span>
+                                        </div>
+                                        <button class="text-gray-500 hover:text-gray-700">
+                                            <i class="fa fa-ellipsis-h"></i>
+                                        </button>
+                                    </div>
+                                    <p class="mt-2 text-gray-700">对于设计工具，我推荐Sketch也是一个不错的选择，特别是对于UI设计初学者来说比较友好。另外，如果团队协作的话，InVision也是一个很好的原型设计和协作工具。</p>
+                                    <div class="flex items-center mt-3 text-sm text-gray-500">
+                                        <button class="flex items-center hover:text-red-500 transition-all-300 mr-4">
+                                            <i class="fa fa-thumbs-o-up mr-1"></i>
+                                            <span>18</span>
+                                        </button>
+                                        <button class="hover:text-primary transition-all-300 reply-btn">回复</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 评论3 -->
+                        <div class="p-4">
+                            <div class="flex space-x-3">
+                                <img src="https://picsum.photos/id/1005/40/40" alt="评论者头像" class="w-10 h-10 rounded-full object-cover">
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <h4 class="font-medium text-gray-900">赵强</h4>
+                                            <span class="ml-2 text-xs text-gray-500">15分钟前</span>
+                                        </div>
+                                        <button class="text-gray-500 hover:text-gray-700">
+                                            <i class="fa fa-ellipsis-h"></i>
+                                        </button>
+                                    </div>
+                                    <p class="mt-2 text-gray-700">性能优化方面，我补充一个WebPageTest确实很好用，但可能有点复杂。对于新手来说，可以先从Chrome的Lighthouse开始，它提供了非常直观的报告和改进建议。</p>
+                                    <div class="flex items-center mt-3 text-sm text-gray-500">
+                                        <button class="flex items-center hover:text-red-500 transition-all-300 mr-4">
+                                            <i class="fa fa-thumbs-o-up mr-1"></i>
+                                            <span>15</span>
+                                        </button>
+                                        <button class="hover:text-primary transition-all-300 reply-btn">回复</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 加载更多 -->
+                    <div class="p-4 text-center">
+                        <button id="load-more-comments" class="text-primary hover:underline transition-all-300">
+                            查看更多评论 (12)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧边栏 -->
+            <aside class="lg:w-1/4 hidden lg:block">
+                <div class="bg-white rounded-lg shadow-custom p-4 mb-6">
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2">相关推荐</h3>
+                    <ul class="space-y-3">
+                        <li class="hover:bg-gray-50 p-2 rounded transition-all-300">
+                            <a href="post.html?id=101" class="block">
+                                <p class="font-medium line-clamp-2">零基础如何学习编程？分享我的学习经验</p>
+                                <div class="flex items-center mt-1 text-xs text-gray-500">
+                                    <span>技术交流吧</span>
+                                    <span class="mx-1">·</span>
+                                    <span>回复 128</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="hover:bg-gray-50 p-2 rounded transition-all-300">
+                            <a href="post.html?id=102" class="block">
+                                <p class="font-medium line-clamp-2">Python和JavaScript，哪个更适合初学者？</p>
+                                <div class="flex items-center mt-1 text-xs text-gray-500">
+                                    <span>技术交流吧</span>
+                                    <span class="mx-1">·</span>
+                                    <span>回复 95</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="hover:bg-gray-50 p-2 rounded transition-all-300">
+                            <a href="post.html?id=103" class="block">
+                                <p class="font-medium line-clamp-2">2024年前端开发技术栈推荐</p>
+                                <div class="flex items-center mt-1 text-xs text-gray-500">
+                                    <span>技术交流吧</span>
+                                    <span class="mx-1">·</span>
+                                    <span>回复 76</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-custom p-4">
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2">热门贴吧</h3>
+                    <div class="space-y-3">
+                        <a href="bar.html?id=1" class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded transition-all-300">
+                            <img src="https://picsum.photos/id/237/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover">
+                            <div>
+                                <p class="font-medium">技术交流吧</p>
+                                <p class="text-xs text-gray-500">12.5万成员</p>
+                            </div>
+                            <button class="ml-auto bg-primary/10 text-primary text-xs px-3 py-1 rounded-full hover:bg-primary/20 transition-all-300">
+                                <i class="fa fa-plus mr-1"></i>关注
+                            </button>
+                        </a>
+                        <a href="bar.html?id=2" class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded transition-all-300">
+                            <img src="https://picsum.photos/id/96/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover">
+                            <div>
+                                <p class="font-medium">生活分享吧</p>
+                                <p class="text-xs text-gray-500">8.2万成员</p>
+                            </div>
+                            <button class="ml-auto bg-primary/10 text-primary text-xs px-3 py-1 rounded-full hover:bg-primary/20 transition-all-300">
+                                <i class="fa fa-plus mr-1"></i>关注
+                            </button>
+                        </a>
+                        <a href="bar.html?id=3" class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded transition-all-300">
+                            <img src="https://picsum.photos/id/65/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover">
+                            <div>
+                                <p class="font-medium">学习讨论吧</p>
+                                <p class="text-xs text-gray-500">5.3万成员</p>
+                            </div>
+                            <button class="ml-auto bg-primary/10 text-primary text-xs px-3 py-1 rounded-full hover:bg-primary/20 transition-all-300">
+                                <i class="fa fa-plus mr-1"></i>关注
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-white border-t mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-500 text-sm">© 2024 百度贴吧 版权所有</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-weibo text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-wechat text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-4 text-center md:text-left">
+                <ul class="flex flex-wrap justify-center md:justify-start space-x-4 text-sm text-gray-500">
+                    <li><a href="#" class="hover:text-primary transition-all-300">关于我们</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">使用帮助</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">用户协议</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">隐私政策</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/global.js"></script>
+    <script>
+        // 页面特定功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取URL中的帖子ID
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = parseInt(urlParams.get('id'));
+            
+            // 从localStorage加载帖子数据
+            function loadPostData() {
+                const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+                const post = posts.find(p => p.id === postId);
+                
+                if (post) {
+                    renderPost(post);
+                    // 更新浏览次数
+                    updatePostViews(post);
+                } else {
+                    // 显示帖子不存在的提示
+                    const articleElement = document.querySelector('article');
+                    articleElement.innerHTML = `
+                        <div class="p-12 text-center">
+                            <i class="fa fa-exclamation-circle text-4xl text-gray-300 mb-4"></i>
+                            <h2 class="text-xl font-bold text-gray-700 mb-2">帖子不存在或已被删除</h2>
+                            <p class="text-gray-500 mb-6">您访问的帖子可能已经被删除或移动</p>
+                            <a href="index.html" class="inline-flex items-center px-6 py-2 bg-primary text-white rounded-full hover:bg-primary/90 transition-all-300">
+                                <i class="fa fa-arrow-left mr-2"></i>返回首页
+                            </a>
+                        </div>
+                    `;
+                }
+            }
+            
+            // 渲染帖子内容
+            function renderPost(post) {
+                // 格式化时间
+                const formattedDate = new Date(post.timestamp || post.createdAt).toLocaleString('zh-CN', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                // 更新帖子基本信息
+                document.querySelector('article .font-medium').textContent = post.username;
+                document.querySelector('article .text-xs.text-gray-500').textContent = formattedDate;
+                document.querySelector('article h1').textContent = post.title;
+                
+                // 更新帖子内容
+                const contentElement = document.querySelector('article .prose');
+                contentElement.innerHTML = `<p>${post.content.replace(/\n/g, '<br>')}</p>`;
+                
+                // 更新所属贴吧信息
+                const barInfoElement = document.querySelector('aside .bg-white.rounded-lg.shadow-custom .flex.items-center.space-x-2.text-primary');
+                if (barInfoElement) {
+                    // 根据barId获取贴吧名称
+                    const barNames = {
+                        1: '技术交流吧',
+                        2: '游戏讨论吧',
+                        3: '美食分享吧',
+                        4: '旅行摄影吧',
+                        5: '电影评论吧'
+                    };
+                    barInfoElement.querySelector('span').textContent = post.barName || barNames[post.barId] || '未知贴吧';
+                    barInfoElement.href = `bar.html?id=${post.barId}`;
+                }
+                
+                // 更新发布时间
+                const timeElement = document.querySelector('aside .bg-white.rounded-lg.shadow-custom .space-y-4 > div:nth-child(2) p:last-child');
+                if (timeElement) {
+                    timeElement.textContent = formattedDate;
+                }
+                
+                // 渲染帖子图片
+                renderPostImages(post.images || []);
+                
+                // 更新互动数据
+                document.querySelector('#like-btn span').textContent = `点赞 (${post.likes || 0})`;
+                document.querySelector('button:has(.fa-comment-o) span').textContent = `评论 (${post.comments || 0})`;
+            }
+            
+            // 渲染帖子图片
+            function renderPostImages(images) {
+                const imageContainer = document.querySelector('.grid.grid-cols-1.md\:grid-cols-2.gap-4.mb-6');
+                
+                if (images && images.length > 0) {
+                    // 清空现有内容
+                    imageContainer.innerHTML = '';
+                    
+                    // 根据图片数量设置合适的布局
+                    let gridClass = 'grid-cols-1';
+                    if (images.length === 2) {
+                        gridClass = 'grid-cols-1 md:grid-cols-2';
+                    } else if (images.length === 3) {
+                        gridClass = 'grid-cols-1 md:grid-cols-3';
+                    } else if (images.length === 4) {
+                        gridClass = 'grid-cols-2 md:grid-cols-2';
+                    } else if (images.length > 4) {
+                        gridClass = 'grid-cols-3';
+                    }
+                    
+                    imageContainer.className = `grid ${gridClass} gap-3 mb-6`;
+                    
+                    // 添加图片
+                    images.forEach(imgUrl => {
+                        const img = document.createElement('div');
+                        img.className = 'relative overflow-hidden rounded-lg border border-gray-100 group cursor-pointer';
+                        img.innerHTML = `
+                            <img src="${imgUrl}" alt="帖子图片" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                        `;
+                        imageContainer.appendChild(img);
+                    });
+                    
+                    // 为图片添加点击放大功能
+                    setupImagePreview();
+                } else {
+                    // 如果没有图片，隐藏图片容器
+                    imageContainer.style.display = 'none';
+                }
+            }
+            
+            // 设置图片预览功能
+            function setupImagePreview() {
+                const imageContainers = document.querySelectorAll('.grid div.cursor-pointer');
+                
+                imageContainers.forEach(container => {
+                    container.addEventListener('click', function() {
+                        const imgSrc = this.querySelector('img').src;
+                        
+                        // 创建预览元素
+                        const previewOverlay = document.createElement('div');
+                        previewOverlay.className = 'fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4';
+                        previewOverlay.innerHTML = `
+                            <div class="relative max-w-5xl max-h-[90vh]">
+                                <img src="${imgSrc}" alt="预览图片" class="max-w-full max-h-[85vh] object-contain">
+                                <button class="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 transition-colors">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        `;
+                        
+                        document.body.appendChild(previewOverlay);
+                        
+                        // 关闭预览
+                        previewOverlay.addEventListener('click', function() {
+                            this.remove();
+                        });
+                    });
+                });
+            }
+            
+            // 更新帖子浏览次数
+            function updatePostViews(post) {
+                const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+                const postIndex = posts.findIndex(p => p.id === postId);
+                
+                if (postIndex !== -1) {
+                    posts[postIndex].views = (posts[postIndex].views || 0) + 1;
+                    localStorage.setItem('posts', JSON.stringify(posts));
+                    
+                    // 更新页面上的浏览次数显示
+                    const viewsElement = document.querySelector('aside .bg-white.rounded-lg.shadow-custom .space-y-4 > div:nth-child(3) p:last-child');
+                    if (viewsElement) {
+                        viewsElement.textContent = `${posts[postIndex].views} 次浏览`;
+                    }
+                }
+            }
+            
+            // 初始加载帖子数据
+            loadPostData();
+            
+            // 帖子点赞功能
+            document.getElementById('like-btn').addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                const countSpan = this.querySelector('span');
+                const currentText = countSpan.textContent;
+                const currentCount = parseInt(currentText.match(/\d+/)[0]);
+                
+                // 检查登录状态
+                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                if (!isLoggedIn) {
+                    alert('请先登录后再点赞');
+                    window.location.href = 'login.html';
+                    return;
+                }
+                
+                if (icon.classList.contains('fa-thumbs-o-up')) {
+                    icon.classList.remove('fa-thumbs-o-up');
+                    icon.classList.add('fa-thumbs-up');
+                    this.classList.remove('text-gray-500');
+                    this.classList.add('text-red-500');
+                    countSpan.textContent = `点赞 (${currentCount + 1})`;
+                    
+                    // 更新localStorage中的点赞数
+                    updatePostLikes(postId, currentCount + 1);
+                } else {
+                    icon.classList.remove('fa-thumbs-up');
+                    icon.classList.add('fa-thumbs-o-up');
+                    this.classList.remove('text-red-500');
+                    this.classList.add('text-gray-500');
+                    countSpan.textContent = `点赞 (${currentCount - 1})`;
+                    
+                    // 更新localStorage中的点赞数
+                    updatePostLikes(postId, currentCount - 1);
+                }
+            });
+            
+            // 更新帖子点赞数
+            function updatePostLikes(postId, newLikeCount) {
+                const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+                const postIndex = posts.findIndex(p => p.id === postId);
+                
+                if (postIndex !== -1) {
+                    posts[postIndex].likes = newLikeCount;
+                    localStorage.setItem('posts', JSON.stringify(posts));
+                }
+            }
+            
+            // 收藏功能
+            document.getElementById('collect-btn').addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                
+                // 检查登录状态
+                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                if (!isLoggedIn) {
+                    alert('请先登录后再收藏');
+                    window.location.href = 'login.html';
+                    return;
+                }
+                
+                if (icon.classList.contains('fa-star-o')) {
+                    icon.classList.remove('fa-star-o');
+                    icon.classList.add('fa-star');
+                    this.classList.remove('text-gray-500');
+                    this.classList.add('text-yellow-500');
+                    alert('收藏成功！');
+                    
+                    // 保存收藏记录
+                    saveCollection(postId);
+                } else {
+                    icon.classList.remove('fa-star');
+                    icon.classList.add('fa-star-o');
+                    this.classList.remove('text-yellow-500');
+                    this.classList.add('text-gray-500');
+                    alert('已取消收藏');
+                    
+                    // 移除收藏记录
+                    removeCollection(postId);
+                }
+            });
+            
+            // 保存收藏记录
+            function saveCollection(postId) {
+                const collections = JSON.parse(localStorage.getItem('collections') || '[]');
+                if (!collections.includes(postId)) {
+                    collections.push(postId);
+                    localStorage.setItem('collections', JSON.stringify(collections));
+                }
+            }
+            
+            // 移除收藏记录
+            function removeCollection(postId) {
+                const collections = JSON.parse(localStorage.getItem('collections') || '[]');
+                const index = collections.indexOf(postId);
+                if (index !== -1) {
+                    collections.splice(index, 1);
+                    localStorage.setItem('collections', JSON.stringify(collections));
+                }
+            }
+            
+            // 评论点赞功能
+            document.querySelectorAll('.comment-like-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    const count = this.querySelector('span');
+                    let currentCount = parseInt(count.textContent);
+                    
+                    // 检查登录状态
+                    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                    if (!isLoggedIn) {
+                        alert('请先登录后再点赞');
+                        window.location.href = 'login.html';
+                        return;
+                    }
+                    
+                    if (icon.classList.contains('fa-thumbs-o-up')) {
+                        icon.classList.remove('fa-thumbs-o-up');
+                        icon.classList.add('fa-thumbs-up');
+                        this.classList.remove('text-gray-500');
+                        this.classList.add('text-red-500');
+                        count.textContent = currentCount + 1;
+                    } else {
+                        icon.classList.remove('fa-thumbs-up');
+                        icon.classList.add('fa-thumbs-o-up');
+                        this.classList.remove('text-red-500');
+                        this.classList.add('text-gray-500');
+                        count.textContent = currentCount - 1;
+                    }
+                });
+            });
+            
+            // 回复功能
+            document.querySelectorAll('.reply-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 先隐藏所有回复框
+                    document.querySelectorAll('.reply-form').forEach(form => {
+                        form.classList.add('hidden');
+                    });
+                    
+                    // 显示当前回复框
+                    const replyForm = this.closest('div').nextElementSibling;
+                    if (replyForm && replyForm.classList.contains('reply-form')) {
+                        replyForm.classList.remove('hidden');
+                        // 自动聚焦到回复输入框
+                        replyForm.querySelector('textarea').focus();
+                    }
+                });
+            });
+            
+            // 取消回复
+            document.querySelectorAll('.cancel-reply-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const replyForm = this.closest('.reply-form');
+                    replyForm.classList.add('hidden');
+                    // 清空输入框
+                    replyForm.querySelector('textarea').value = '';
+                });
+            });
+            
+            // 提交回复
+            document.querySelectorAll('.reply-form button[type="button"]:not(.cancel-reply-btn)').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const replyForm = this.closest('.reply-form');
+                    const textarea = replyForm.querySelector('textarea');
+                    const content = textarea.value.trim();
+                    
+                    if (content) {
+                        // 检查登录状态
+                        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                        if (!isLoggedIn) {
+                            alert('请先登录后再回复');
+                            window.location.href = 'login.html';
+                            return;
+                        }
+                        
+                        // 创建新回复元素
+                        const replyUser = localStorage.getItem('username') || '匿名用户';
+                        const now = new Date();
+                        const timeString = now.toLocaleString('zh-CN', {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+                        
+                        // 获取被回复的用户名
+                        const commentDiv = replyForm.closest('.flex-1');
+                        const targetUserName = commentDiv.querySelector('.font-medium').textContent;
+                        
+                        // 创建回复HTML
+                        const replyHtml = `
+                        <div class="flex space-x-2 mt-3">
+                            <img src="https://picsum.photos/id/1005/30/30" alt="回复用户头像" class="w-7 h-7 rounded-full object-cover">
+                            <div class="flex-1">
+                                <p class="text-sm">
+                                    <span class="font-medium">${replyUser}</span>
+                                    <span class="text-gray-600">回复</span>
+                                    <span class="text-primary">@${targetUserName}</span>
+                                    <span class="ml-1">${content}</span>
+                                </p>
+                                <div class="flex items-center text-xs text-gray-500 mt-1">
+                                    <p>${timeString}</p>
+                                    <span class="mx-2">·</span>
+                                    <button class="hover:text-primary transition-all-300">回复</button>
+                                    <span class="mx-2">·</span>
+                                    <button class="hover:text-red-500 transition-all-300">
+                                        <i class="fa fa-thumbs-o-up mr-1"></i>0
+                                    </button>
+                                </div>
+                            </div>
+                        </div>`;
+                        
+                        // 添加回复到评论下方
+                        const repliesContainer = commentDiv.querySelector('.comment-line');
+                        if (repliesContainer) {
+                            repliesContainer.insertAdjacentHTML('beforeend', replyHtml);
+                        } else {
+                            // 如果没有回复容器，创建一个
+                            const newRepliesContainer = document.createElement('div');
+                            newRepliesContainer.className = 'mt-3 space-y-3 comment-line';
+                            newRepliesContainer.innerHTML = replyHtml;
+                            commentDiv.appendChild(newRepliesContainer);
+                        }
+                        
+                        // 更新评论数
+                        updateCommentCount(postId);
+                        
+                        // 清空输入框并隐藏回复框
+                        textarea.value = '';
+                        replyForm.classList.add('hidden');
+                        
+                        // 提示成功
+                        alert('回复成功！');
+                    } else {
+                        alert('请输入回复内容');
+                    }
+                });
+            });
+            
+            // 发表评论功能
+            document.querySelector('.bg-primary.text-white.px-5.py-2.rounded-full').addEventListener('click', function() {
+                const commentTextarea = document.querySelector('.bg-white.rounded-lg.shadow-custom textarea');
+                const content = commentTextarea.value.trim();
+                
+                if (content) {
+                    // 检查登录状态
+                    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                    if (!isLoggedIn) {
+                        alert('请先登录后再发表评论');
+                        window.location.href = 'login.html';
+                        return;
+                    }
+                    
+                    // 创建新评论
+                    const commentUser = localStorage.getItem('username') || '匿名用户';
+                    const now = new Date();
+                    const timeString = now.toLocaleString('zh-CN', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    // 创建评论HTML
+                    const commentHtml = `
+                    <div class="p-4 divide-y">
+                        <div class="flex space-x-3">
+                            <img src="https://picsum.photos/id/1005/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between mb-1">
+                                    <p class="font-medium">${commentUser}</p>
+                                    <p class="text-xs text-gray-500">${timeString}</p>
+                                </div>
+                                <p class="mb-2">${content}</p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <button class="reply-btn hover:text-primary transition-all-300">回复</button>
+                                    <span class="mx-2">·</span>
+                                    <button class="comment-like-btn hover:text-red-500 transition-all-300">
+                                        <i class="fa fa-thumbs-o-up mr-1"></i>0
+                                    </button>
+                                </div>
+                                
+                                <!-- 回复表单 (默认隐藏) -->
+                                <div class="reply-form hidden mt-3">
+                                    <div class="flex space-x-2">
+                                        <textarea placeholder="回复 @${commentUser}..." class="w-full border border-gray-200 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" rows="2"></textarea>
+                                    </div>
+                                    <div class="flex justify-end mt-2 space-x-2">
+                                        <button class="cancel-reply-btn text-gray-500 hover:text-gray-700 text-sm">取消</button>
+                                        <button class="bg-primary text-white px-4 py-1 rounded hover:bg-primary/90 transition-all-300 text-sm">回复</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                    
+                    // 添加评论到评论列表顶部
+                    const commentsList = document.querySelector('.divide-y');
+                    commentsList.insertAdjacentHTML('afterbegin', commentHtml);
+                    
+                    // 更新评论数
+                    updateCommentCount(postId);
+                    
+                    // 清空输入框
+                    commentTextarea.value = '';
+                    
+                    // 绑定新添加评论的事件监听器
+                    const newReplyBtn = commentsList.querySelector('.reply-btn');
+                    const newLikeBtn = commentsList.querySelector('.comment-like-btn');
+                    const newCancelBtn = commentsList.querySelector('.cancel-reply-btn');
+                    const newSubmitBtn = commentsList.querySelector('.bg-primary.text-white.px-4.py-1.rounded');
+                    
+                    if (newReplyBtn) {
+                        newReplyBtn.addEventListener('click', function() {
+                            document.querySelectorAll('.reply-form').forEach(form => {
+                                form.classList.add('hidden');
+                            });
+                            const replyForm = this.closest('div').nextElementSibling;
+                            if (replyForm && replyForm.classList.contains('reply-form')) {
+                                replyForm.classList.remove('hidden');
+                                replyForm.querySelector('textarea').focus();
+                            }
+                        });
+                    }
+                    
+                    if (newLikeBtn) {
+                        newLikeBtn.addEventListener('click', function() {
+                            const icon = this.querySelector('i');
+                            const count = this.querySelector('span');
+                            let currentCount = parseInt(count.textContent);
+                            
+                            if (icon.classList.contains('fa-thumbs-o-up')) {
+                                icon.classList.remove('fa-thumbs-o-up');
+                                icon.classList.add('fa-thumbs-up');
+                                this.classList.remove('text-gray-500');
+                                this.classList.add('text-red-500');
+                                count.textContent = currentCount + 1;
+                            } else {
+                                icon.classList.remove('fa-thumbs-up');
+                                icon.classList.add('fa-thumbs-o-up');
+                                this.classList.remove('text-red-500');
+                                this.classList.add('text-gray-500');
+                                count.textContent = currentCount - 1;
+                            }
+                        });
+                    }
+                    
+                    if (newCancelBtn) {
+                        newCancelBtn.addEventListener('click', function() {
+                            const replyForm = this.closest('.reply-form');
+                            replyForm.classList.add('hidden');
+                            replyForm.querySelector('textarea').value = '';
+                        });
+                    }
+                    
+                    if (newSubmitBtn) {
+                        newSubmitBtn.addEventListener('click', function() {
+                            const replyForm = this.closest('.reply-form');
+                            const textarea = replyForm.querySelector('textarea');
+                            const content = textarea.value.trim();
+                            
+                            if (content) {
+                                // 创建回复HTML
+                                const replyHtml = `
+                                <div class="flex space-x-2 mt-3">
+                                    <img src="https://picsum.photos/id/1005/30/30" alt="回复用户头像" class="w-7 h-7 rounded-full object-cover">
+                                    <div class="flex-1">
+                                        <p class="text-sm">
+                                            <span class="font-medium">${commentUser}</span>
+                                            <span class="text-gray-600">回复</span>
+                                            <span class="text-primary">@${commentUser}</span>
+                                            <span class="ml-1">${content}</span>
+                                        </p>
+                                        <div class="flex items-center text-xs text-gray-500 mt-1">
+                                            <p>${timeString}</p>
+                                            <span class="mx-2">·</span>
+                                            <button class="hover:text-primary transition-all-300">回复</button>
+                                            <span class="mx-2">·</span>
+                                            <button class="hover:text-red-500 transition-all-300">
+                                                <i class="fa fa-thumbs-o-up mr-1"></i>0
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>`;
+                                
+                                // 添加回复
+                                const commentDiv = replyForm.closest('.flex-1');
+                                const repliesContainer = commentDiv.querySelector('.comment-line');
+                                if (repliesContainer) {
+                                    repliesContainer.insertAdjacentHTML('beforeend', replyHtml);
+                                } else {
+                                    const newRepliesContainer = document.createElement('div');
+                                    newRepliesContainer.className = 'mt-3 space-y-3 comment-line';
+                                    newRepliesContainer.innerHTML = replyHtml;
+                                    commentDiv.appendChild(newRepliesContainer);
+                                }
+                                
+                                // 清空并隐藏
+                                textarea.value = '';
+                                replyForm.classList.add('hidden');
+                                
+                                alert('回复成功！');
+                            } else {
+                                alert('请输入回复内容');
+                            }
+                        });
+                    }
+                    
+                    // 提示成功
+                    alert('评论成功！');
+                } else {
+                    alert('请输入评论内容');
+                }
+            });
+            
+            // 更新评论数
+            function updateCommentCount(postId) {
+                const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+                const postIndex = posts.findIndex(p => p.id === postId);
+                
+                if (postIndex !== -1) {
+                    posts[postIndex].comments = (posts[postIndex].comments || 0) + 1;
+                    localStorage.setItem('posts', JSON.stringify(posts));
+                    
+                    // 更新页面上的评论数显示
+                    document.querySelector('button:has(.fa-comment-o) span').textContent = `评论 (${posts[postIndex].comments})`;
+                }
+            }
+            
+            // 评论排序切换
+            const sortButtons = document.querySelectorAll('.bg-white.rounded-lg.shadow-custom .flex.space-x-2 button');
+            sortButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 移除所有按钮的选中状态
+                    sortButtons.forEach(b => {
+                        b.classList.remove('bg-primary', 'text-white');
+                        b.classList.add('bg-gray-100', 'text-gray-700');
+                    });
+                    
+                    // 添加当前按钮的选中状态
+                    this.classList.remove('bg-gray-100', 'text-gray-700');
+                    this.classList.add('bg-primary', 'text-white');
+                    
+                    // 这里可以添加实际的排序逻辑
+                    alert(`评论已按${this.textContent}排序`);
+                });
+            });
+            
+            // 加载更多评论
+            const loadMoreBtn = document.getElementById('load-more-comments');
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', function() {
+                    // 显示加载中状态
+                    this.innerHTML = '<i class="fa fa-circle-o-notch fa-spin mr-2"></i>加载中...';
+                    this.disabled = true;
+                    
+                    // 模拟加载延迟
+                    setTimeout(() => {
+                        // 恢复按钮状态
+                        this.innerHTML = '查看更多评论';
+                        this.disabled = false;
+                        
+                        // 这里可以添加实际的加载更多逻辑
+                        alert('已加载全部评论');
+                    }, 1500);
+                });
+            }
+            
+            // 检查收藏状态
+            function checkCollectionStatus() {
+                const collections = JSON.parse(localStorage.getItem('collections') || '[]');
+                if (collections.includes(postId)) {
+                    const collectBtn = document.getElementById('collect-btn');
+                    const icon = collectBtn.querySelector('i');
+                    icon.classList.remove('fa-star-o');
+                    icon.classList.add('fa-star');
+                    collectBtn.classList.remove('text-gray-500');
+                    collectBtn.classList.add('text-yellow-500');
+                }
+            }
+            
+            // 初始检查收藏状态
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                checkCollectionStatus();
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!-- 评论列表 -->
                     <div class="divide-y">
                         <!-- 评论1 -->
                         <div class="p-4">
@@ -430,114 +1348,284 @@
     </footer>
 
     <!-- JavaScript -->
+    <script src="assets/global.js"></script>
     <script>
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('py-1');
-                navbar.classList.add('shadow-md');
-            } else {
-                navbar.classList.remove('py-1');
-                navbar.classList.remove('shadow-md');
-            }
-        });
-        
-        // 点赞功能
-        document.getElementById('like-btn').addEventListener('click', function() {
-            const icon = this.querySelector('i');
-            const count = this.querySelector('span');
+        // 页面特定功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取URL中的帖子ID
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = parseInt(urlParams.get('id'));
             
-            if (icon.classList.contains('fa-thumbs-o-up')) {
-                icon.classList.remove('fa-thumbs-o-up');
-                icon.classList.add('fa-thumbs-up');
-                this.classList.remove('text-gray-500');
-                this.classList.add('text-red-500');
-                count.textContent = '点赞 (46)';
-            } else {
-                icon.classList.remove('fa-thumbs-up');
-                icon.classList.add('fa-thumbs-o-up');
-                this.classList.remove('text-red-500');
-                this.classList.add('text-gray-500');
-                count.textContent = '点赞 (45)';
-            }
-        });
-        
-        // 收藏功能
-        document.getElementById('collect-btn').addEventListener('click', function() {
-            const icon = this.querySelector('i');
-            
-            if (icon.classList.contains('fa-star-o')) {
-                icon.classList.remove('fa-star-o');
-                icon.classList.add('fa-star');
-                this.classList.remove('text-gray-500');
-                this.classList.add('text-yellow-500');
-                alert('收藏成功');
-            } else {
-                icon.classList.remove('fa-star');
-                icon.classList.add('fa-star-o');
-                this.classList.remove('text-yellow-500');
-                this.classList.add('text-gray-500');
-                alert('已取消收藏');
-            }
-        });
-        
-        // 评论点赞功能
-        document.querySelectorAll('.comment-like-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const icon = this.querySelector('i');
-                const count = this.querySelector('span');
-                let currentCount = parseInt(count.textContent);
+            // 从localStorage加载帖子数据
+            function loadPostData() {
+                const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+                const post = posts.find(p => p.id === postId);
                 
-                if (icon.classList.contains('fa-thumbs-o-up')) {
-                    icon.classList.remove('fa-thumbs-o-up');
-                    icon.classList.add('fa-thumbs-up');
-                    this.classList.remove('text-gray-500');
-                    this.classList.add('text-red-500');
-                    count.textContent = currentCount + 1;
+                if (post) {
+                    renderPost(post);
+                    // 更新浏览次数
+                    updatePostViews(post);
                 } else {
-                    icon.classList.remove('fa-thumbs-up');
-                    icon.classList.add('fa-thumbs-o-up');
-                    this.classList.remove('text-red-500');
-                    this.classList.add('text-gray-500');
-                    count.textContent = currentCount - 1;
+                    // 显示帖子不存在的提示
+                    const articleElement = document.querySelector('article');
+                    articleElement.innerHTML = `
+                        <div class="p-12 text-center">
+                            <i class="fa fa-exclamation-circle text-4xl text-gray-300 mb-4"></i>
+                            <h2 class="text-xl font-bold text-gray-700 mb-2">帖子不存在或已被删除</h2>
+                            <p class="text-gray-500 mb-6">您访问的帖子可能已经被删除或移动</p>
+                            <a href="index.html" class="inline-flex items-center px-6 py-2 bg-primary text-white rounded-full hover:bg-primary/90 transition-all-300">
+                                <i class="fa fa-arrow-left mr-2"></i>返回首页
+                            </a>
+                        </div>
+                    `;
                 }
-            });
-        });
-        
-        // 回复功能
-        document.querySelectorAll('.reply-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const replyForm = this.closest('div').nextElementSibling;
-                if (replyForm && replyForm.classList.contains('reply-form')) {
-                    replyForm.classList.toggle('hidden');
-                }
-            });
-        });
-        
-        // 取消回复
-        document.querySelectorAll('.cancel-reply-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const replyForm = this.closest('.reply-form');
-                replyForm.classList.add('hidden');
-            });
-        });
-        
-        // 加载更多评论
-        document.getElementById('load-more-comments').addEventListener('click', function() {
-            // 显示加载中状态
-            this.innerHTML = '<i class="fa fa-circle-o-notch fa-spin mr-2"></i>加载中...';
-            this.disabled = true;
+            }
             
-            // 模拟加载延迟
-            setTimeout(() => {
-                // 恢复按钮状态
-                this.innerHTML = '查看更多评论';
-                this.disabled = false;
+            // 渲染帖子内容
+            function renderPost(post) {
+                // 格式化时间
+                const formattedDate = new Date(post.timestamp).toLocaleString('zh-CN', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
                 
-                // 这里可以添加实际的加载更多逻辑
-                alert('已加载全部评论');
-            }, 1500);
+                // 更新帖子基本信息
+                document.querySelector('article .font-medium').textContent = post.username;
+                document.querySelector('article .text-xs.text-gray-500').textContent = formattedDate;
+                document.querySelector('article h1').textContent = post.title;
+                
+                // 更新帖子内容
+                const contentElement = document.querySelector('article .prose');
+                contentElement.innerHTML = `<p>${post.content.replace(/\n/g, '<br>')}</p>`;
+                
+                // 更新所属贴吧信息
+                const barInfoElement = document.querySelector('aside .bg-white.rounded-lg.shadow-custom .flex.items-center.space-x-2.text-primary');
+                if (barInfoElement) {
+                    barInfoElement.querySelector('span').textContent = post.barName;
+                    barInfoElement.href = `bar.html?id=${post.barId}`;
+                }
+                
+                // 更新发布时间
+                const timeElement = document.querySelector('aside .bg-white.rounded-lg.shadow-custom .space-y-4 > div:nth-child(2) p:last-child');
+                if (timeElement) {
+                    timeElement.textContent = formattedDate;
+                }
+                
+                // 渲染帖子图片
+                renderPostImages(post.images || []);
+                
+                // 更新互动数据
+                document.querySelector('#like-btn span').textContent = `点赞 (${post.likes || 0})`;
+                document.querySelector('button:has(.fa-comment-o) span').textContent = `评论 (${post.comments || 0})`;
+            }
+            
+            // 渲染帖子图片
+            function renderPostImages(images) {
+                const imageContainer = document.querySelector('.grid.grid-cols-1.md\:grid-cols-2.gap-4.mb-6');
+                
+                if (images && images.length > 0) {
+                    // 清空现有内容
+                    imageContainer.innerHTML = '';
+                    
+                    // 根据图片数量设置合适的布局
+                    let gridClass = 'grid-cols-1';
+                    if (images.length === 2) {
+                        gridClass = 'grid-cols-1 md:grid-cols-2';
+                    } else if (images.length === 3) {
+                        gridClass = 'grid-cols-1 md:grid-cols-3';
+                    } else if (images.length === 4) {
+                        gridClass = 'grid-cols-2 md:grid-cols-2';
+                    } else if (images.length > 4) {
+                        gridClass = 'grid-cols-3';
+                    }
+                    
+                    imageContainer.className = `grid ${gridClass} gap-3 mb-6`;
+                    
+                    // 添加图片
+                    images.forEach(imgUrl => {
+                        const img = document.createElement('div');
+                        img.className = 'relative overflow-hidden rounded-lg border border-gray-100 group cursor-pointer';
+                        img.innerHTML = `
+                            <img src="${imgUrl}" alt="帖子图片" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                        `;
+                        imageContainer.appendChild(img);
+                    });
+                    
+                    // 为图片添加点击放大功能
+                    setupImagePreview();
+                } else {
+                    // 如果没有图片，隐藏图片容器
+                    imageContainer.style.display = 'none';
+                }
+            }
+            
+            // 设置图片预览功能
+            function setupImagePreview() {
+                const imageContainers = document.querySelectorAll('.grid div.cursor-pointer');
+                
+                imageContainers.forEach(container => {
+                    container.addEventListener('click', function() {
+                        const imgSrc = this.querySelector('img').src;
+                        
+                        // 创建预览元素
+                        const previewOverlay = document.createElement('div');
+                        previewOverlay.className = 'fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4';
+                        previewOverlay.innerHTML = `
+                            <div class="relative max-w-5xl max-h-[90vh]">
+                                <img src="${imgSrc}" alt="预览图片" class="max-w-full max-h-[85vh] object-contain">
+                                <button class="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 transition-colors">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        `;
+                        
+                        document.body.appendChild(previewOverlay);
+                        
+                        // 关闭预览
+                        previewOverlay.addEventListener('click', function() {
+                            this.remove();
+                        });
+                    });
+                });
+            }
+            
+            // 更新帖子浏览次数
+            function updatePostViews(post) {
+                const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+                const postIndex = posts.findIndex(p => p.id === postId);
+                
+                if (postIndex !== -1) {
+                    posts[postIndex].views = (posts[postIndex].views || 0) + 1;
+                    localStorage.setItem('posts', JSON.stringify(posts));
+                    
+                    // 更新页面上的浏览次数显示
+                    const viewsElement = document.querySelector('aside .bg-white.rounded-lg.shadow-custom .space-y-4 > div:nth-child(3) p:last-child');
+                    if (viewsElement) {
+                        viewsElement.textContent = `${posts[postIndex].views} 次浏览`;
+                    }
+                }
+            }
+            
+            // 初始加载帖子数据
+            loadPostData();
+            
+            // 评论点赞功能 - 特定于评论的点赞样式
+            document.querySelectorAll('.comment-like-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    const count = this.querySelector('span');
+                    let currentCount = parseInt(count.textContent);
+                    
+                    if (icon.classList.contains('fa-thumbs-o-up')) {
+                        icon.classList.remove('fa-thumbs-o-up');
+                        icon.classList.add('fa-thumbs-up');
+                        this.classList.remove('text-gray-500');
+                        this.classList.add('text-red-500');
+                        count.textContent = currentCount + 1;
+                    } else {
+                        icon.classList.remove('fa-thumbs-up');
+                        icon.classList.add('fa-thumbs-o-up');
+                        this.classList.remove('text-red-500');
+                        this.classList.add('text-gray-500');
+                        count.textContent = currentCount - 1;
+                    }
+                });
+            });
+            
+            // 回复功能
+            document.querySelectorAll('.reply-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 先隐藏所有回复框
+                    document.querySelectorAll('.reply-form').forEach(form => {
+                        form.classList.add('hidden');
+                    });
+                    
+                    // 显示当前回复框
+                    const replyForm = this.closest('div').nextElementSibling;
+                    if (replyForm && replyForm.classList.contains('reply-form')) {
+                        replyForm.classList.remove('hidden');
+                        // 自动聚焦到回复输入框
+                        replyForm.querySelector('textarea').focus();
+                    }
+                });
+            });
+            
+            // 取消回复
+            document.querySelectorAll('.cancel-reply-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const replyForm = this.closest('.reply-form');
+                    replyForm.classList.add('hidden');
+                    // 清空输入框
+                    replyForm.querySelector('textarea').value = '';
+                });
+            });
+            
+            // 提交回复
+            document.querySelectorAll('.reply-form button[type="button"]:not(.cancel-reply-btn)').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const replyForm = this.closest('.reply-form');
+                    const textarea = replyForm.querySelector('textarea');
+                    const content = textarea.value.trim();
+                    
+                    if (content) {
+                        // 检查登录状态
+                        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                        if (!isLoggedIn) {
+                            alert('请先登录后再回复');
+                            window.location.href = 'login.html';
+                            return;
+                        }
+                        
+                        alert('回复成功！');
+                        textarea.value = '';
+                        replyForm.classList.add('hidden');
+                    } else {
+                        alert('请输入回复内容');
+                    }
+                });
+            });
+            
+            // 评论排序切换
+            const sortButtons = document.querySelectorAll('.bg-white.rounded-lg.shadow-custom .flex.space-x-2 button');
+            sortButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 移除所有按钮的选中状态
+                    sortButtons.forEach(b => {
+                        b.classList.remove('bg-primary', 'text-white');
+                        b.classList.add('bg-gray-100', 'text-gray-700');
+                    });
+                    
+                    // 添加当前按钮的选中状态
+                    this.classList.remove('bg-gray-100', 'text-gray-700');
+                    this.classList.add('bg-primary', 'text-white');
+                    
+                    // 这里可以添加实际的排序逻辑
+                    alert(`评论已按${this.textContent}排序`);
+                });
+            });
+            
+            // 加载更多评论
+            const loadMoreBtn = document.getElementById('load-more-comments');
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', function() {
+                    // 显示加载中状态
+                    this.innerHTML = '<i class="fa fa-circle-o-notch fa-spin mr-2"></i>加载中...';
+                    this.disabled = true;
+                    
+                    // 模拟加载延迟
+                    setTimeout(() => {
+                        // 恢复按钮状态
+                        this.innerHTML = '查看更多评论';
+                        this.disabled = false;
+                        
+                        // 这里可以添加实际的加载更多逻辑
+                        alert('已加载全部评论');
+                    }, 1500);
+                });
+            }
         });
     </script>
 </body>

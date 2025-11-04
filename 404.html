@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面不存在 - 百度贴吧</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1890ff',
+                        secondary: '#6c757d',
+                        success: '#52c41a',
+                        warning: '#faad14',
+                        danger: '#f5222d',
+                        info: '#13c2c2'
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'custom': '0 2px 8px rgba(0, 0, 0, 0.08)',
+                        'hover': '0 4px 16px rgba(0, 0, 0, 0.12)',
+                    }
+                },
+            }
+        }
+    </script>
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .transition-all-300 {
+                transition: all 0.3s ease;
+            }
+            .hover-lift {
+                transform: translateY(0);
+                transition: transform 0.3s ease;
+            }
+            .hover-lift:hover {
+                transform: translateY(-3px);
+            }
+        }
+    </style>
+    <style>
+        body {
+            font-family: 'Noto Sans SC', system-ui, sans-serif;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="sticky top-0 z-40 bg-white border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo 和导航 -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fa fa-comments-o text-2xl text-primary mr-2"></i>
+                        <span class="font-bold text-xl text-primary">百度贴吧</span>
+                    </a>
+                    <nav class="hidden md:ml-10 md:flex space-x-8">
+                        <a href="index.html" class="text-gray-600 hover:text-primary transition-all-300 px-3 py-2 rounded-md text-sm font-medium">首页</a>
+                        <a href="following.html" class="text-gray-600 hover:text-primary transition-all-300 px-3 py-2 rounded-md text-sm font-medium">关注</a>
+                        <a href="hot.html" class="text-gray-600 hover:text-primary transition-all-300 px-3 py-2 rounded-md text-sm font-medium">热门</a>
+                    </nav>
+                </div>
+                <!-- 搜索框 -->
+                <div class="hidden md:flex items-center flex-1 max-w-md mx-8">
+                    <div class="relative w-full">
+                        <input type="text" placeholder="搜索帖子、用户或话题" class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all-300">
+                        <i class="fa fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                </div>
+                <!-- 用户操作区 -->
+                <div class="flex items-center space-x-4">
+                    <button class="md:hidden text-gray-700 hover:text-primary">
+                        <i class="fa fa-search text-xl"></i>
+                    </button>
+                    <a href="message.html" class="relative text-gray-700 hover:text-primary transition-all-300">
+                        <i class="fa fa-bell-o text-xl"></i>
+                        <span class="absolute -top-1 -right-1 w-4 h-4 bg-danger text-white text-xs rounded-full flex items-center justify-center">3</span>
+                    </a>
+                    <a href="create-post.html" class="hidden md:flex items-center bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-full transition-all-300">
+                        <i class="fa fa-plus mr-2"></i>
+                        <span>发帖</span>
+                    </a>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 focus:outline-none">
+                            <img src="https://picsum.photos/id/1005/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover border-2 border-primary">
+                            <i class="fa fa-angle-down text-gray-700 group-hover:text-primary transition-all-300"></i>
+                        </button>
+                        <!-- 下拉菜单 -->
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden group-hover:block">
+                            <a href="user.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary transition-all-300">
+                                <i class="fa fa-user-o mr-2"></i>个人中心
+                            </a>
+                            <a href="collections.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary transition-all-300">
+                                <i class="fa fa-bookmark-o mr-2"></i>我的收藏
+                            </a>
+                            <a href="message.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary transition-all-300">
+                                <i class="fa fa-envelope-o mr-2"></i>消息通知
+                            </a>
+                            <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary transition-all-300">
+                                <i class="fa fa-cog mr-2"></i>账号设置
+                            </a>
+                            <div class="border-t border-gray-200 my-1"></div>
+                            <a href="#" id="logout-btn" class="block px-4 py-2 text-sm text-danger hover:bg-gray-100 transition-all-300">
+                                <i class="fa fa-sign-out mr-2"></i>退出登录
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16">
+        <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-custom overflow-hidden">
+            <!-- 404错误内容 -->
+            <div class="p-8 text-center">
+                <div class="text-9xl font-bold text-primary/10 mb-6">404</div>
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">页面不存在</h1>
+                <p class="text-gray-600 mb-8 max-w-md mx-auto">
+                    抱歉，您访问的页面不存在或已被删除。请检查您输入的网址是否正确，或者返回首页继续浏览。
+                </p>
+                
+                <!-- 错误可能原因 -->
+                <div class="bg-orange-50 rounded-lg p-6 mb-8">
+                    <h3 class="font-medium text-orange-700 mb-3 flex items-center">
+                        <i class="fa fa-exclamation-circle mr-2"></i>
+                        可能的原因
+                    </h3>
+                    <ul class="text-left text-gray-700 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fa fa-circle text-xs text-orange-500 mt-1.5 mr-2"></i>
+                            <span>页面可能已被删除或移动</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-circle text-xs text-orange-500 mt-1.5 mr-2"></i>
+                            <span>网址输入错误</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-circle text-xs text-orange-500 mt-1.5 mr-2"></i>
+                            <span>您可能没有访问该页面的权限</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 操作按钮 -->
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="index.html" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium transition-all-300 hover-lift">
+                        <i class="fa fa-home mr-2"></i>返回首页
+                    </a>
+                    <a href="javascript:history.back()" class="bg-white border border-gray-300 hover:border-primary text-gray-700 hover:text-primary px-6 py-3 rounded-md font-medium transition-all-300 hover-lift">
+                        <i class="fa fa-arrow-left mr-2"></i>返回上一页
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 推荐内容 -->
+            <div class="border-t border-gray-200 p-8">
+                <h3 class="text-lg font-medium text-gray-800 mb-4">推荐您查看这些热门内容</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- 推荐项1 -->
+                    <a href="#" class="block p-3 rounded-lg hover:bg-gray-50 transition-all-300 border border-gray-100 hover:border-primary/20">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-100 rounded-md flex items-center justify-center text-blue-600 flex-shrink-0">
+                                <i class="fa fa-star text-xl"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="font-medium text-gray-800">热门帖子排行榜</h4>
+                                <p class="text-sm text-gray-500 mt-1">查看当前最受欢迎的内容</p>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 推荐项2 -->
+                    <a href="#" class="block p-3 rounded-lg hover:bg-gray-50 transition-all-300 border border-gray-100 hover:border-primary/20">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-green-100 rounded-md flex items-center justify-center text-green-600 flex-shrink-0">
+                                <i class="fa fa-compass text-xl"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="font-medium text-gray-800">发现精彩话题</h4>
+                                <p class="text-sm text-gray-500 mt-1">探索您感兴趣的主题</p>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 推荐项3 -->
+                    <a href="#" class="block p-3 rounded-lg hover:bg-gray-50 transition-all-300 border border-gray-100 hover:border-primary/20">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-purple-100 rounded-md flex items-center justify-center text-purple-600 flex-shrink-0">
+                                <i class="fa fa-users text-xl"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="font-medium text-gray-800">热门贴吧</h4>
+                                <p class="text-sm text-gray-500 mt-1">加入活跃的社区讨论</p>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 推荐项4 -->
+                    <a href="#" class="block p-3 rounded-lg hover:bg-gray-50 transition-all-300 border border-gray-100 hover:border-primary/20">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-md flex items-center justify-center text-yellow-600 flex-shrink-0">
+                                <i class="fa fa-fire text-xl"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="font-medium text-gray-800">最新活动</h4>
+                                <p class="text-sm text-gray-500 mt-1">参与社区互动赢好礼</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 搜索框 -->
+        <div class="max-w-xl mx-auto mt-8">
+            <div class="relative">
+                <input type="text" placeholder="搜索您想找的内容..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all-300">
+                <i class="fa fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg"></i>
+                <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary text-white px-4 py-1.5 rounded-lg hover:bg-primary/90 transition-all-300">
+                    搜索
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-white border-t mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-500 text-sm">© 2024 百度贴吧 版权所有</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-weibo text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-wechat text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-4 text-center md:text-left">
+                <ul class="flex flex-wrap justify-center md:justify-start space-x-4 text-sm text-gray-500">
+                    <li><a href="about.html" class="hover:text-primary transition-all-300">关于我们</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">使用帮助</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">用户协议</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">隐私政策</a></li>
+                    <li><a href="#" class="hover:text-primary transition-all-300">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/global.js"></script>
+    <script>
+        // 页面特定功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 退出登录功能
+            document.getElementById('logout-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                // 调用全局登出函数
+                logout();
+            });
+            
+            // 搜索框功能
+            const searchInput = document.querySelector('input[placeholder="搜索您想找的内容..."]');
+            const searchBtn = searchInput.nextElementSibling.nextElementSibling;
+            
+            searchBtn.addEventListener('click', function() {
+                const keyword = searchInput.value.trim();
+                if (keyword) {
+                    alert(`正在搜索: ${keyword}`);
+                    // 实际项目中这里会跳转到搜索结果页
+                }
+            });
+            
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchBtn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

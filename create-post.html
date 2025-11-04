@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布帖子 - 百度贴吧</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3178C6',
+                        secondary: '#F7F7F7',
+                        accent: '#FF6B6B',
+                        dark: '#333333',
+                        light: '#F5F5F5',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .shadow-custom {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+            .transition-all-300 {
+                transition: all 0.3s ease;
+            }
+            .input-focus {
+                @apply focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans text-dark">
+    <!-- 导航栏 -->
+    <nav id="navbar" class="fixed w-full bg-white shadow-custom z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-2 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" class="text-primary font-bold text-2xl">
+                    <i class="fa fa-comments-o mr-2"></i>百度贴吧
+                </a>
+            </div>
+            
+            <!-- 搜索框 -->
+            <div class="hidden md:flex items-center bg-gray-100 rounded-full px-4 py-2 flex-1 max-w-xl mx-6">
+                <i class="fa fa-search text-gray-400 mr-2"></i>
+                <input type="text" placeholder="搜索帖子、用户、贴吧" class="bg-transparent border-none outline-none w-full">
+                <button class="bg-primary text-white px-4 py-1 rounded-full hover:bg-primary/90 transition-all-300">
+                    搜索
+                </button>
+            </div>
+            
+            <!-- 用户操作区 -->
+            <div class="flex items-center space-x-4">
+                <a href="messages.html" class="relative text-gray-600 hover:text-primary transition-all-300">
+                    <i class="fa fa-bell-o text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-danger text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </a>
+                <a href="profile.html" class="flex items-center space-x-2">
+                    <img src="https://picsum.photos/id/1005/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover">
+                    <span class="hidden md:inline text-sm font-medium">用户名</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="container mx-auto pt-20 px-4 pb-16">
+        <div class="flex flex-col lg:flex-row gap-6">
+            <!-- 左侧边栏 -->
+            <aside class="lg:w-1/4 hidden lg:block">
+                <div class="bg-white rounded-lg shadow-custom p-4 mb-6">
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2">关注的吧</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center justify-between hover:bg-gray-50 p-2 rounded transition-all-300">
+                            <a href="bar.html?id=1" class="flex items-center space-x-3">
+                                <img src="https://picsum.photos/id/237/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover">
+                                <div>
+                                    <p class="font-medium">技术交流吧</p>
+                                    <p class="text-xs text-gray-500">12.5万成员</p>
+                                </div>
+                            </a>
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">已关注</span>
+                        </li>
+                        <li class="flex items-center justify-between hover:bg-gray-50 p-2 rounded transition-all-300">
+                            <a href="bar.html?id=2" class="flex items-center space-x-3">
+                                <img src="https://picsum.photos/id/1066/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover">
+                                <div>
+                                    <p class="font-medium">游戏讨论吧</p>
+                                    <p class="text-xs text-gray-500">25.3万成员</p>
+                                </div>
+                            </a>
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">已关注</span>
+                        </li>
+                        <li class="flex items-center justify-between hover:bg-gray-50 p-2 rounded transition-all-300">
+                            <a href="bar.html?id=3" class="flex items-center space-x-3">
+                                <img src="https://picsum.photos/id/1035/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover">
+                                <div>
+                                    <p class="font-medium">美食分享吧</p>
+                                    <p class="text-xs text-gray-500">8.9万成员</p>
+                                </div>
+                            </a>
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">已关注</span>
+                        </li>
+                    </ul>
+                    <a href="bars.html" class="block text-center text-primary text-sm mt-4 py-2 border border-primary rounded hover:bg-primary/5 transition-all-300">
+                        查看更多贴吧
+                    </a>
+                </div>
+            </aside>
+
+            <!-- 中间内容区 - 发帖表单 -->
+            <div class="lg:w-2/4 bg-white rounded-lg shadow-custom p-6">
+                <div class="border-b pb-4 mb-6">
+                    <h2 class="text-xl font-bold">发布新帖子</h2>
+                </div>
+                
+                <form id="post-form" class="space-y-6">
+                    <!-- 选择贴吧 -->
+                    <div>
+                        <label for="bar-select" class="block text-sm font-medium text-gray-700 mb-2">选择贴吧</label>
+                        <div class="relative">
+                            <select id="bar-select" name="bar-id" class="w-full pl-4 pr-10 py-3 border border-gray-300 rounded-md input-focus appearance-none transition-all-300 bg-white">
+                                <option value="1">技术交流吧</option>
+                                <option value="2">游戏讨论吧</option>
+                                <option value="3">美食分享吧</option>
+                                <option value="4">旅行摄影吧</option>
+                                <option value="5">电影评论吧</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <i class="fa fa-chevron-down text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 帖子标题 -->
+                    <div>
+                        <label for="post-title" class="block text-sm font-medium text-gray-700 mb-2">标题</label>
+                        <input type="text" id="post-title" name="title" placeholder="请输入帖子标题" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-md input-focus transition-all-300"
+                               required>
+                        <p class="text-xs text-gray-500 mt-1">标题最多50个字符</p>
+                    </div>
+                    
+                    <!-- 帖子内容 -->
+                    <div>
+                        <label for="post-content" class="block text-sm font-medium text-gray-700 mb-2">内容</label>
+                        <textarea id="post-content" name="content" rows="10" placeholder="请输入帖子内容..." 
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-md input-focus transition-all-300 resize-none"
+                                  required></textarea>
+                        <p class="text-xs text-gray-500 mt-1">内容最多5000个字符</p>
+                    </div>
+                    
+                    <!-- 工具栏 -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex space-x-4">
+                            <button type="button" class="text-gray-500 hover:text-primary transition-all-300">
+                                <i class="fa fa-image text-xl"></i>
+                                <span class="ml-1 text-sm">图片</span>
+                            </button>
+                            <button type="button" class="text-gray-500 hover:text-primary transition-all-300">
+                                <i class="fa fa-video-camera text-xl"></i>
+                                <span class="ml-1 text-sm">视频</span>
+                            </button>
+                            <button type="button" class="text-gray-500 hover:text-primary transition-all-300">
+                                <i class="fa fa-smile-o text-xl"></i>
+                                <span class="ml-1 text-sm">表情</span>
+                            </button>
+                            <button type="button" class="text-gray-500 hover:text-primary transition-all-300">
+                                <i class="fa fa-link text-xl"></i>
+                                <span class="ml-1 text-sm">链接</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 标签 -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">添加标签（可选）</label>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm flex items-center">
+                                技术交流
+                                <button type="button" class="ml-1 text-gray-500 hover:text-gray-700"><i class="fa fa-times"></i></button>
+                            </span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm flex items-center">
+                                经验分享
+                                <button type="button" class="ml-1 text-gray-500 hover:text-gray-700"><i class="fa fa-times"></i></button>
+                            </span>
+                            <button type="button" class="px-3 py-1 border border-dashed border-gray-300 text-gray-500 rounded-full text-sm hover:border-primary hover:text-primary transition-all-300">
+                                <i class="fa fa-plus mr-1"></i>添加
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 提交按钮 -->
+                    <div class="flex justify-end space-x-4 pt-4 border-t">
+                        <button type="button" class="px-6 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-all-300">
+                            保存草稿
+                        </button>
+                        <button type="submit" class="px-6 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-all-300">
+                            发布帖子
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 右侧边栏 -->
+            <aside class="lg:w-1/4 hidden lg:block">
+                <div class="bg-white rounded-lg shadow-custom p-4 mb-6">
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2">发帖须知</h3>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fa fa-info-circle text-primary mt-1 mr-2"></i>
+                            <span>请遵守百度贴吧协议，文明发言</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-exclamation-circle text-warning mt-1 mr-2"></i>
+                            <span>禁止发布广告、色情、暴力等违规内容</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-exclamation-circle text-warning mt-1 mr-2"></i>
+                            <span>禁止恶意攻击他人或发布侵权内容</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-lightbulb-o text-accent mt-1 mr-2"></i>
+                            <span>高质量的原创内容更容易获得关注</span>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="py-6 text-center text-sm text-gray-500">
+        <p>© 2024 百度贴吧 版权所有</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/global.js"></script>
+    <script>
+        // 页面特定功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检查登录状态
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            if (!isLoggedIn) {
+                alert('请先登录后再发布帖子');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // 标题字符计数
+            const titleInput = document.getElementById('post-title');
+            const titleCounter = document.createElement('span');
+            titleCounter.className = 'ml-2 text-xs text-gray-500';
+            titleCounter.textContent = '0/50';
+            titleInput.parentNode.querySelector('p').appendChild(titleCounter);
+            
+            titleInput.addEventListener('input', function() {
+                if (this.value.length > 50) {
+                    this.value = this.value.substring(0, 50);
+                }
+                titleCounter.textContent = `${this.value.length}/50`;
+                
+                // 超出限制时显示红色警告
+                if (this.value.length === 50) {
+                    titleCounter.classList.add('text-red-500');
+                } else {
+                    titleCounter.classList.remove('text-red-500');
+                }
+            });
+            
+            // 内容字符计数
+            const contentTextarea = document.getElementById('post-content');
+            const contentCounter = document.createElement('span');
+            contentCounter.className = 'ml-2 text-xs text-gray-500';
+            contentCounter.textContent = '0/5000';
+            contentTextarea.parentNode.querySelector('p').appendChild(contentCounter);
+            
+            contentTextarea.addEventListener('input', function() {
+                if (this.value.length > 5000) {
+                    this.value = this.value.substring(0, 5000);
+                }
+                contentCounter.textContent = `${this.value.length}/5000`;
+                
+                // 超出90%时显示警告，达到上限时显示红色警告
+                if (this.value.length >= 5000) {
+                    contentCounter.className = 'ml-2 text-xs text-red-500';
+                } else if (this.value.length >= 4500) {
+                    contentCounter.className = 'ml-2 text-xs text-yellow-500';
+                } else {
+                    contentCounter.className = 'ml-2 text-xs text-gray-500';
+                }
+            });
+            
+            // 标签管理
+            const tagsContainer = document.querySelector('.flex.flex-wrap.gap-2');
+            const addTagButton = tagsContainer.querySelector('button');
+            
+            // 删除标签功能
+            tagsContainer.addEventListener('click', function(e) {
+                if (e.target.closest('button') && !e.target.closest('button').classList.contains('border-dashed')) {
+                    const tagElement = e.target.closest('span');
+                    if (tagElement) {
+                        tagElement.remove();
+                    }
+                }
+            });
+            
+            // 添加标签功能
+            addTagButton.addEventListener('click', function() {
+                const tagName = prompt('请输入标签名称（最多10个字符）：');
+                if (tagName && tagName.trim() && tagName.length <= 10) {
+                    // 检查标签是否已存在
+                    const existingTags = Array.from(tagsContainer.querySelectorAll('span:not(:last-child)')).map(tag => 
+                        tag.textContent.trim().replace(/^.*\s/, '')
+                    );
+                    
+                    if (!existingTags.includes(tagName.trim())) {
+                        const newTag = document.createElement('span');
+                        newTag.className = 'px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm flex items-center';
+                        newTag.innerHTML = `${tagName.trim()} <button type="button" class="ml-1 text-gray-500 hover:text-gray-700"><i class="fa fa-times"></i></button>`;
+                        tagsContainer.insertBefore(newTag, addTagButton);
+                    } else {
+                        alert('该标签已存在');
+                    }
+                } else if (tagName && tagName.length > 10) {
+                    alert('标签名称不能超过10个字符');
+                }
+            });
+            
+            // 图片上传预览
+            const imageButton = document.querySelector('button:has(.fa-image)');
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = 'image/*';
+            fileInput.multiple = true;
+            fileInput.style.display = 'none';
+            document.body.appendChild(fileInput);
+            
+            // 创建图片预览容器
+            const imagePreviewContainer = document.createElement('div');
+            imagePreviewContainer.className = 'mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3';
+            imagePreviewContainer.style.display = 'none';
+            document.getElementById('post-content').parentNode.parentNode.appendChild(imagePreviewContainer);
+            
+            imageButton.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            // 图片预览功能
+            fileInput.addEventListener('change', function(e) {
+                const files = e.target.files;
+                if (files.length > 0) {
+                    imagePreviewContainer.style.display = 'grid';
+                    
+                    Array.from(files).forEach((file, index) => {
+                        // 限制上传数量
+                        if (imagePreviewContainer.children.length >= 9) {
+                            alert('最多只能上传9张图片');
+                            return;
+                        }
+                        
+                        // 检查文件大小（限制5MB）
+                        if (file.size > 5 * 1024 * 1024) {
+                            alert('图片大小不能超过5MB');
+                            return;
+                        }
+                        
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            const imgWrapper = document.createElement('div');
+                            imgWrapper.className = 'relative group';
+                            imgWrapper.dataset.index = index;
+                            
+                            const img = document.createElement('img');
+                            img.src = event.target.result;
+                            img.className = 'w-full h-32 object-cover rounded-lg border border-gray-200';
+                            
+                            const removeBtn = document.createElement('button');
+                            removeBtn.type = 'button';
+                            removeBtn.className = 'absolute -top-2 -right-2 bg-danger text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity';
+                            removeBtn.innerHTML = '<i class="fa fa-times"></i>';
+                            removeBtn.onclick = function() {
+                                imgWrapper.remove();
+                                if (imagePreviewContainer.children.length === 0) {
+                                    imagePreviewContainer.style.display = 'none';
+                                }
+                            };
+                            
+                            imgWrapper.appendChild(img);
+                            imgWrapper.appendChild(removeBtn);
+                            imagePreviewContainer.appendChild(imgWrapper);
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                    
+                    // 清空文件输入，允许重复选择同一文件
+                    this.value = '';
+                }
+            });
+            
+            // 视频、表情、链接按钮功能
+            document.querySelector('button:has(.fa-video-camera)').addEventListener('click', function() {
+                alert('视频上传功能即将上线');
+            });
+            
+            document.querySelector('button:has(.fa-smile-o)').addEventListener('click', function() {
+                alert('表情功能即将上线');
+            });
+            
+            document.querySelector('button:has(.fa-link)').addEventListener('click', function() {
+                const url = prompt('请输入链接地址：');
+                if (url && url.trim()) {
+                    contentTextarea.value += `\n[链接](${url.trim()})`;
+                    // 触发input事件以更新计数器
+                    contentTextarea.dispatchEvent(new Event('input'));
+                }
+            });
+            
+            // 保存草稿功能
+            document.querySelector('button[type="button"]:contains("保存草稿")').addEventListener('click', function() {
+                const barId = document.getElementById('bar-select').value;
+                const title = document.getElementById('post-title').value;
+                const content = document.getElementById('post-content').value;
+                
+                // 获取标签列表
+                const tags = Array.from(tagsContainer.querySelectorAll('span:not(:last-child)')).map(tag => 
+                    tag.textContent.trim().replace(/^.*\s/, '')
+                );
+                
+                if (!title && !content) {
+                    alert('请输入标题或内容后再保存草稿');
+                    return;
+                }
+                
+                // 保存到localStorage
+                const draft = {
+                    barId,
+                    title,
+                    content,
+                    tags,
+                    savedAt: new Date().toISOString()
+                };
+                
+                localStorage.setItem('postDraft', JSON.stringify(draft));
+                alert('草稿已保存');
+            });
+            
+            // 加载草稿
+            const savedDraft = localStorage.getItem('postDraft');
+            if (savedDraft) {
+                const draft = JSON.parse(savedDraft);
+                if (confirm('检测到未完成的草稿，是否加载？')) {
+                    document.getElementById('bar-select').value = draft.barId || '1';
+                    document.getElementById('post-title').value = draft.title || '';
+                    document.getElementById('post-content').value = draft.content || '';
+                    
+                    // 触发input事件以更新计数器
+                    titleInput.dispatchEvent(new Event('input'));
+                    contentTextarea.dispatchEvent(new Event('input'));
+                    
+                    // 清除已保存的草稿
+                    localStorage.removeItem('postDraft');
+                }
+            }
+            
+            // 表单提交处理
+            document.getElementById('post-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // 获取表单数据
+                const barId = document.getElementById('bar-select').value;
+                const title = document.getElementById('post-title').value;
+                const content = document.getElementById('post-content').value;
+                
+                // 表单验证
+                if (!title.trim()) {
+                    alert('请输入帖子标题');
+                    titleInput.focus();
+                    return;
+                }
+                
+                if (!content.trim()) {
+                    alert('请输入帖子内容');
+                    contentTextarea.focus();
+                    return;
+                }
+                
+                // 获取标签列表
+                const tags = Array.from(tagsContainer.querySelectorAll('span:not(:last-child)')).map(tag => 
+                    tag.textContent.trim().replace(/^.*\s/, '')
+                );
+                
+                // 提取图片数据
+                const images = Array.from(imagePreviewContainer.querySelectorAll('img'))
+                    .map(img => img.src);
+                
+                // 获取当前用户信息
+                const username = localStorage.getItem('username') || '匿名用户';
+                
+                const postData = {
+                    barId,
+                    title,
+                    content,
+                    tags,
+                    images,
+                    username,
+                    createdAt: new Date().toISOString()
+                };
+                
+                console.log('发布帖子信息:', postData);
+                
+                // 获取发布按钮
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton.innerHTML;
+                
+                // 显示加载状态
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="fa fa-circle-o-notch fa-spin mr-2"></i>发布中...';
+                
+                // 模拟发布过程
+                setTimeout(() => {
+                    // 保存帖子数据到localStorage（模拟数据库存储）
+                    const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+                    const newPostId = posts.length + 1;
+                    postData.id = newPostId;
+                    posts.unshift(postData);
+                    localStorage.setItem('posts', JSON.stringify(posts));
+                    
+                    // 恢复按钮状态
+                    submitButton.innerHTML = originalButtonText;
+                    submitButton.disabled = false;
+                    
+                    // 提示成功并跳转到帖子详情页
+                    alert('帖子发布成功！');
+                    window.location.href = `post.html?id=${newPostId}`;
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

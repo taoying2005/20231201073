@@ -11,9 +11,9 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3178C6',
-                        secondary: '#F7F7F7',
-                        accent: '#FF6B6B',
+                        primary: '#FF3333',
+                        secondary: '#F9F9F9',
+                        accent: '#FF9900',
                         dark: '#333333',
                         light: '#F5F5F5',
                         success: '#4CAF50',
@@ -48,6 +48,11 @@
             .text-shadow {
                 text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             }
+            .tab-active {
+                color: #FF3333;
+                border-bottom: 2px solid #FF3333;
+                font-weight: bold;
+            }
         }
     </style>
 </head>
@@ -56,18 +61,19 @@
     <nav id="navbar" class="fixed w-full bg-white shadow-custom z-50 transition-all duration-300">
         <div class="container mx-auto px-4 py-2 flex items-center justify-between">
             <div class="flex items-center">
-                <a href="index.html" class="text-primary font-bold text-2xl">
-                    <i class="fa fa-comments-o mr-2"></i>百度贴吧
+                <a href="index.html" class="flex items-center">
+                    <img src="/assets/tieba-logo.svg" alt="百度贴吧" class="h-8 mr-2">
+                    <span class="text-primary font-bold text-2xl">百度贴吧</span>
                 </a>
             </div>
             
             <!-- 搜索框 - 仅在非登录页显示 -->
-            <div id="search-container" class="hidden md:flex items-center bg-gray-100 rounded-full px-4 py-2 flex-1 max-w-xl mx-6">
-                <i class="fa fa-search text-gray-400 mr-2"></i>
-                <input type="text" placeholder="搜索帖子、用户、贴吧" class="bg-transparent border-none outline-none w-full">
-                <button class="bg-primary text-white px-4 py-1 rounded-full hover:bg-primary/90 transition-all-300">
-                    搜索
-                </button>
+            <div id="search-container" class="hidden md:flex items-center bg-gray-100 rounded-l-full rounded-r-full px-4 py-2 flex-1 max-w-2xl mx-6 hover:bg-gray-200 transition-all-300">
+                <i class="fa fa-search text-gray-400 mr-2 cursor-pointer"></i>
+                <input type="text" placeholder="搜索帖子、用户、贴吧" class="bg-transparent border-none outline-none w-full cursor-text">
+                <a href="search.html" class="bg-primary text-white px-6 py-1 rounded-r-full hover:bg-primary/90 transition-all-300">
+                    <i class="fa fa-search"></i>
+                </a>
             </div>
             
             <!-- 用户操作区 -->
@@ -76,10 +82,10 @@
                     <i class="fa fa-bell-o text-xl"></i>
                     <span class="absolute -top-1 -right-1 bg-danger text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
                 </a>
-                <a href="profile.html" class="flex items-center space-x-2">
-                    <img src="https://picsum.photos/id/1005/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover">
-                    <span class="hidden md:inline text-sm font-medium">用户名</span>
-                </a>
+                <a href="profile.html" class="flex items-center space-x-2 hover:opacity-90 transition-all-300">
+                                    <img src="https://picsum.photos/id/1005/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover">
+                                    <span class="hidden md:inline text-sm font-medium">用户名</span>
+                                </a>
             </div>
         </div>
     </nav>
@@ -91,86 +97,235 @@
             <!-- 左侧边栏 -->
             <aside class="lg:w-1/4 hidden lg:block">
                 <div class="bg-white rounded-lg shadow-custom p-4 mb-6">
-                    <h3 class="font-bold text-lg mb-4 border-b pb-2">关注的吧</h3>
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2 hover:text-primary cursor-pointer">关注的吧</h3>
                     <ul class="space-y-3">
                         <li class="flex items-center justify-between hover:bg-gray-50 p-2 rounded transition-all-300">
                             <a href="bar.html?id=1" class="flex items-center space-x-3">
-                                <img src="https://picsum.photos/id/237/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover">
+                                <img src="https://picsum.photos/id/237/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover hover:opacity-90 transition-all-300">
                                 <div>
-                                    <p class="font-medium">技术交流吧</p>
+                                    <p class="font-medium hover:text-primary">技术交流吧</p>
                                     <p class="text-xs text-gray-500">12.5万成员</p>
                                 </div>
                             </a>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">已关注</span>
+                            <a href="javascript:void(0)" class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded hover:bg-green-200 transition-all-300">已关注</a>
                         </li>
                         <li class="flex items-center justify-between hover:bg-gray-50 p-2 rounded transition-all-300">
                             <a href="bar.html?id=2" class="flex items-center space-x-3">
-                                <img src="https://picsum.photos/id/96/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover">
+                                <img src="https://picsum.photos/id/1066/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover hover:opacity-90 transition-all-300">
                                 <div>
-                                    <p class="font-medium">生活分享吧</p>
-                                    <p class="text-xs text-gray-500">8.2万成员</p>
+                                    <p class="font-medium hover:text-primary">游戏讨论吧</p>
+                                    <p class="text-xs text-gray-500">25.3万成员</p>
                                 </div>
                             </a>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">已关注</span>
+                            <a href="javascript:void(0)" class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded hover:bg-green-200 transition-all-300">已关注</a>
                         </li>
                         <li class="flex items-center justify-between hover:bg-gray-50 p-2 rounded transition-all-300">
                             <a href="bar.html?id=3" class="flex items-center space-x-3">
-                                <img src="https://picsum.photos/id/65/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover">
+                                <img src="https://picsum.photos/id/1035/40/40" alt="吧头像" class="w-10 h-10 rounded-full object-cover hover:opacity-90 transition-all-300">
                                 <div>
-                                    <p class="font-medium">学习讨论吧</p>
-                                    <p class="text-xs text-gray-500">5.3万成员</p>
+                                    <p class="font-medium hover:text-primary">美食分享吧</p>
+                                    <p class="text-xs text-gray-500">8.9万成员</p>
                                 </div>
                             </a>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">已关注</span>
+                            <a href="javascript:void(0)" class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded hover:bg-green-200 transition-all-300">已关注</a>
                         </li>
                     </ul>
-                    <a href="bars.html" class="mt-4 text-primary text-sm flex items-center justify-center hover:underline">
-                        查看更多 <i class="fa fa-angle-right ml-1"></i>
+                    <a href="bars.html" class="block text-center text-primary text-sm mt-4 py-2 border border-primary rounded hover:bg-primary/5 transition-all-300">
+                        查看更多贴吧
                     </a>
                 </div>
             </aside>
 
             <!-- 中间内容区 -->
             <div class="lg:w-2/4">
-                <!-- 这里将显示主要内容，如帖子列表、帖子详情等 -->
+                <!-- 快速发帖按钮 -->
+                <div class="bg-white rounded-lg shadow-custom p-4 mb-6">
+                    <div class="flex items-center space-x-4">
+                        <a href="profile.html"><img src="https://picsum.photos/id/1005/40/40" alt="用户头像" class="w-10 h-10 rounded-full object-cover hover:opacity-90 transition-all-300"></a>
+                        <a href="create-post.html" class="flex-1 bg-gray-100 rounded-full py-2 px-4 text-left hover:bg-gray-200 transition-all-300">
+                            分享你的想法...
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 分类标签页 -->
+                <div class="bg-white rounded-lg shadow-custom mb-6">
+                    <div class="flex border-b">
+                        <a href="?tab=hot" class="flex-1 py-3 text-center tab-active cursor-pointer hover:bg-gray-50 transition-all-300">热门区</a>
+                        <a href="?tab=new" class="flex-1 py-3 text-center text-gray-600 hover:text-primary cursor-pointer hover:bg-gray-50 transition-all-300">最新区</a>
+                        <a href="?tab=featured" class="flex-1 py-3 text-center text-gray-600 hover:text-primary cursor-pointer hover:bg-gray-50 transition-all-300">精华区</a>
+                    </div>
+                </div>
+                
+                <!-- 热门区帖子列表 -->
+                <div id="hot" class="bg-white rounded-lg shadow-custom p-4 mb-6">
+                    <!-- 帖子1 -->
+                    <article class="p-4 border-b hover:bg-gray-50 transition-all-300 cursor-pointer" onclick="window.location.href='post.html?id=1'">
+                        <div class="flex items-start space-x-3">
+                            <a href="user.html?id=1012"><img src="https://picsum.photos/id/1012/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover hover:opacity-90 transition-all-300"></a>
+                            <div class="flex-1">
+                                <div class="flex items-center mb-1">
+                                <a href="user.html?id=1012" class="font-medium mr-2 hover:text-primary">张小明</a>
+                                <span class="text-xs text-gray-500">2小时前</span>
+                            </div>
+                                <h3 class="font-bold mb-1"><a href="post.html?id=1" class="hover:text-primary transition-all-300">推荐几个好用的前端开发工具</a></h3>
+                                <a href="post.html?id=1" class="text-gray-700 text-sm mb-2 line-clamp-2 hover:text-primary transition-all-300">作为一名前端开发，我想分享几个提升工作效率的工具。首先是VS Code的几个必备插件，然后是一些调试和性能优化的工具。这些工具帮助我节省了大量时间，希望对大家也有帮助...</a>
+                                <div class="flex items-center justify-between text-xs text-gray-500">
+                                    <div class="flex items-center space-x-4">
+                                        <a href="javascript:void(0)" class="hover:text-primary transition-all-300"><i class="fa fa-thumbs-o-up mr-1"></i>128</a>
+                                        <a href="post.html?id=1#comments" class="hover:text-primary transition-all-300"><i class="fa fa-comment-o mr-1"></i>32</a>
+                                        <a href="post.html?id=1" class="hover:text-primary transition-all-300"><i class="fa fa-eye mr-1"></i>1.2k</a>
+                                    </div>
+                                    <a href="bar.html?id=1" class="text-primary hover:underline">技术交流吧</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- 帖子2 -->
+                    <article class="p-4 border-b hover:bg-gray-50 transition-all-300 cursor-pointer" onclick="window.location.href='post.html?id=2'">
+                        <div class="flex items-start space-x-3">
+                            <a href="user.html?id=1025"><img src="https://picsum.photos/id/1025/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover hover:opacity-90 transition-all-300"></a>
+                            <div class="flex-1">
+                                <div class="flex items-center mb-1">
+                                <a href="user.html?id=1025" class="font-medium mr-2 hover:text-primary">李华</a>
+                                <span class="text-xs text-gray-500">昨天</span>
+                            </div>
+                                <h3 class="font-bold mb-1"><a href="post.html?id=2" class="hover:text-primary transition-all-300">最新游戏体验分享</a></h3>
+                                <a href="post.html?id=2" class="text-gray-700 text-sm mb-2 line-clamp-2 hover:text-primary transition-all-300">刚刚玩完了最近很火的一款开放世界游戏，想和大家分享一下我的体验。游戏画面精美，剧情丰富，但是有些任务设计比较重复。整体来说还是很值得一玩的...</a>
+                                <div class="flex items-center justify-between text-xs text-gray-500">
+                                    <div class="flex items-center space-x-4">
+                                        <a href="javascript:void(0)" class="hover:text-primary transition-all-300"><i class="fa fa-thumbs-o-up mr-1"></i>256</a>
+                                        <a href="post.html?id=2#comments" class="hover:text-primary transition-all-300"><i class="fa fa-comment-o mr-1"></i>64</a>
+                                        <a href="post.html?id=2" class="hover:text-primary transition-all-300"><i class="fa fa-eye mr-1"></i>3.5k</a>
+                                    </div>
+                                    <a href="bar.html?id=2" class="text-primary hover:underline">游戏讨论吧</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- 帖子3 -->
+                    <article class="p-4 hover:bg-gray-50 transition-all-300 cursor-pointer" onclick="window.location.href='post.html?id=3'">
+                        <div class="flex items-start space-x-3">
+                            <a href="user.html?id=1027"><img src="https://picsum.photos/id/1027/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover hover:opacity-90 transition-all-300"></a>
+                            <div class="flex-1">
+                                <div class="flex items-center mb-1">
+                                <a href="user.html?id=1027" class="font-medium mr-2 hover:text-primary">王芳</a>
+                                <span class="text-xs text-gray-500">3天前</span>
+                            </div>
+                                <h3 class="font-bold mb-1"><a href="post.html?id=3" class="hover:text-primary transition-all-300">家常菜谱分享：红烧肉的做法</a></h3>
+                                <a href="post.html?id=3" class="text-gray-700 text-sm mb-2 line-clamp-2 hover:text-primary transition-all-300">今天给大家分享一道经典的家常菜：红烧肉。这道菜肥而不腻，入口即化，是我家餐桌上的常客。需要准备的材料很简单，但是火候和调味很关键...</a>
+                                <div class="flex items-center justify-between text-xs text-gray-500">
+                                    <div class="flex items-center space-x-4">
+                                        <a href="javascript:void(0)" class="hover:text-primary transition-all-300"><i class="fa fa-thumbs-o-up mr-1"></i>384</a>
+                                        <a href="post.html?id=3#comments" class="hover:text-primary transition-all-300"><i class="fa fa-comment-o mr-1"></i>96</a>
+                                        <a href="post.html?id=3" class="hover:text-primary transition-all-300"><i class="fa fa-eye mr-1"></i>5.8k</a>
+                                    </div>
+                                    <a href="bar.html?id=3" class="text-primary hover:underline">美食分享吧</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <!-- 分页 -->
+                <div class="flex justify-center mt-4">
+                    <nav class="inline-flex rounded-md shadow-sm" aria-label="Pagination">
+                        <a href="?page=0" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-primary transition-all-300">
+                            <i class="fa fa-chevron-left"></i>
+                        </a>
+                        <a href="?page=1" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-primary text-sm font-medium text-white">
+                            1
+                        </a>
+                        <a href="?page=2" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-primary transition-all-300">
+                            2
+                        </a>
+                        <a href="?page=3" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-primary transition-all-300">
+                            3
+                        </a>
+                        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                            ...
+                        </span>
+                        <a href="?page=10" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-primary transition-all-300">
+                            10
+                        </a>
+                        <a href="?page=2" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-primary transition-all-300">
+                            <i class="fa fa-chevron-right"></i>
+                        </a>
+                    </nav>
+                </div>
             </div>
 
             <!-- 右侧边栏 -->
             <aside class="lg:w-1/4 hidden lg:block">
+                <!-- 精华区 -->
                 <div class="bg-white rounded-lg shadow-custom p-4 mb-6">
-                    <h3 class="font-bold text-lg mb-4 border-b pb-2">热门推荐</h3>
-                    <ul class="space-y-3">
-                        <li class="hover:bg-gray-50 p-2 rounded transition-all-300">
-                            <a href="post.html?id=101" class="block">
-                                <p class="font-medium line-clamp-2">【讨论】2024年最值得学习的编程语言有哪些？</p>
-                                <div class="flex items-center mt-1 text-xs text-gray-500">
-                                    <span>技术交流吧</span>
-                                    <span class="mx-1">·</span>
-                                    <span>回复 234</span>
-                                </div>
-                            </a>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-bold text-lg border-b pb-2 flex items-center">
+                            <a href="featured.html" class="hover:text-primary transition-all-300"><i class="fa fa-star text-accent mr-2 hover:scale-125 transition-all-300"></i>精华区</a>
+                        </h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="p-2 hover:bg-gray-50 rounded transition-all-300 cursor-pointer" onclick="window.location.href='post.html?id=4'">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <a href="user.html?id=1012"><img src="https://picsum.photos/id/1012/30/30" alt="用户头像" class="w-5 h-5 rounded-full object-cover hover:opacity-90 transition-all-300"></a>
+                                <a href="user.html?id=1012" class="text-xs text-gray-600 hover:text-primary">作者的一名资深空少</a>
+                                <a href="javascript:void(0)" class="text-xs text-accent hover:scale-110 transition-all-300"><i class="fa fa-star"></i></a>
+                                <a href="javascript:void(0)" class="text-xs text-accent hover:scale-110 transition-all-300"><i class="fa fa-star"></i></a>
+                                <a href="javascript:void(0)" class="text-xs text-accent hover:scale-110 transition-all-300"><i class="fa fa-star"></i></a>
+                            </div>
+                            <a href="post.html?id=4" class="text-sm text-gray-800 hover:text-primary transition-all-300 line-clamp-2">是空在标识过有风情，让是妙你约马德里，为不了，是些好转。其后，也是哪的的隐，多于过。</a>
                         </li>
-                        <li class="hover:bg-gray-50 p-2 rounded transition-all-300">
-                            <a href="post.html?id=102" class="block">
-                                <p class="font-medium line-clamp-2">分享我的极简生活方式，感觉整个人都轻松了</p>
-                                <div class="flex items-center mt-1 text-xs text-gray-500">
-                                    <span>生活分享吧</span>
-                                    <span class="mx-1">·</span>
-                                    <span>回复 156</span>
-                                </div>
-                            </a>
+                        <li class="p-2 hover:bg-gray-50 rounded transition-all-300 cursor-pointer" onclick="window.location.href='post.html?id=5'">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <a href="user.html?id=1025"><img src="https://picsum.photos/id/1025/30/30" alt="用户头像" class="w-5 h-5 rounded-full object-cover hover:opacity-90 transition-all-300"></a>
+                                <a href="user.html?id=1025" class="text-xs text-gray-600 hover:text-primary">作者热一种信给学习</a>
+                                <a href="javascript:void(0)" class="text-xs text-accent hover:scale-110 transition-all-300"><i class="fa fa-star"></i></a>
+                                <a href="javascript:void(0)" class="text-xs text-accent hover:scale-110 transition-all-300"><i class="fa fa-star"></i></a>
+                                <a href="javascript:void(0)" class="text-xs text-accent hover:scale-110 transition-all-300"><i class="fa fa-star"></i></a>
+                            </div>
+                            <a href="post.html?id=5" class="text-sm text-gray-800 hover:text-primary transition-all-300 line-clamp-2">是一种为了更好的学习方法，我们需要不断地探索和尝试新的学习策略，只有这样才能取得更好的学习效果。</a>
                         </li>
-                        <li class="hover:bg-gray-50 p-2 rounded transition-all-300">
-                            <a href="post.html?id=103" class="block">
-                                <p class="font-medium line-clamp-2">【求助】如何高效记忆英语单词？分享一下你的经验</p>
-                                <div class="flex items-center mt-1 text-xs text-gray-500">
-                                    <span>学习讨论吧</span>
-                                    <span class="mx-1">·</span>
-                                    <span>回复 89</span>
-                                </div>
-                            </a>
+                        <li class="p-2 hover:bg-gray-50 rounded transition-all-300 cursor-pointer" onclick="window.location.href='post.html?id=6'">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <a href="user.html?id=1027"><img src="https://picsum.photos/id/1027/30/30" alt="用户头像" class="w-5 h-5 rounded-full object-cover hover:opacity-90 transition-all-300"></a>
+                                <a href="user.html?id=1027" class="text-xs text-gray-600 hover:text-primary">中度测试站的古石</a>
+                                <a href="javascript:void(0)" class="text-xs text-accent hover:scale-110 transition-all-300"><i class="fa fa-star"></i></a>
+                                <a href="javascript:void(0)" class="text-xs text-accent hover:scale-110 transition-all-300"><i class="fa fa-star"></i></a>
+                                <a href="javascript:void(0)" class="text-xs text-accent hover:scale-110 transition-all-300"><i class="fa fa-star"></i></a>
+                            </div>
+                            <a href="post.html?id=6" class="text-sm text-gray-800 hover:text-primary transition-all-300 line-clamp-2">在这个过程中，我们需要注意一些细节问题，这些细节往往会决定最终的成败。希望大家都能取得好成绩。</a>
                         </li>
                     </ul>
+                    <a href="featured.html" class="block text-center text-primary text-sm mt-4 py-2 border border-primary rounded hover:bg-primary/5 transition-all-300">
+                        查看更多
+                    </a>
+                </div>
+                
+                <!-- 热门话题 -->
+                <div class="bg-white rounded-lg shadow-custom p-4">
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2 hover:text-primary cursor-pointer transition-all-300" onclick="window.location.href='topics.html'">热门话题</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="topic.html?id=1" class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-primary hover:text-white transition-all-300 transform hover:scale-105">
+                            #前端开发
+                        </a>
+                        <a href="topic.html?id=2" class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-primary hover:text-white transition-all-300 transform hover:scale-105">
+                            #技术分享
+                        </a>
+                        <a href="topic.html?id=3" class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-primary hover:text-white transition-all-300 transform hover:scale-105">
+                            #美食推荐
+                        </a>
+                        <a href="topic.html?id=4" class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-primary hover:text-white transition-all-300 transform hover:scale-105">
+                            #游戏讨论
+                        </a>
+                        <a href="topic.html?id=5" class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-primary hover:text-white transition-all-300 transform hover:scale-105">
+                            #学习经验
+                        </a>
+                        <a href="topic.html?id=6" class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-primary hover:text-white transition-all-300 transform hover:scale-105">
+                            #职场心得
+                        </a>
+                    </div>
                 </div>
             </aside>
         </div>
@@ -184,42 +339,30 @@
                     <p class="text-gray-500 text-sm">© 2024 百度贴吧 版权所有</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                    <a href="social.html?platform=weibo" class="text-gray-500 hover:text-primary transition-all-300 hover:scale-110">
                         <i class="fa fa-weibo text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                    <a href="social.html?platform=wechat" class="text-gray-500 hover:text-primary transition-all-300 hover:scale-110">
                         <i class="fa fa-wechat text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-500 hover:text-primary transition-all-300">
+                    <a href="social.html?platform=github" class="text-gray-500 hover:text-primary transition-all-300 hover:scale-110">
                         <i class="fa fa-github text-xl"></i>
                     </a>
                 </div>
             </div>
             <div class="mt-4 text-center md:text-left">
                 <ul class="flex flex-wrap justify-center md:justify-start space-x-4 text-sm text-gray-500">
-                    <li><a href="#" class="hover:text-primary transition-all-300">关于我们</a></li>
-                    <li><a href="#" class="hover:text-primary transition-all-300">使用帮助</a></li>
-                    <li><a href="#" class="hover:text-primary transition-all-300">用户协议</a></li>
-                    <li><a href="#" class="hover:text-primary transition-all-300">隐私政策</a></li>
-                    <li><a href="#" class="hover:text-primary transition-all-300">联系我们</a></li>
+                    <li><a href="about.html" class="hover:text-primary transition-all-300 hover:underline">关于我们</a></li>
+                    <li><a href="help.html" class="hover:text-primary transition-all-300 hover:underline">使用帮助</a></li>
+                    <li><a href="terms.html" class="hover:text-primary transition-all-300 hover:underline">用户协议</a></li>
+                    <li><a href="privacy.html" class="hover:text-primary transition-all-300 hover:underline">隐私政策</a></li>
+                    <li><a href="contact.html" class="hover:text-primary transition-all-300 hover:underline">联系我们</a></li>
                 </ul>
             </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
-    <script>
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('py-1');
-                navbar.classList.add('shadow-md');
-            } else {
-                navbar.classList.remove('py-1');
-                navbar.classList.remove('shadow-md');
-            }
-        });
-    </script>
+    <script src="assets/global.js"></script>
 </body>
 </html>

@@ -98,8 +98,10 @@
                 </div>
                 <div class="flex space-x-3">
                     <button id="follow-btn" class="bg-green-500 text-white px-5 py-2 rounded-full hover:bg-green-600 transition-all-300">
-                        <i class="fa fa-check mr-2"></i>已关注
+                        <i class="fa fa-check mr-1"></i>已关注
                     </button>
+                    <a href="create-post.html" class="bg-primary text-white px-5 py-2 rounded-full hover:bg-primary/90 transition-all-300">
+                        <i class="fa fa-pencil mr-1"></i>发帖
                     <a href="#post-box" class="bg-primary text-white px-5 py-2 rounded-full hover:bg-primary/90 transition-all-300">
                         <i class="fa fa-edit mr-2"></i>发帖子
                     </a>
@@ -135,8 +137,146 @@
     </div>
 
     <!-- 主内容区 -->
-    <main class="container mx-auto px-4 py-6">
-        <div class="flex flex-col lg:flex-row gap-6">
+        <main class="container mx-auto px-4 py-8">
+            <!-- 贴吧工具栏 -->
+            <div class="bg-white rounded-lg shadow-custom p-4 mb-6">
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex space-x-4">
+                        <button class="px-4 py-2 bg-primary text-white rounded-full text-sm hover:bg-primary/90 transition-all-300">
+                            最新
+                        </button>
+                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition-all-300">
+                            热门
+                        </button>
+                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition-all-300">
+                            精华
+                        </button>
+                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition-all-300">
+                            视频
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <input type="text" placeholder="搜索本吧内容" class="pl-10 pr-4 py-2 border border-gray-300 rounded-full w-full md:w-64 focus:outline-none focus:border-primary transition-all-300">
+                        <i class="fa fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 帖子列表 -->
+            <div class="space-y-4">
+                <!-- 置顶帖子 -->
+                <article class="bg-red-50 rounded-lg shadow-custom p-4 border-l-4 border-red-500">
+                    <div class="flex items-center text-sm mb-2">
+                        <span class="bg-red-500 text-white px-2 py-0.5 rounded text-xs mr-2">置顶</span>
+                        <span class="bg-orange-400 text-white px-2 py-0.5 rounded text-xs">精华</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2"><a href="post.html?id=10" class="text-gray-800 hover:text-primary transition-all-300">【吧规】技术交流吧吧规及发帖指南</a></h3>
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <span>吧务团队</span>
+                            <span class="mx-2">·</span>
+                            <span>2024-01-01</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span>浏览 12.5万</span>
+                            <span>回复 567</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- 帖子1 -->
+                <article class="bg-white rounded-lg shadow-custom p-4 hover:bg-gray-50 transition-all-300">
+                    <h3 class="text-lg font-bold mb-2"><a href="post.html?id=1" class="text-gray-800 hover:text-primary transition-all-300">推荐几个好用的前端开发工具</a></h3>
+                    <p class="text-gray-600 mb-3 line-clamp-2">作为一名前端开发，我想分享几个提升工作效率的工具。首先是VS Code的几个必备插件，然后是一些调试和性能优化的工具...</p>
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <img src="https://picsum.photos/id/1012/40/40" alt="用户头像" class="w-6 h-6 rounded-full mr-2">
+                            <span>张小明</span>
+                            <span class="mx-2">·</span>
+                            <span>2小时前</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span><i class="fa fa-eye mr-1"></i>1.2万</span>
+                            <span><i class="fa fa-comment-o mr-1"></i>32</span>
+                            <span><i class="fa fa-thumbs-o-up mr-1"></i>128</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- 帖子2 -->
+                <article class="bg-white rounded-lg shadow-custom p-4 hover:bg-gray-50 transition-all-300">
+                    <h3 class="text-lg font-bold mb-2"><a href="post.html?id=9" class="text-gray-800 hover:text-primary transition-all-300">如何学习React框架？分享我的学习路径</a></h3>
+                    <p class="text-gray-600 mb-3 line-clamp-2">React是目前非常流行的前端框架，很多初学者可能不知道从何开始。我想分享一下我的学习路径，希望对大家有所帮助...</p>
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <img src="https://picsum.photos/id/1025/40/40" alt="用户头像" class="w-6 h-6 rounded-full mr-2">
+                            <span>李华</span>
+                            <span class="mx-2">·</span>
+                            <span>昨天</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span><i class="fa fa-eye mr-1"></i>8.5千</span>
+                            <span><i class="fa fa-comment-o mr-1"></i>45</span>
+                            <span><i class="fa fa-thumbs-o-up mr-1"></i>210</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- 帖子3 -->
+                <article class="bg-white rounded-lg shadow-custom p-4 hover:bg-gray-50 transition-all-300">
+                    <h3 class="text-lg font-bold mb-2"><a href="post.html?id=11" class="text-gray-800 hover:text-primary transition-all-300">JavaScript异步编程详解</a></h3>
+                    <p class="text-gray-600 mb-3 line-clamp-2">异步编程是JavaScript的重要特性，本文将详细介绍回调函数、Promise、async/await等异步编程方式的使用场景和最佳实践...</p>
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <img src="https://picsum.photos/id/1027/40/40" alt="用户头像" class="w-6 h-6 rounded-full mr-2">
+                            <span>王芳</span>
+                            <span class="mx-2">·</span>
+                            <span>3天前</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span><i class="fa fa-eye mr-1"></i>6.3千</span>
+                            <span><i class="fa fa-comment-o mr-1"></i>78</span>
+                            <span><i class="fa fa-thumbs-o-up mr-1"></i>325</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- 帖子4 -->
+                <article class="bg-white rounded-lg shadow-custom p-4 hover:bg-gray-50 transition-all-300">
+                    <h3 class="text-lg font-bold mb-2"><a href="post.html?id=12" class="text-gray-800 hover:text-primary transition-all-300">CSS Grid布局完全指南</a></h3>
+                    <p class="text-gray-600 mb-3 line-clamp-2">CSS Grid是一种强大的二维布局系统，本文将通过实例讲解Grid布局的各种属性和使用方法，帮助你快速掌握这一布局技术...</p>
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <img src="https://picsum.photos/id/1005/40/40" alt="用户头像" class="w-6 h-6 rounded-full mr-2">
+                            <span>赵强</span>
+                            <span class="mx-2">·</span>
+                            <span>1周前</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span><i class="fa fa-eye mr-1"></i>5.1千</span>
+                            <span><i class="fa fa-comment-o mr-1"></i>23</span>
+                            <span><i class="fa fa-thumbs-o-up mr-1"></i>156</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <!-- 分页 -->
+            <div class="mt-8 flex justify-center">
+                <nav class="flex items-center space-x-1">
+                    <a href="#" class="px-3 py-2 rounded-md border border-gray-300 text-gray-500 hover:bg-gray-50 transition-all-300">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#" class="px-3 py-2 rounded-md border border-primary bg-primary text-white hover:bg-primary/90 transition-all-300">1</a>
+                    <a href="#" class="px-3 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-all-300">2</a>
+                    <a href="#" class="px-3 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-all-300">3</a>
+                    <span class="px-3 py-2 text-gray-500">...</span>
+                    <a href="#" class="px-3 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-all-300">10</a>
+                    <a href="#" class="px-3 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-all-300">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </nav>
+            </div>
             <!-- 左侧边栏 -->
             <aside class="lg:w-1/4">
                 <!-- 吧信息 -->
@@ -557,74 +697,76 @@
     </footer>
 
     <!-- JavaScript -->
+    <!-- JavaScript -->
+    <script src="assets/global.js"></script>
     <script>
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('py-1');
-                navbar.classList.add('shadow-md');
-            } else {
-                navbar.classList.remove('py-1');
-                navbar.classList.remove('shadow-md');
-            }
-        });
-        
-        // 关注按钮功能
-        const followBtn = document.getElementById('follow-btn');
-        followBtn.addEventListener('click', function() {
-            if (this.textContent.includes('已关注')) {
-                this.innerHTML = '<i class="fa fa-plus mr-2"></i>关注';
-                this.classList.remove('bg-green-500', 'hover:bg-green-600');
-                this.classList.add('bg-primary', 'hover:bg-primary/90');
-                alert('已取消关注');
-            } else {
-                this.innerHTML = '<i class="fa fa-check mr-2"></i>已关注';
-                this.classList.remove('bg-primary', 'hover:bg-primary/90');
-                this.classList.add('bg-green-500', 'hover:bg-green-600');
-                alert('关注成功');
-            }
-        });
-        
-        // 发布帖子功能
-        const publishBtn = document.getElementById('publish-post');
-        publishBtn.addEventListener('click', function() {
-            const postContent = document.getElementById('post-content').value.trim();
-            if (postContent) {
-                alert('帖子发布成功！');
-                document.getElementById('post-content').value = '';
-            } else {
-                alert('请输入帖子内容');
-            }
-        });
-        
-        // 加载更多功能
-        const loadMoreBtn = document.getElementById('load-more');
-        loadMoreBtn.addEventListener('click', function() {
-            // 模拟加载中状态
-            this.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i>加载中...';
-            
-            // 模拟网络延迟
-            setTimeout(() => {
-                alert('已加载全部内容');
-                this.innerHTML = '没有更多内容了';
-                this.disabled = true;
-                this.classList.add('opacity-50', 'cursor-not-allowed');
-            }, 1500);
-        });
-        
-        // 标签切换功能
-        document.querySelectorAll('.bg-gray-100.text-gray-600.rounded-full').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // 移除所有标签的选中状态
-                document.querySelectorAll('.bg-gray-100.text-gray-600.rounded-full').forEach(b => {
-                    b.classList.remove('bg-primary', 'text-white');
-                    b.classList.add('bg-gray-100', 'text-gray-600');
+        // 页面特定功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 关注按钮功能 - 覆盖全局关注功能，使用页面特定的样式
+            const followBtn = document.getElementById('follow-btn');
+            if (followBtn) {
+                followBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (this.textContent.includes('已关注')) {
+                        if (confirm('确定要取消关注吗？')) {
+                            this.innerHTML = '<i class="fa fa-plus mr-2"></i>关注';
+                            this.classList.remove('bg-green-500', 'hover:bg-green-600');
+                            this.classList.add('bg-primary', 'hover:bg-primary/90');
+                            alert('已取消关注');
+                        }
+                    } else {
+                        this.innerHTML = '<i class="fa fa-check mr-2"></i>已关注';
+                        this.classList.remove('bg-primary', 'hover:bg-primary/90');
+                        this.classList.add('bg-green-500', 'hover:bg-green-600');
+                        alert('关注成功');
+                    }
                 });
-                
-                // 添加当前标签的选中状态
-                this.classList.remove('bg-gray-100', 'text-gray-600');
-                this.classList.add('bg-primary', 'text-white');
+            }
+            
+            // 发布帖子功能
+            const publishBtn = document.getElementById('publish-post');
+            if (publishBtn) {
+                publishBtn.addEventListener('click', function() {
+                    const postContent = document.getElementById('post-content').value.trim();
+                    if (postContent) {
+                        alert('帖子发布成功！');
+                        document.getElementById('post-content').value = '';
+                    } else {
+                        alert('请输入帖子内容');
+                    }
+                });
+            }
+            
+            // 加载更多功能
+            const loadMoreBtn = document.getElementById('load-more');
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', function() {
+                    // 模拟加载中状态
+                    this.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i>加载中...';
+                    
+                    // 模拟网络延迟
+                    setTimeout(() => {
+                        alert('已加载全部内容');
+                        this.innerHTML = '没有更多内容了';
+                        this.disabled = true;
+                        this.classList.add('opacity-50', 'cursor-not-allowed');
+                    }, 1500);
+                });
+            }
+            
+            // 标签切换功能
+            document.querySelectorAll('.bg-gray-100.text-gray-600.rounded-full').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 移除所有标签的选中状态
+                    document.querySelectorAll('.bg-gray-100.text-gray-600.rounded-full').forEach(b => {
+                        b.classList.remove('bg-primary', 'text-white');
+                        b.classList.add('bg-gray-100', 'text-gray-600');
+                    });
+                    
+                    // 添加当前标签的选中状态
+                    this.classList.remove('bg-gray-100', 'text-gray-600');
+                    this.classList.add('bg-primary', 'text-white');
+                });
             });
         });
     </script>
